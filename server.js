@@ -33,12 +33,22 @@ app.get("/api/listings", async (req, res) => {
 
     // Fetch listings
     const listings = await Listing.find();
-    res.json(listings);
+
+    // Transform _id to listingId
+    const transformedListings = listings.map((listing) => {
+      const obj = listing.toObject(); // Convert Mongoose document to plain JS object
+      obj.listingId = obj._id; // Add listingId with the value of _id
+      delete obj._id; // Remove _id
+      return obj;
+    });
+
+    res.json(transformedListings);
   } catch (error) {
     console.error("Error fetching listings:", error);
     res.status(500).json({ error: "Failed to fetch listings" });
   }
 });
+
 
 // Start the Express server
 app.listen(port, () => {
