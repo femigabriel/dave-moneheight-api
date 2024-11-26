@@ -31,11 +31,14 @@ app.get("/api/listings", async (req, res) => {
     // Ensure MongoDB connection
     await connectDB();
 
-    // Fetch listings and project `_id` to `listingId`
-    const listings = await Listing.find().lean(); // Use `lean()` for plain JS objects
+    // Fetch listings and transform the output for the feed
+    const listings = await Listing.find().lean();
+
     const transformedListings = listings.map((listing) => {
-      const { _id, ...rest } = listing; // Destructure _id from the rest of the document
-      return { listingId: _id, ...rest }; // Include the rest of the document with `listingId`
+      // Use the ProviderListingId as the unique id for the feed if available
+      const { _id, ListingDetails, ...rest } = listing;
+      const listingId = ListingDetails?.ProviderListingId || _id; // Fallback to _id if ProviderListingId is missing
+      return { listingId, ...rest };
     });
 
     res.json(transformedListings);
@@ -44,6 +47,7 @@ app.get("/api/listings", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch listings" });
   }
 });
+
 
 
 // Start the Express server
