@@ -37,24 +37,57 @@ app.get("/api/listings", async (req, res) => {
       .limit(limit)
       .lean();
 
-    const transformedListings = listings.map((listing) => {
-      const { __v, _id, ListingDetails, BasicDetails, ...rest } = listing;
-
-      return {
-        listingId: ListingDetails?.ProviderListingId || _id,
-        Location: listing.Location,
-        RentalDetails: listing.RentalDetails,
-        BasicDetails: {
-          ...BasicDetails,
-          PropertyType: BasicDetails?.PropertyType || "Residential",
-          PropertySubType: BasicDetails?.PropertySubType || "Apartment",
+      const transformListing = (listing) => ({
+        listingId: listing.ListingDetails?.ProviderListingId || listing._id,
+        Location: {
+            StreetAddress: listing.Location.StreetAddress,
+            UnitNumber: listing.Location.UnitNumber || "",
+            City: listing.Location.City,
+            State: listing.Location.State,
+            Zip: listing.Location.Zip,
+            Lat: listing.Location.Lat,
+            Long: listing.Location.Long,
+            DisplayAddress: listing.Location.DisplayAddress === "Yes"
         },
-        Agent: listing.Agent,
-        Office: listing.Office,
-        Neighborhood: listing.Neighborhood,
-        RichDetails: listing.RichDetails,
-      };
+        RentalDetails: {
+            Availability: listing.RentalDetails.Availability,
+            LeaseTerm: listing.RentalDetails.LeaseTerm,
+            UtilitiesIncluded: Object.keys(listing.RentalDetails.UtilitiesIncluded)
+                .filter((key) => listing.RentalDetails.UtilitiesIncluded[key] === "Yes"),
+            PetsAllowed: Object.keys(listing.RentalDetails.PetsAllowed)
+                .filter((key) => listing.RentalDetails.PetsAllowed[key] === "Yes")
+        },
+        BasicDetails: {
+            PropertyType: listing.BasicDetails.PropertyType || "Apartment",
+            Title: listing.BasicDetails.Title,
+            Description: listing.BasicDetails.Description,
+            Bedrooms: listing.BasicDetails.Bedrooms || 0,
+            Bathrooms: listing.BasicDetails.Bathrooms || 0,
+            LivingArea: listing.BasicDetails.LivingArea || null
+        },
+        Agent: {
+            Name: `${listing.Agent.FirstName} ${listing.Agent.LastName}`,
+            Email: listing.Agent.EmailAddress,
+            PictureUrl: listing.Agent.PictureUrl,
+            MobilePhone: listing.Agent.MobilePhoneLineNumber.toString(),
+            OfficePhone: listing.Agent.OfficeLineNumber
+        },
+        Office: {
+            Name: listing.Office.BrokerageName,
+            Phone: listing.Office.BrokerPhone,
+            Website: listing.Office.BrokerWebsite,
+            Email: listing.Office.BrokerEmail,
+            Address: `${listing.Office.StreetAddress}, ${listing.Office.City}, ${listing.Office.State}, ${listing.Office.Zip}`
+        },
+        Neighborhood: listing.Neighborhood?.Name || null,
+        RichDetails: {
+            Features: listing.RichDetails.AdditionalFeatures.split(","),
+            CondoFloorNum: listing.RichDetails.CondoFloorNum,
+            ParkingType: listing.RichDetails.ParkingTypes?.ParkingType || null,
+            OnsiteLaundry: listing.RichDetails.OnsiteLaundry === "Yes"
+        }
     });
+    
 
     res.json({
       page,
