@@ -27,33 +27,47 @@ const connectDB = async () => {
 
 // Fetch listings endpoint
 app.get("/api/listings", async (req, res) => {
+  const { page = 1, limit = 10 } = req.query;
+
   try {
-    // Ensure MongoDB connection
     await connectDB();
 
-    // Fetch listings and transform the output for the feed
-    const listings = await Listing.find().lean();
+    const listings = await Listing.find()
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .lean();
 
     const transformedListings = listings.map((listing) => {
-      const { _id, ListingKey, ListingDetails, BasicDetails, ...rest } = listing;
-      const listingId = ListingKey || ListingDetails?.ProviderListingId || _id;
-  
-      const transformedBasicDetails = {
-          ...BasicDetails,
-          PropertyType: "Residential", // Default or derived value
-          PropertySubType: BasicDetails?.PropertyType, // Move PropertyType to PropertySubType
-      };
-  
-      return { listingId, BasicDetails: transformedBasicDetails, ...rest };
-  });
-  
+      const { __v, _id, ListingDetails, BasicDetails, ...rest } = listing;
 
-    res.json(transformedListings);
+      return {
+        listingId: ListingDetails?.ProviderListingId || _id,
+        Location: listing.Location,
+        RentalDetails: listing.RentalDetails,
+        BasicDetails: {
+          ...BasicDetails,
+          PropertyType: BasicDetails?.PropertyType || "Residential",
+          PropertySubType: BasicDetails?.PropertySubType || "Apartment",
+        },
+        Agent: listing.Agent,
+        Office: listing.Office,
+        Neighborhood: listing.Neighborhood,
+        RichDetails: listing.RichDetails,
+      };
+    });
+
+    res.json({
+      page,
+      limit,
+      total: await Listing.countDocuments(),
+      data: transformedListings,
+    });
   } catch (error) {
     console.error("Error fetching listings:", error);
     res.status(500).json({ error: "Failed to fetch listings" });
   }
 });
+
 
 
 
