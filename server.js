@@ -35,11 +35,18 @@ app.get("/api/listings", async (req, res) => {
     const listings = await Listing.find().lean();
 
     const transformedListings = listings.map((listing) => {
-      // Use the ProviderListingId as the unique id for the feed if available
-      const { _id, ListingDetails, ...rest } = listing;
-      const listingId = ListingDetails?.ProviderListingId || _id; // Fallback to _id if ProviderListingId is missing
-      return { listingId, ...rest };
-    });
+      const { _id, ListingKey, ListingDetails, BasicDetails, ...rest } = listing;
+      const listingId = ListingKey || ListingDetails?.ProviderListingId || _id;
+  
+      const transformedBasicDetails = {
+          ...BasicDetails,
+          PropertyType: "Residential", // Default or derived value
+          PropertySubType: BasicDetails?.PropertyType, // Move PropertyType to PropertySubType
+      };
+  
+      return { listingId, BasicDetails: transformedBasicDetails, ...rest };
+  });
+  
 
     res.json(transformedListings);
   } catch (error) {
