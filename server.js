@@ -37,24 +37,25 @@ app.get("/api/listings", async (req, res) => {
       .limit(limit)
       .lean();
 
-    const transformedListings = listings.map((listing) => {
-      const { __v, _id, ListingDetails, BasicDetails, ...rest } = listing;
-
-      return {
-        ListingKey: ListingDetails?.ProviderListingId || _id, // Changed to ListingKey
-        Location: listing.Location,
-        RentalDetails: listing.RentalDetails,
-        BasicDetails: {
-          ...BasicDetails,
-          PropertyType: "RESI", // Mapped to "RESI"
-          PropertySubType: BasicDetails?.PropertySubType || "Apartment",
-        },
-        Agent: listing.Agent,
-        Office: listing.Office,
-        Neighborhood: listing.Neighborhood,
-        RichDetails: listing.RichDetails,
-      };
-    });
+      const transformedListings = listings.map((listing) => {
+        const { __v, _id, ListingDetails, BasicDetails, ...rest } = listing;
+      
+        return {
+          ListingKey: ListingDetails?.ProviderListingId || _id, // Changed to ListingKey
+          Location: listing.Location,
+          RentalDetails: listing.RentalDetails,
+          BasicDetails: {
+            ...BasicDetails,
+            PropertyType: "Residential", 
+            PropertySubType: BasicDetails?.PropertyType || "Apartment", // Moved PropertyType value to PropertySubType
+          },
+          Agent: listing.Agent,
+          Office: listing.Office,
+          Neighborhood: listing.Neighborhood,
+          RichDetails: listing.RichDetails,
+        };
+      });
+      
 
     res.json({
       page,
