@@ -46,7 +46,7 @@ app.get("/api/listings", async (req, res) => {
         RentalDetails: listing.RentalDetails,
         BasicDetails: {
           ...BasicDetails,
-          PropertyType: "Residential",
+          PropertyType: "RESI",
           PropertySubType: BasicDetails?.PropertyType || "Apartment", // Moved PropertyType value to PropertySubType
         },
         Agent: listing.Agent,
