@@ -1,0 +1,104 @@
+[
+    {
+      "title": "Hepatitis Panel, Acute with Reflex to Confirmation",
+      "number": 10306,
+      "description": "This panel may be helpful in the diagnosis of acute or recent infection with hepatitis A virus (HAV), hepatitis B virus (HBV), and hepatitis C virus (HCV). Acute symptoms and signs are similar among HAV, HBV, and HCV infection and may include fever, fatigue, loss of appetite, nausea, abdominal discomfort, dark urine, pale stools, and jaundice.",
+      "includes": [
+        "Hepatitis A IgM Antibody",
+        "Hepatitis B Surface Antigen with Reflex to Confirmation",
+        "Hepatitis B Core Antibody (IgM)",
+        "Hepatitis C Antibody with Reflex to HCV, RNA, Quantitative, Real-Time PCR"
+      ]
+    },
+    {
+      "title": "ANA Screen, IFA, with Reflex to Titer and Pattern",
+      "number": 249,
+      "description": "This test is often ordered as part of an initial diagnostic evaluation of individuals with clinical suspicion of autoimmune diseases associated with antinuclear antibodies (ANAs). ANAs are associated with several autoimmune diseases, such as systemic lupus erythematosus, systemic sclerosis, mixed connective tissue disease, polymyositis, primary biliary cholangitis, rheumatoid arthritis, juvenile rheumatoid arthritis, Sjogren syndrome, and autoimmune hepatitis. The laboratory evaluation for individuals with clinical suspicion of these autoimmune diseases often begins with an ANA screen.",
+      "includes": [
+        "If ANA Screen, IFA is positive, then ANA Titer and Pattern will be performed at no additional charge."
+      ]
+    },
+    {
+      "title": "CBC (includes Differential and Platelets)",
+      "number": 6399,
+      "description": "A complete blood count is used as a screening test for various disease states to include: anemia, leukemia, and inflammatory processes.",
+      "includes": [
+        "WBC, RBC, Hemoglobin, Hematocrit, MCV, MCH, MCHC, RDW, Platelet Count, MPV and Differential (Absolute and Percent - Neutrophils, Lymphocytes, Monocytes, Eosinophils, and Basophils)",
+        "If abnormal cells are noted on a manual review of the peripheral blood smear or if the automated differential information meets specific criteria, a full manual differential will be performed at no additional charge."
+      ]
+    },
+    {
+      "title": "Celiac Disease Diagnostic Panel",
+      "number": 15681,
+      "description": "Celiac disease is characterized by the presence of Transglutaminase, Gliadin, and Reticulin Antibodies. Such patients display a hypersensitivity to gluten (wheat) in their diet. The antibody is undetectable when patients with hypersensitivity are placed on gluten-free diets. Antibody IgA is more specific and IgG is more sensitive to Celiac disease.",
+      "includes": [
+        "Tissue Transglutaminase (tTG) Antibodies (IgG, IgA)",
+        "Gliadin (Deamidated) Antibody (IgG, IgA)",
+        "IgA (Immunoglobulin A)"
+      ]
+    },
+    {
+      "title": "Chlamydia/Neisseria gonorrhoeae RNA, TMA, Urogenital",
+      "number": 11363,
+      "description": "Chlamydia trachomatis infections are the leading cause of sexually transmitted diseases in the United States. C. trachomatis is known to cause cervicitis, pelvic inflammatory disease (PID), epididymitis and proctitis. It is also the most frequent cause of non-gonococcal urethritis in men. Among women, the consequences of Chlamydial infections are severe if left untreated. Approximately half of Chlamydial infections are asymptomatic. Neisseria gonorrhoeae (gonococci) is the causative agent of gonorrhea. In men, this disease generally results in anterior urethritis accompanied by purulent exudate. In women, the disease is most often found in the cervix, but the vagina and uterus may also be infected.",
+      "includes": [
+        "Chlamydia trachomatis RNA, TMA, Urogenital",
+        "Neisseria gonorrhoeae RNA, TMA, Urogenital"
+      ]
+    },
+    {
+      "title": "Comprehensive Metabolic Panel",
+      "number": 10231,
+      "description": "This panel comprises a group of tests that provide information on an individual's blood levels of electrolytes, calcium, phosphorus, and glucose as well as renal function, hepatic function, and acid-base balance. The panel is usually ordered as part of a health examination to detect a range of disorders, especially those that may affect the liver or kidneys.",
+      "includes": [
+        "Albumin, Albumin/Globulin Ratio (calculated), Alkaline Phosphatase, ALT, AST, BUN/Creatinine Ratio (calculated), Calcium, Carbon Dioxide, Chloride, Creatinine with GFR Estimated, Globulin (calculated), Glucose, Potassium, Sodium, Total Bilirubin, Total Protein, Urea Nitrogen"
+      ]
+    },
+    {
+      "title": "Epstein-Barr Virus Antibody Panel",
+      "number": 6421,
+      "description": "Primary infection by Epstein-Barr Virus (EBV) causes infectious mononucleosis, usually a self-limiting disease in children and young adults. Infection with EBV can cause lymphoproliferative disorders including tumors. EBV VCA IgM is typically detectable at clinical presentation, then declines to undetectable levels within a month in young children and within 3 months in other individuals. EBV VCA IgG is typically detectable at clinical presentation, and persists for life. EBV nuclear IgG (EBNA) typically appears during convalescence (3-4 months after clinical presentation) and remains detectable for life.",
+      "includes": [
+        "Epstein-Barr Virus VCA Antibody (IgM)",
+        "Epstein-Barr Virus VCA Antibody (IgG)",
+        "Epstein-Barr Virus Nuclear Antigen (EBNA) Antibody (IgG)"
+      ]
+    },
+    {
+      "title": "Food Allergy Profile",
+      "number": 10715,
+      "description": "This panel is used to measure an individual's response to 15 different foods that are commonly associated with allergies. However, a positive test result only indicates that a patient is IgE sensitized to the food of concern. Many IgE-sensitized individuals do not develop any symptoms when the food is ingested.",
+      "includes": [
+        "Almond (f20)",
+        "Cashew Nut (f202)",
+        "Codfish (f3)",
+        "Cow's Milk (f2)",
+        "Egg White (f1)",
+        "Hazelnut (f17)",
+        "Peanut (f13)",
+        "Salmon (f41)",
+        "Scallop (f338)",
+        "Sesame Seed (f10)",
+        "Shrimp (f24)",
+        "Soybean (f14)",
+        "Tuna (f40)",
+        "Walnut (f256)",
+        "Wheat (f4)"
+      ]
+    },
+    {
+      "title": "Lipid Panel, Standard",
+      "number": 7600,
+      "description": "The Lipid Panel, Standard aids in the evaluation of cardiovascular risk and the likelihood of suffering an ischemic event. It is also useful for the prevention and management of atherosclerotic disease, as well as the diagnosis of metabolic syndrome.",
+      "includes": [
+        "Cholesterol, Total",
+        "Triglycerides",
+        "HDL Cholesterol",
+        "LDL-Cholesterol (calculated)",
+        "Cholesterol/HDL Ratio (calculated)",
+        "Non-HDL Cholesterol (calculated)"
+      ],
+      "patient_preparation": "The patient should be fasting 9-12 hours prior to collection."
+    }
+  ]
+  

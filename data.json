@@ -1,0 +1,252 @@
+[
+  {
+    "title": "Cyclic Citrullinated Peptide (CCP) Antibody (IgG)",
+    "number": 11173,
+    "description": "Clinical Significance A peptide containing citrulline called CCP IgG (cyclic citrullinated peptide) has been found to be better at discriminating Rheumatoid Arthritis patients from patients with other diseases such as hepatitis C infection. Rheumatoid Arthritis Classification Criteria include CCP IgG Antibody, rheumatoid factor, C-reactive protein and erythrocyte sedimentation rate (ESR). Approximately 70% of patients with Rheumatoid Arthritis are positive for Anti-CCP IgG, while only about 2% of random blood donors and disease controls subjects are positive."
+  },
+  {
+    "title": "Apolipoprotein B",
+    "number": 5224,
+    "description": "Clinical Significance Apolipoprotein B (APO B) has been reported to be a powerful indicator of coronary artery disease (CAD). In some patients with CAD, APO B is elevated even in the presence of normal LDL cholesterol."
+  },
+  {
+    "title": "B-Type Natriuretic Peptide (BNP)",
+    "number": 37386,
+    "description": "Clinical Significance BNP is increased in congestive heart failure, left ventricular hypertrophy, acute myocardial infarction, coronary angioplasty, and hypertension. Elevations are also observed in pulmonary hypertension (indicating right ventricular dysfunction), acute lung injury, hypervolemic states, chronic renal failure and cirrhosis. Decreasing levels indicate therapeutic response to anti-hypertensive therapy."
+  },
+  {
+    "title": "Calcium",
+    "number": 303,
+    "description": "Clinical Significance Serum calcium is involved in the regulation of neuromuscular and enzyme activity, bone metabolism and blood coagulation. Calcium blood levels are controlled by a complex interaction of parathyroid hormone, vitamin D, calcitonin and adrenal cortical steroids. Calcium measurements are useful in the diagnosis of parathyroid disease, some bone disorders and chronic renal disease."
+  },
+  {
+    "title": "Cortisol, Total",
+    "number": 367,
+    "description": "Clinical Significance Cortisol is a primary stress hormone that is produced in the adrenal glands in response to different physiological stressors on the body.  Cortisol levels regulate how the body responds to stress, illness, and metabolism. Elevated or low cortisol levels can indicate issues such as chronic stress, adrenal gland disorders (such as Addison’s disease or Cushing’s syndrome), or conditions affecting the pituitary gland."
+  },
+  {
+    "title": "hs-CRP",
+    "number": 10124,
+    "description": "Clinical Significance High-sensitivity C-reactive protein (hs-CRP) is a blood test used to detect low levels of inflammation in the body, with specific relevance to cardiovascular health. The clinical significance of hs-CRP lies in its ability to predict the risk of cardiovascular diseases (CVD), such as heart attacks and strokes. Elevated hs-CRP levels can indicate inflammation in the blood vessels, which is linked to the development of atherosclerosis (plaque buildup in arteries), even when cholesterol levels are normal."
+  },
+  {
+    "title": "Cystatin C with Glomerular Filtration Rate, Estimated (eGFR)",
+    "number": 94588,
+    "description": "Clinical Significance Cystatin C is a protein used as a marker for kidney function, and its clinical significance lies in its ability to provide a more accurate assessment of glomerular filtration rate (GFR) than creatinine, particularly in patients with varying muscle mass, making it a valuable tool for early detection of chronic kidney disease and monitoring kidney health."
+  },
+  {
+    "title": "DHEA, (Dehydroepiandrosterone), Unconjugated",
+    "number": 19894,
+    "description": "Clinical Significance DHEA is crucial for the production of testosterone and estrogen, as it serves as a precursor hormone that the body converts into these sex hormones. Its clinical significance is particularly important in regulating hormone balance, affecting sexual function, mood, and energy levels. As DHEA levels decline with age, this can lead to reduced production of testosterone and estrogen, contributing to symptoms like fatigue, decreased libido, and osteoporosis. Abnormal levels of DHEA, whether too high or too low, can disrupt normal hormone function and may be associated with conditions like adrenal disorders, infertility, or hormonal imbalances such as polycystic ovary syndrome (PCOS)."
+  },
+  {
+    "title": "Dihydrotestosterone LC/MS",
+    "number": 90567,
+    "description": "Clinical Significance Dihydrotestosterone (DHT) is a potent derivative of testosterone that plays a key role in hormone function, particularly in male sexual development and characteristics. Clinically, DHT is significant because elevated levels can contribute to androgenic alopecia (pattern hair loss) by shrinking hair follicles, leading to thinning hair or baldness. While it is essential for functions like prostate growth and male secondary sexual characteristics, excessive DHT can also be linked to conditions like benign prostatic hyperplasia (BPH) and hair loss, making it a target for treatments aimed at reducing its effects in those with hair loss or prostate issues."
+  },
+  {
+    "title": "Sed Rate by Modified Westergren",
+    "number": null,
+    "description": "Clinical Significance Also known as Erythrocyte Sedimentation Rate (ESR), this test serves as an indirect marker of inflammation. Its clinical significance lies in its ability to help detect and monitor inflammatory conditions, such as infections, autoimmune diseases (e.g., rheumatoid arthritis and lupus), and some cancers. Although not specific to any particular disease, elevated ESR levels indicate the presence of inflammation in the body and can assist in diagnosing and assessing the severity of these conditions or monitoring treatment response."
+  },
+  {
+    "title": "Estradiol, Ultrasensitive, LC/MS",
+    "number": 30289,
+    "description": "Clinical Significance Estradiol, a key form of estrogen, is crucial for hormone evaluation in both men and women, impacting sexual function, mood, and overall health. In women, estradiol regulates menstrual cycles, fertility, and libido, with abnormal levels affecting reproductive health and contributing to mood disorders. In men, estradiol is involved in libido, bone health, and preventing conditions like gynecomastia (enlarged breast tissue). Elevated estradiol in men can lead to gynecomastia and sexual dysfunction, while low levels may affect mood and sexual desire. Ultrasensitive Estradiol LC/MS is considered the gold standard for measuring estradiol because it offers higher sensitivity and specificity, making it particularly useful for detecting very low hormone levels, such as in men, children, and postmenopausal women. Immunoassays are less accurate at low concentrations and may suffer from cross-reactivity with other similar compounds."
+  },
+  {
+    "title": "Estradiol",
+    "number": 4021,
+    "description": "Clinical Significance Estradiol, a key form of estrogen, is crucial for hormone evaluation in both men and women, impacting sexual function, mood, and overall health. In women, estradiol regulates menstrual cycles, fertility, and libido, with abnormal levels affecting reproductive health and contributing to mood disorders. In men, estradiol is involved in libido, bone health, and preventing conditions like gynecomastia (enlarged breast tissue). Elevated estradiol in men can lead to gynecomastia and sexual dysfunction, while low levels may affect mood and sexual desire."
+  },
+  {
+    "title": "Ferritin",
+    "number": 457,
+    "description": "Clinical Significance Ferritin is a protein that stores iron in the body and is a key marker for assessing iron levels and overall iron status. Its clinical significance lies in its ability to indicate iron deficiency or overload; low ferritin levels often suggest iron deficiency anemia, which can lead to fatigue and other health issues, while elevated levels may indicate conditions such as hemochromatosis, inflammation, or chronic disease."
+  },
+  {
+    "title": "Folate, Serum",
+    "number": 466,
+    "description": "Clinical Significance Folic acid deficiency is common in pregnant women, alcoholics, in patients whose diets do not include raw fruits and vegetables, and in people with structural damage to the small intestine. Low folic acid levels, however, can also be the result of a primary vitamin B12 deficiency that decreases the ability of cells to take up folic acid. T3, Free\t34429 Clinical Significance The Free T3 (FT3) test is used, primarily in concert with measurement of thyroid-stimulating hormone (TSH) and free T4 (FT4), in the diagnosis and management of hyperthyroidism and to clarify thyroid hormone status in the presence of a possible thyroid hormone-binding protein abnormality.  The FT3 test is usually ordered following an abnormally low TSH result and/or a clinical picture suggestive of hyperthyroidism. T4 Free (FT4) \t\t866 Clinical Significance The Free T4 (FT4) test is used with thyroid-stimulating hormone measurement (TSH) in the diagnosis of hyperthyroidism and hypothyroidism, to assess thyroid function, monitor thyroid conditions, and assess treatment effectiveness."
+  },
+  {
+    "title": "Helicobacter pylori, Urea Breath Test",
+    "number": 14839,
+    "description": "Clinical Significance Helicobacter pylori (H. Pylori) has been identified as an important pathogen in the upper GI tract. The relationship between H. pylori and chronic active gastritis, duodenal ulcers, and gastric ulcers has been well documented. The breath test provides a non-invasive and non-hazardous method for detecting current H. pylori infection using urea breath analysis. Patient Preparation Patient should fast at least one hour before collection of baseline breath sample.Use of antimicrobials, proton pump inhibitors, or bismuth preparations within two weeks prior to administering the test may cause a false negative result. However, a positive result is still valid."
+  },
+  {
+    "title": "hCG, Total, Quantitative",
+    "number": 8396,
+    "description": "Clinical Significance Quantitative human chorionic gonadotropin (hCG) testing measures the exact levels of hCG in the blood and is clinically significant for various applications, particularly in obstetrics and oncology. In pregnancy, rising hCG levels can confirm pregnancy viability, assess gestational age, and monitor potential complications like ectopic pregnancies or miscarriages. In non-pregnant individuals, elevated hCG levels can indicate certain types of tumors, such as germ cell tumors or trophoblastic disease, making it a valuable marker in cancer diagnostics and monitoring treatment response."
+  },
+  {
+    "title": "Hepatitis B Surface Antibody Immunity, Quantitative",
+    "number": 8475,
+    "description": "Clinical Significance This assay is used to determine immune status for Hepatitis B as ≥10 mIU/mL as per CDC Guidelines."
+  },
+  {
+    "title": "Hepatic Function Panel",
+    "number": 10256,
+    "description": "Clinical Significance This panel may be helpful in assessing liver injury, diagnosing liver diseases, and monitoring treatment of liver diseases and adverse effects of hepatotoxic drugs. Includes total protein, albumin, globulin (calculated), albumin/globulin ratio, total bilirubin, direct bilirubin, indirect bilirubin (calculated), alkaline phosphatase (ALP), aspartate aminotransferase (AST), and alanine aminotransferase (ALT).⁠⁠ Hemoglobin A1c\t496 Clinical Significance Hemoglobin A1c (HbA1c) is a blood test that reflects average blood glucose levels over the past two to three months, making it essential for both diabetics and non-diabetics. In individuals with diabetes, HbA1c is used to monitor long-term glycemic control, guide treatment decisions, and assess the risk of complications, such as cardiovascular disease and neuropathy. For non-diabetics, elevated HbA1c levels can indicate prediabetes or increased risk for developing type 2 diabetes, prompting early interventions to prevent disease onset. HIV-1/2 Antigen and Antibodies, Fourth Generation, with Reflexes\t91431 Clinical Significance This test is used to help diagnose HIV-1 and HIV-2 infection, including acute infection, and to differentiate HIV-1 from HIV-2. It can be used in adults, including pregnant women.If HIV Antigen and Antibody, 4th Generation Screen is Repeatedly Reactive, then HIV-1/2 Antibody Differentiation will be performed at no additional cost.If HIV-1/2 Antibody Differentiation is Indeterminate or Negative, then HIV-1 RNA, Qualitative Real-Time PCR will be performed at no additional cost."
+  },
+  {
+    "title": "Homocysteine",
+    "number": 31789,
+    "description": "Clinical Significance Homocysteine is an amino acid in the blood. Elevated levels have been associated with an increased risk of cardiovascular diseases, including heart attack and stroke. High homocysteine levels may contribute to arterial damage, promoting atherosclerosis and endothelial dysfunction, which can lead to plaque formation in blood vessels. Herpes Simplex Virus 1 and 2 (IgG), Type-Specific Antibodies\t6447 Clinical Significance Herpes Simplex Virus (HSV) is responsible for several human viral diseases. HSV Type 2 is more commonly associated with genital tract and neonatal infections, while HSV Type 1 is more commonly associated with infections of non-genital sites. Specific typing is not usually required for diagnosis or treatment. The mean time to seroconversion using the type specific assay is 25 days. The performance of this assay has not been established for use in a pediatric population, for neonatal screening, or for testing of immunocompromised patients. IGF-1, LC/MS\t16293 Clinical Significance Insulin-like growth factor 1 (IGF-1) is a hormone that plays a role in growth, development, and metabolism, and its clinical significance is increasingly recognized in the context of health and longevity. Elevated levels of IGF-1 are associated with enhanced muscle mass and strength, improved cognitive function, and better metabolic health, while lower levels may indicate a reduced risk of age-related diseases and certain cancers. However, excessively high IGF-1 levels can also correlate with an increased risk of developing malignancies and may contribute to the aging process by promoting cellular growth and proliferation. Therefore, measuring IGF-1 can provide valuable insights into an individual's health status, potential risks for age-related conditions, and overall longevity, guiding interventions to optimize health across the lifespan."
+  },
+  {
+    "title": "Insulin",
+    "number": 561,
+    "description": "Clinical Significance Fasting insulin is useful in assessing metabolic health and glucose metabolism, as it reflects the body's insulin sensitivity and the pancreas's ability to produce insulin in response to blood glucose levels. Elevated fasting insulin levels often indicate insulin resistance, a condition that can lead to type 2 diabetes, obesity, and metabolic syndrome. Monitoring fasting insulin levels can also guide lifestyle interventions and treatment strategies aimed at improving insulin sensitivity, reducing the risk of diabetes, and promoting overall metabolic health."
+  },
+  {
+    "title": "Iron, TIBC and Ferritin Panel",
+    "number": 5616,
+    "description": "Clinical Significance This serum iron study panel may help diagnose iron deficiency or overload. Because ferritin level can be affected by clinical conditions other than iron disorders, the measurement of transferrin saturation-calculated from serum iron level and total iron binding capacity (TIBC)-in the same serum specimen may facilitate the diagnosis of iron deficiency or overload."
+  },
+  {
+    "title": "FSH and LH",
+    "number": 7137,
+    "description": "Clinical Significance In both males and females, FSH and LH secretion is regulated by a balance of positive and negative feedback mechanisms involving the hypothalamic-pituitary axis, the reproductive organs, and the pituitary and sex steroid hormones. FSH and LH play a role in maintaining the normal function of the male and female reproductive systems. Abnormal FSH and/or LH levels with corresponding increased or decreased levels of LH/FSH, estrogens, progesterone, and testosterone are associated with a number of pathological conditions."
+  },
+  {
+    "title": "Lipase",
+    "number": 606,
+    "description": "Clinical Significance This test provides confirmatory evidence for diagnosis of pancreatitis."
+  },
+  {
+    "title": "Lipoprotein (a)",
+    "number": 34604,
+    "description": "Clinical Significance Lipoprotein(a), or Lp(a), is useful in evaluating risk for cardiovascular disease. Elevated levels of Lp(a) are associated with an increased risk of atherosclerosis, heart attacks, and stroke, particularly in individuals with a family history of cardiovascular issues. Unlike other lipid parameters, Lp(a) levels are largely determined by genetics and remain relatively constant throughout life, making it an important marker for assessing cardiovascular risk in patients who may have normal cholesterol levels."
+  },
+  {
+    "title": "Magnesium",
+    "number": 622,
+    "description": "Clinical Significance Magnesium is an essential mineral that plays a role in numerous physiological processes, including muscle function, nerve transmission, energy production, and bone health. Low magnesium levels have been associated with hypertension, arrhythmias, and an increased risk of cardiovascular disease. Additionally, magnesium deficiency can contribute to metabolic disorders, including insulin resistance and type 2 diabetes, as well as mental health issues like depression and anxiety."
+  },
+  {
+    "title": "Methylenetetrahydrofolate Reductase (MTHFR), DNA Mutation Analysis",
+    "number": 17911,
+    "description": "Clinical Significance Methylenetetrahydrofolate reductase (MTHFR) is an enzyme that plays a role in the metabolism of folate and the conversion of homocysteine into methionine, an amino acid involved in various biological processes. Mutations in the MTHFR gene can lead to reduced enzyme activity, resulting in elevated homocysteine levels, which are associated with an increased risk of cardiovascular diseases, stroke, and complications during pregnancy, such as neural tube defects. Testing for MTHFR mutations can help identify individuals who may benefit from targeted nutritional interventions, such as folate supplementation, and facilitate personalized approaches to managing health risks linked to impaired methylation and homocysteine metabolism."
+  },
+  {
+    "title": "Measles, Mumps, and Rubella (MMR) Antibodies (IgG) Panel, Immune Status",
+    "number": 5259,
+    "description": "Clinical Significance This panel provides presumptive evidence of immunity to measles, mumps, and rubella for purposes of routine vaccination. May be used for students, pre-employment, and for international travelers. Includes Measles Antibody (IgG), Immune Status Mumps Virus Antibody (IgG), Immune Status Rubella Antibody (IgG), Immune Status"
+  },
+  {
+    "title": "Phosphate (as Phosphorus)",
+    "number": 718,
+    "description": "Clinical Significance Phosphorus is a mineral that plays involved in bone health, energy production, and cellular function. It maintains a balance with calcium, as both minerals are needed for bone integrity. Hypophosphatemia (low phosphorus) may result from malnutrition, certain medications, or conditions like hyperparathyroidism, leading to bone weakness and muscle weakness. Conversely, hyperphosphatemia (high phosphorus) is often associated with chronic kidney disease and can lead to calcification of soft tissues and cardiovascular problems."
+  },
+  {
+    "title": "Pregnenolone, LC/MS",
+    "number": 31493,
+    "description": "Clinical SignificancePregnenolone is a steroid hormone that serves as a precursor for various hormones, including progesterone, estrogen, and testosterone. Pregnenolone has been linked to cognitive function, stress response, and emotional regulation.  Low levels of pregnenolone have been associated with mood disorders and cognitive decline, making its assessment valuable in understanding individual hormonal balance and guiding therapeutic interventions aimed at improving mental health and overall well-being."
+  },
+  {
+    "title": "Progesterone, LC/MS",
+    "number": 17183,
+    "description": "Clinical Significance Progesterone is a hormone for both men and women, playing a role in maintaining hormonal balance and overall health. In women, progesterone regulates the menstrual cycle, supports pregnancy, and promotes uterine health, while also helping to balance estrogen levels, which helps with mood swings, irritability, and anxiety. In men, progesterone balances testosterone levels and may contribute to mood stabilization and improved sleep quality. Clinical significance lies in its potential benefits for both sexes, as adequate progesterone levels can enhance mood, promote restful sleep, and mitigate symptoms associated with hormonal imbalances."
+  },
+  {
+    "title": "Prolactin",
+    "number": 746,
+    "description": "Clinical Significance Prolactin is a hormone produced by the pituitary gland that plays a role in reproductive health, particularly in relation to sexual function and libido. Elevated prolactin levels (hyperprolactinemia) can lead to a decrease in sexual desire and libido in both men and women. In women, high prolactin can disrupt menstrual cycles and cause issues such as galactorrhea (unexpected milk production), while in men, it can lead to erectile dysfunction and decreased testosterone levels. Clinically, monitoring prolactin levels is essential for diagnosing underlying conditions and for guiding appropriate treatment strategies to restore sexual function and enhance libido."
+  },
+  {
+    "title": "PSA, Total",
+    "number": 5363,
+    "description": "Clinical Significance Elevated serum PSA concentrations have been reported in men with prostate cancer, benign prostatic hypertrophy, and inflammatory conditions of the prostate."
+  },
+  {
+    "title": "Prothrombin with INR and Partial Thromboplastin Times",
+    "number": 4914,
+    "description": "Clinical Significance PT/INR: Screening test for abnormalities of coagulation factors that are involved in the extrinsic pathway. Also used to monitor effects of Warfarin therapy and to study patients with hereditary and acquired clotting disorders.Partial Thromboplastin Times - The aPTT is a screening test that will detect deficiencies or inhibitors to the intrinsic (Factors VIII, IX, XI and XII) and common (Factors II, V, X and Fibrinogen) pathway coagulation factors. QuantiFERON(R)-TB Gold Plus, 1 Tube\t36970 Clinical Significance This test is used as an aid in the diagnosis of Mycobacterium tuberculosis (TB) infection. It is intended for use in conjunction with risk assessment, radiography, and other medical and diagnostic evaluations. Additional testing is needed to determine if a person who has tested positive has latent tuberculosis (TB) infection or TB disease."
+  },
+  {
+    "title": "Rheumatoid Factor",
+    "number": 4418,
+    "description": "Clinical Significance Elevated RF is found in collagen vascular diseases such as SLE, rheumatoid arthritis, scleroderma, Sjogren's syndrome, and in other conditions such as leprosy, tuberculosis, syphilis, malignancy, thyroid disease and in a significant percentage of otherwise normal elderly patients."
+  },
+  {
+    "title": "RPR (Monitor) with Reflex to Titer",
+    "number": 799,
+    "description": "Clinical Significance This is a screening test for syphilis. Monitoring of RPR is helpful in assessing effectiveness of therapy. Includes If RPR Screen is reactive, then RPR titer will be performed at no additional cost."
+  },
+  {
+    "title": "Selenium, Blood",
+    "number": 6296,
+    "description": "Clinical Significance Selenium is a trace mineral that plays a role in antioxidant defense, thyroid function, and immune system support. Selenium is a component of selenoproteins that help protect cells from oxidative stress and inflammation. Low selenium levels can lead to compromised immune function, increased susceptibility to infections, and potential thyroid dysfunction."
+  },
+  {
+    "title": "Sex Hormone Binding Globulin (SHBG)",
+    "number": 30740,
+    "description": "Clinical Significance Sex hormone-binding globulin (SHBG) is a protein produced by the liver that binds to testosterone and estrogen, regulating their bioavailability and activity in the body. Low SHBG levels can lead to increased free testosterone, which may contribute to polycystic ovary syndrome (PCOS) in women.  In men, low SHBG is associated with higher free testosterone levels and can impact mood, libido, and overall metabolic health. Conversely, elevated SHBG levels can result in decreased bioavailability of testosterone and estrogen, potentially leading to reduced libido and mood disturbances."
+  },
+  {
+    "title": "Thyroid Panel with TSH",
+    "number": 7444,
+    "description": "Clinical Significance This panel provides an assessment of thyroid function. The results of the panel may help in the diagnosis of hyperthyroidism and hypothyroidism. Includes Thyroid Panel: T3 Uptake, T4 (Thyroxine) Total, Free T4 Index (T7), TSH"
+  },
+  {
+    "title": "Thyroid Peroxidase and Thyroglobulin Antibodies",
+    "number": 7260,
+    "description": "Clinical Significance Measurement of thyroglobulin antibodies and thyroid peroxidase antibodies is useful in the diagnosis and management of a variety of thyroid disorders including autoimmune thyroiditis, Hashimoto's Disease, Graves Disease and certain types of goiter. Patient Preparation Dietary supplements containing biotin may interfere in assays and may skew results to be either falsely high or falsely low. For patients receiving the recommended daily doses of biotin, draw samples at least 8 hours following the last biotin supplementation. For patients on mega-doses of biotin supplements, draw samples at least 72 hours following the last biotin supplementation."
+  },
+  {
+    "title": "Dihydrotestosterone, Free, Serum",
+    "number": 36168,
+    "description": "Clinical Significance Free dihydrotestosterone (DHT) is a potent androgen derived from testosterone that plays a role in both men’s and women’s hormone health, particularly in relation to hair loss. Elevated levels of free DHT are linked to androgenic alopecia (pattern hair loss), as DHT binds to receptors in hair follicles, causing them to shrink and eventually stop producing hair. In men, high DHT can lead to male-pattern baldness and may also contribute to conditions like benign prostatic hyperplasia (BPH). In women, excessive DHT can result in thinning hair, hirsutism, and hormonal imbalances often seen in polycystic ovary syndrome (PCOS). T3 Total\t859 Clinical Significance Total T3 measurements are used to diagnose and monitor treatment of hyperthyroidism and are useful for recognizing T3 toxicosis. T4 (Thyroxine), Total \t867 Clinical Significance This test is for diagnosis of hypothyroidism and hyperthyroidism."
+  },
+  {
+    "title": "Testosterone, Free (Dialysis) and Total, MS",
+    "number": 36170,
+    "description": "Clinical Significance This test measures both the free and bound forms of testosterone in the blood. Testosterone is the primary male sex hormone, although it is also present in females in smaller amounts."
+  },
+  {
+    "title": "Trichomonas vaginalis RNA, Qualitative, TMA",
+    "number": 19550,
+    "description": "Clinical Significance This test is useful for detection of Trichomonas vaginalis RNA in vaginal swabs (preferred), female or male urine, or endocervical swabs. It is used in the screening and diagnosis of trichomoniasis. Trichomoniasis is one of the most common sexually transmitted infections (STIs) in the United States. It is curable. In women, symptoms include vaginal and/or urethral discharge, painful urination and genital burning and discomfort.Because of the high rate of reinfection in individuals treated for T. vaginalis, CDC also recommends repeat testing 3 months after treatment."
+  },
+  {
+    "title": "TSH",
+    "number": 899,
+    "description": "Clinical Significance This test is for the differential diagnosis of primary, secondary, and tertiary hypothyroidism. It is also useful in screening for hyperthyroidism."
+  },
+  {
+    "title": "Uric Acid",
+    "number": 905,
+    "description": "Clinical Significance Serum uric acid measurements are useful in the diagnosis and treatment of numerous renal and metabolic disorders, including renal failure, gout, leukemia, psoriasis, starvation or other wasting conditions, and in patients receiving cytotoxic drugs."
+  },
+  {
+    "title": "Urinalysis, Complete",
+    "number": 5463,
+    "description": "Clinical Significance Dipstick urinalysis is useful in determining different components in the urine and the relationship to various disease states such as Urinary Tract Infections (UTI). Microscopic examination helps to detect the presence of cells and other formed elements. Bacterial Vaginosis/Vaginitis Panel    14577 G. vaginalis is associated with bacterial vaginosis (BV). Trichomonas and candida (yeast) species are known agents of vaginitis. Includes Candida species, Trichomonas vaginalis, Gardnerella vaginalis"
+  },
+  {
+    "title": "Varicella-Zoster Virus Antibody (Immunity Screen), ACIF",
+    "number": 14505,
+    "description": "Clinical Significance A positive titer (≥1:4) by anticomplement immunofluorescence (ACIF) indicates a history of past infection by Varicella-Zoster virus infection or prior vaccination. This antibody is usually detectable within 2 days after the onset of rash and is, thereafter, detectable for life. Conversely, the absence of detectable antibody can be used as evidence of susceptibility to varicella (chickenpox)."
+  },
+  {
+    "title": "Vitamin A (Retinol)",
+    "number": 921,
+    "description": "Clinical Significance Vitamin A (retinol) is a vitamin involved in vision, immune function, skin health, and cellular growth.  Vitamin A is associated with maintaining healthy eyesight, as it is crucial for the production of rhodopsin, a protein that allows the eyes to see in low light. Additionally, vitamin A supports immune responses by maintaining the integrity of skin and mucosal barriers, which protect against infections. Deficiency in vitamin A can lead to night blindness, an increased risk of infections, and skin issues, while excess intake can cause toxicity. Micronutrient, Vitamin B1 (Thiamine), Blood\t10189 Clinical Significance Vitamin B1 (thiamine) is a vitamin involved in energy metabolism, nerve function, and cellular growth. Thiamine is used for converting glucose into energy. A deficiency in vitamin B1 can lead to serious health conditions such as beriberi, which affects the cardiovascular and nervous systems, and Wernicke-Korsakoff syndrome, a neurological disorder commonly associated with chronic alcohol abuse. Thiamine deficiency can also impair cognitive function and cause muscle weakness. Vitamin B12 (Cobalamin)\t927 Clinical Significance Vitamin B12 (cobalamin) is a vitamin involved in red blood cell formation, DNA synthesis, and the maintenance of healthy nerve cells. It is important for neurological function and preventing anemia. A deficiency in vitamin B12 can lead to pernicious anemia, characterized by fatigue, weakness, and pale skin, as well as neurological symptoms such as numbness, tingling, memory problems, and mood disturbances. Long-term B12 deficiency can result in irreversible nerve damage. Vitamin B6, Plasma  \t926 Clinical Significance Vitamin B6 (pyridoxine) is a vitamin involved in amino acid metabolism, neurotransmitter synthesis, and red blood cell production. It is particularly noted in brain health, as it supports the production of neurotransmitters like serotonin and dopamine, which regulate mood and cognitive function. Vitamin B6 is also involved in immune function and the synthesis of hemoglobin. A deficiency can lead to symptoms such as irritability, depression, confusion, and anemia. In severe cases, it can result in nerve damage or seizures."
+  },
+  {
+    "title": "Vitamin C",
+    "number": 929,
+    "description": "Clinical Significance Vitamin C (ascorbic acid) is a vitamin with antioxidant properties, used for collagen synthesis, immune support, and wound healing. It protects cells from oxidative damage, enhancing the immune system, and promoting the absorption of non-heme iron from plant-based foods. Its antioxidant properties also contribute to reducing inflammation and promoting overall wellness.  A deficiency in vitamin C can lead to scurvy, characterized by symptoms such as fatigue, bleeding gums, and weakened connective tissues. Vitamin D, 25-Hydroxy, Total, Immunoassay\t17306 Clinical Significance Vitamin D is involved in bone health, immune function, and hormone regulation. It is useful in calcium and phosphorus absorption, supporting bone density and preventing conditions like osteoporosis. Beyond bone health, vitamin D influences hormonal balance by playing a role in the endocrine system, particularly in regulating parathyroid hormone (PTH) and supporting proper function of insulin, thyroid, and sex hormones. Deficiency in vitamin D can lead to bone disorders, weakened immunity, mood disturbances, and hormonal imbalances, affecting overall well-being."
+  },
+  {
+    "title": "VLDL Cholesterol",
+    "number": 319,
+    "description": "Clinical Significance This test measures the serum concentration of triglycerides and provides a calculated value for serum very low-density lipoprotein cholesterol (VLDL-C), which may be used to help assess cardiovascular disease (CVD)-related risk. VLDL is a carrier of serum cholesterol and the main carrier of triglycerides. Often, the VLDL-C test is ordered as part of a lipid profile to provide insight into overall CVD-related risk."
+  },
+  {
+    "title": "Zinc",
+    "number": 945,
+    "description": "Clinical Significance Zinc is a mineral with roles in immune function, wound healing, DNA synthesis, and cell division. Zinc is needed for the production and maintenance of healthy testosterone levels in men, influencing reproductive health, libido, and muscle mass. Low zinc levels can lead to reduced testosterone, contributing to symptoms like fatigue, decreased libido, and impaired muscle development."
+  }
+]
