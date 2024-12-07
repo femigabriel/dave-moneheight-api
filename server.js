@@ -46,7 +46,7 @@ app.get("/api/listings", async (req, res) => {
         RentalDetails: listing.RentalDetails,
         BasicDetails: {
           ...BasicDetails,
-          PropertyType: "RESI",
+          propertyType: "Residential Lease", // Updated field name and value
           PropertySubType: BasicDetails?.PropertyType || "Apartment", // Moved PropertyType value to PropertySubType
         },
         Agent: listing.Agent,
@@ -63,11 +63,6 @@ app.get("/api/listings", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch listings" });
   }
 });
-
-
-
-
-
 
 // Start the Express server
 app.listen(port, () => {
