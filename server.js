@@ -37,24 +37,28 @@ app.get("/api/listings", async (req, res) => {
       .limit(limit)
       .lean();
 
-    const transformedListings = listings.map((listing) => {
-      const { __v, _id, ListingDetails, BasicDetails, ...rest } = listing;
-
-      return {
-        ListingKey: ListingDetails?.ProviderListingId || _id, // Changed to ListingKey
-        Location: listing.Location,
-        RentalDetails: listing.RentalDetails,
-        BasicDetails: {
-          ...BasicDetails,
-          propertyType: "Residential Lease", // Updated field name and value
-          PropertySubType: BasicDetails?.PropertyType || "Apartment", // Moved PropertyType value to PropertySubType
-        },
-        Agent: listing.Agent,
-        Office: listing.Office,
-        Neighborhood: listing.Neighborhood,
-        RichDetails: listing.RichDetails,
-      };
-    });
+      const transformedListings = listings.map((listing) => {
+        const { __v, _id, ListingDetails, BasicDetails, ...rest } = listing;
+      
+        // Destructure BasicDetails to exclude PropertyType
+        const { PropertyType, ...filteredBasicDetails } = BasicDetails || {};
+      
+        return {
+          ListingKey: ListingDetails?.ProviderListingId || _id, // Changed to ListingKey
+          Location: listing.Location,
+          RentalDetails: listing.RentalDetails,
+          BasicDetails: {
+            ...filteredBasicDetails,
+            propertyType: "Residential Lease", // Updated field name and value
+            PropertySubType: BasicDetails?.PropertyType || "Apartment", // Moved PropertyType value to PropertySubType
+          },
+          Agent: listing.Agent,
+          Office: listing.Office,
+          Neighborhood: listing.Neighborhood,
+          RichDetails: listing.RichDetails,
+        };
+      });
+      
 
     // Return only the data field
     res.json(transformedListings);
