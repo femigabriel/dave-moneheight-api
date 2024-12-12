@@ -1,0 +1,2296 @@
+{
+  "Individual Tests": [
+    
+    {
+      "title": "Acute Hepatitis Panel",
+      "description": "Hepatitis Panel, Acute with Reflex to Confirmation",
+      "questCode": 10306,
+      "instacareCost": 31,
+      "suggestedRetailPrice": 69,
+      "profitMargin": 38,
+      "notes": "possible reflex $20 for Hep B surface antigen confirmation, $100 for Hep C Viral RNA RT-PCR"
+    },
+    {
+      "title": "ANA\u00a0Screen - Antinuclear Antibody ",
+      "description": "ANA Screen,IFA, with Reflex to Titer and Pattern",
+      "questCode": 249,
+      "instacareCost": 5,
+      "suggestedRetailPrice": 30,
+      "profitMargin": 25,
+      "notes": ""
+    },
+    {
+      "title": "Cyclic Citrullinated Peptide (CCP) Antibody\u00a0",
+      "description": "Cyclic Citrullinated Peptide (CCP) Antibody (IgG)",
+      "questCode": 11173,
+      "instacareCost": 40,
+      "suggestedRetailPrice": 45,
+      "profitMargin": 5,
+      "notes": ""
+    },
+    {
+      "title": "Apolipoprotein B\u00a0(ApoB)",
+      "description": "Apolipoprotein B",
+      "questCode": 5224,
+      "instacareCost": 5.24,
+      "suggestedRetailPrice": 20,
+      "profitMargin": 14.76,
+      "notes": ""
+    },
+    {
+      "title": "B-Type Natriuretic Peptide (BNP)",
+      "description": "B-Type Natriuretic Peptide (BNP)",
+      "questCode": 37386,
+      "instacareCost": 50,
+      "suggestedRetailPrice": 60,
+      "profitMargin": 10,
+      "notes": ""
+    },
+    {
+      "title": "Calcium\u00a0",
+      "description": "Calcium",
+      "questCode": 303,
+      "instacareCost": 2.94,
+      "suggestedRetailPrice": 10,
+      "profitMargin": 7.0600000000000005,
+      "notes": ""
+    },
+    {
+      "title": "Complete Blood Count (CBC) with Differential and Platelets",
+      "description": "CBC (includes Differential and Platelets)",
+      "questCode": 6399,
+      "instacareCost": 3.1,
+      "suggestedRetailPrice": 10,
+      "profitMargin": 6.9,
+      "notes": ""
+    },
+    {
+      "title": "Celiac Disease\u00a0Diagnostic Panel",
+      "description": "Celiac Disease Diagnostic Panel",
+      "questCode": 15681,
+      "instacareCost": 96.27,
+      "suggestedRetailPrice": 129,
+      "profitMargin": 32.730000000000004,
+      "notes": ""
+    },
+    {
+      "title": "Chlamydia & Gonorrhea\u00a0Urine Test",
+      "description": "Chlamydia/Neisseria gonorrhoeae RNA, TMA, Urogenital",
+      "questCode": 11363,
+      "instacareCost": 40,
+      "suggestedRetailPrice": 50,
+      "profitMargin": 10,
+      "notes": ""
+    },
+    {
+      "title": "Comprehensive Metabolic Panel",
+      "description": "Comprehensive Metabolic Panel",
+      "questCode": 10231,
+      "instacareCost": 5.04,
+      "suggestedRetailPrice": 10,
+      "profitMargin": 4.96,
+      "notes": ""
+    },
+    {
+      "title": "Cortisol\u00a0",
+      "description": "Cortisol, Total",
+      "questCode": 367,
+      "instacareCost": 9,
+      "suggestedRetailPrice": 15,
+      "profitMargin": 6,
+      "notes": ""
+    },
+    {
+      "title": "High Sensitivity C-Reactive Protien (hs-CRP)",
+      "description": "hs-CRP",
+      "questCode": 10124,
+      "instacareCost": 26.2,
+      "suggestedRetailPrice": 30,
+      "profitMargin": 3.8000000000000007,
+      "notes": ""
+    },
+    {
+      "title": "Cystatin C\u00a0with GFR",
+      "description": "Cystatin C with Glomerular Filtration Rate, Estimated (eGFR)",
+      "questCode": 94588,
+      "instacareCost": 56.91,
+      "suggestedRetailPrice": 65,
+      "profitMargin": 8.090000000000003,
+      "notes": ""
+    },
+    {
+      "title": "DHEA - Dihydroepiandosterone\u00a0",
+      "description": "DHEA, (Dehydroepiandrosterone), Unconjugated",
+      "questCode": 19894,
+      "instacareCost": 18,
+      "suggestedRetailPrice": 40,
+      "profitMargin": 22,
+      "notes": ""
+    },
+    {
+      "title": "Dihydrotestosterone (DHT) Total",
+      "description": "Dihydrotestosterone LC/MS",
+      "questCode": 90567,
+      "instacareCost": 32.5,
+      "suggestedRetailPrice": 40,
+      "profitMargin": 7.5,
+      "notes": ""
+    },
+    {
+      "title": "Epstein Barr Virus\u00a0Antibody Panel",
+      "description": "Epstein-Barr Virus Antibody Panel",
+      "questCode": 6421,
+      "instacareCost": 29.74,
+      "suggestedRetailPrice": 60,
+      "profitMargin": 30.26,
+      "notes": ""
+    },
+    {
+      "title": "ESR\u00a0- Erythrocyte Sedimentation Rate",
+      "description": "Sed Rate by Modified Westergren",
+      "questCode": 809,
+      "instacareCost": 3.43,
+      "suggestedRetailPrice": 10,
+      "profitMargin": 6.57,
+      "notes": ""
+    },
+    {
+      "title": "Estradiol Ultrasensitive (LC/MS)",
+      "description": "Estradiol, Ultrasensitive, LC/MS",
+      "questCode": 30289,
+      "instacareCost": 68.93,
+      "suggestedRetailPrice": 70,
+      "profitMargin": 1.0699999999999932,
+      "notes": ""
+    },
+    {
+      "title": "Estradiol Standard (ECLIA)\u00a0",
+      "description": "Estradiol",
+      "questCode": 4021,
+      "instacareCost": 16,
+      "suggestedRetailPrice": 20,
+      "profitMargin": 4,
+      "notes": ""
+    },
+    {
+      "title": "Ferritin\u00a0",
+      "description": "Ferritin",
+      "questCode": 457,
+      "instacareCost": 7,
+      "suggestedRetailPrice": 15,
+      "profitMargin": 8,
+      "notes": ""
+    },
+    {
+      "title": "Folate - Folic Acid\u00a0",
+      "description": "Folate, Serum",
+      "questCode": 466,
+      "instacareCost": 6,
+      "suggestedRetailPrice": 15,
+      "profitMargin": 9,
+      "notes": ""
+    },
+    {
+      "title": "Food Allergy Panel",
+      "description": "Food Allergy Profile",
+      "questCode": 10715,
+      "instacareCost": 77.16,
+      "suggestedRetailPrice": 120,
+      "profitMargin": 42.84,
+      "notes": ""
+    },
+    {
+      "title": "Free T3",
+      "description": "T3, Free",
+      "questCode": 34429,
+      "instacareCost": 7,
+      "suggestedRetailPrice": 15,
+      "profitMargin": 8,
+      "notes": ""
+    },
+    {
+      "title": "Free T4",
+      "description": "T4 Free (FT4)",
+      "questCode": 866,
+      "instacareCost": 8,
+      "suggestedRetailPrice": 15,
+      "profitMargin": 7,
+      "notes": ""
+    },
+    {
+      "title": "H. Pylori Breath Test\u00a0",
+      "description": "Helicobacter pylori, Urea Breath Test",
+      "questCode": 14839,
+      "instacareCost": 101.33,
+      "suggestedRetailPrice": 110,
+      "profitMargin": 8.670000000000002,
+      "notes": ""
+    },
+    {
+      "title": "HCG Quantitative",
+      "description": "hCG, Total, Quantitative",
+      "questCode": 8396,
+      "instacareCost": 7,
+      "suggestedRetailPrice": 25,
+      "profitMargin": 18,
+      "notes": ""
+    },
+    {
+      "title": "Hepatitis B Immunity\u00a0",
+      "description": "Hepatitis B Surface Antibody Immunity, Quantitative",
+      "questCode": 8475,
+      "instacareCost": 10,
+      "suggestedRetailPrice": 20,
+      "profitMargin": 10,
+      "notes": ""
+    },
+    {
+      "title": "Hepatic Function Panel\u00a0",
+      "description": "Hepatic Function Panel",
+      "questCode": 10256,
+      "instacareCost": 3.86,
+      "suggestedRetailPrice": 10,
+      "profitMargin": 6.140000000000001,
+      "notes": ""
+    },
+    {
+      "title": "Hemoglobic A1c - HbA1c",
+      "description": "Hemoglobin A1c",
+      "questCode": 496,
+      "instacareCost": 6,
+      "suggestedRetailPrice": 10,
+      "profitMargin": 4,
+      "notes": ""
+    },
+    {
+      "title": "HIV 1 & 2\u00a0",
+      "description": "HIV-1/2 Antigen and Antibodies, Fourth Generation, with Reflexes",
+      "questCode": 91431,
+      "instacareCost": 54.55,
+      "suggestedRetailPrice": 85,
+      "profitMargin": 30.450000000000003,
+      "notes": ""
+    },
+    {
+      "title": "Homocysteine\u00a0",
+      "description": "Homocysteine",
+      "questCode": 31789,
+      "instacareCost": 20,
+      "suggestedRetailPrice": 30,
+      "profitMargin": 10,
+      "notes": ""
+    },
+    {
+      "title": "Herpes Simplex Virus 1 &2 (HSV 1 & 2)\u00a0\u00a0",
+      "description": "Herpes Simplex Virus 1 and 2 (IgG), Type-Specific Antibodies",
+      "questCode": 6447,
+      "instacareCost": 18,
+      "suggestedRetailPrice": 40,
+      "profitMargin": 22,
+      "notes": ""
+    },
+    {
+      "title": "Insulin-like Growth Factor 1 (IGF-1)",
+      "description": "IGF-1, LC/MS",
+      "questCode": 16293,
+      "instacareCost": 18,
+      "suggestedRetailPrice": 45,
+      "profitMargin": 27,
+      "notes": ""
+    },
+    {
+      "title": "Insulin\u00a0",
+      "description": "Insulin",
+      "questCode": 561,
+      "instacareCost": 8,
+      "suggestedRetailPrice": 15,
+      "profitMargin": 7,
+      "notes": ""
+    },
+    {
+      "title": "Iron panel\u00a0",
+      "description": "Iron, TIBC and Ferritin Panel",
+      "questCode": 5616,
+      "instacareCost": 13.2,
+      "suggestedRetailPrice": 20,
+      "profitMargin": 6.800000000000001,
+      "notes": ""
+    },
+    {
+      "title": "LH/FSH\u00a0- Leutinizing Hormone & Follicle Stimulating Hormone",
+      "description": "FSH and LH",
+      "questCode": 7137,
+      "instacareCost": 14,
+      "suggestedRetailPrice": 25,
+      "profitMargin": 11,
+      "notes": ""
+    },
+    {
+      "title": "Lipase\u00a0",
+      "description": "Lipase",
+      "questCode": 606,
+      "instacareCost": 5,
+      "suggestedRetailPrice": 10,
+      "profitMargin": 5,
+      "notes": ""
+    },
+    {
+      "title": "Lipid panel",
+      "description": "Lipid Panel, Standard",
+      "questCode": 7600,
+      "instacareCost": 8,
+      "suggestedRetailPrice": 15,
+      "profitMargin": 7,
+      "notes": ""
+    },
+    {
+      "title": "Lipoprotein a (LP-a)\u00a0",
+      "description": "Lipoprotein (a)",
+      "questCode": 34604,
+      "instacareCost": 23,
+      "suggestedRetailPrice": 30,
+      "profitMargin": 7,
+      "notes": ""
+    },
+    {
+      "title": "Magnesium\u00a0",
+      "description": "Magnesium",
+      "questCode": 622,
+      "instacareCost": 8,
+      "suggestedRetailPrice": 12,
+      "profitMargin": 4,
+      "notes": ""
+    },
+    {
+      "title": "Methylation MTHFR\u00a0",
+      "description": "Methylenetetrahydrofolate Reductase (MTHFR), DNA Mutation Analysis",
+      "questCode": 17911,
+      "instacareCost": 165,
+      "suggestedRetailPrice": 185,
+      "profitMargin": 20,
+      "notes": ""
+    },
+    {
+      "title": "MMR immunity\u00a0- Measles, Mumps, Rubella",
+      "description": "Measles, Mumps, and Rubella (MMR) Antibodies (IgG) Panel, Immune Status",
+      "questCode": 5259,
+      "instacareCost": 26,
+      "suggestedRetailPrice": 40,
+      "profitMargin": 14,
+      "notes": ""
+    },
+    {
+      "title": "Phosphorus\u00a0",
+      "description": "Phosphate (as Phosphorus)",
+      "questCode": 718,
+      "instacareCost": 2.94,
+      "suggestedRetailPrice": 10,
+      "profitMargin": 7.0600000000000005,
+      "notes": ""
+    },
+    {
+      "title": "Pregnenolone (LC/MS)\u00a0",
+      "description": "Pregnenolone, LC/MS",
+      "questCode": 31493,
+      "instacareCost": 62,
+      "suggestedRetailPrice": 65,
+      "profitMargin": 3,
+      "notes": ""
+    },
+    {
+      "title": "Progesterone\u00a0(LC/MS)",
+      "description": "Progesterone, LC/MS",
+      "questCode": 17183,
+      "instacareCost": 10,
+      "suggestedRetailPrice": 30,
+      "profitMargin": 20,
+      "notes": ""
+    },
+    {
+      "title": "Prolactin\u00a0",
+      "description": "Prolactin",
+      "questCode": 746,
+      "instacareCost": 9,
+      "suggestedRetailPrice": 20,
+      "profitMargin": 11,
+      "notes": ""
+    },
+    {
+      "title": "PSA\u00a0- Prostate Specific Antigen",
+      "description": "PSA, Total",
+      "questCode": 5363,
+      "instacareCost": 8,
+      "suggestedRetailPrice": 15,
+      "profitMargin": 7,
+      "notes": ""
+    },
+    {
+      "title": "PT/PTT/INR\u00a0",
+      "description": "Prothrombin with INR and Partial Thromboplastin Times",
+      "questCode": 4914,
+      "instacareCost": 10,
+      "suggestedRetailPrice": 20,
+      "profitMargin": 10,
+      "notes": ""
+    },
+    {
+      "title": "Quantiferon\u00a0Gold (TB Test)",
+      "description": "QuantiFERON(R)-TB Gold Plus, 1 Tube",
+      "questCode": 36970,
+      "instacareCost": 50,
+      "suggestedRetailPrice": 100,
+      "profitMargin": 50,
+      "notes": ""
+    },
+    {
+      "title": "Rheumatoid Factor\u00a0",
+      "description": "Rheumatoid Factor",
+      "questCode": 4418,
+      "instacareCost": 6,
+      "suggestedRetailPrice": 12,
+      "profitMargin": 6,
+      "notes": ""
+    },
+    {
+      "title": "RPR/Syphilis\u00a0",
+      "description": "RPR (Monitor) with Reflex to Titer",
+      "questCode": 799,
+      "instacareCost": 3.1,
+      "suggestedRetailPrice": 30,
+      "profitMargin": 26.9,
+      "notes": ""
+    },
+    {
+      "title": "Selenium\u00a0",
+      "description": "Selenium, Blood",
+      "questCode": 6296,
+      "instacareCost": 60,
+      "suggestedRetailPrice": 65,
+      "profitMargin": 5,
+      "notes": ""
+    },
+    {
+      "title": "Sex Hormone Binding Globulin (SHBG)",
+      "description": "Sex Hormone Binding Globulin (SHBG)",
+      "questCode": 30740,
+      "instacareCost": 17,
+      "suggestedRetailPrice": 30,
+      "profitMargin": 13,
+      "notes": ""
+    },
+    {
+      "title": "Thyroid panel with TSH\u00a0",
+      "description": "Thyroid Panel with TSH",
+      "questCode": 7444,
+      "instacareCost": 19,
+      "suggestedRetailPrice": 30,
+      "profitMargin": 11,
+      "notes": ""
+    },
+    {
+      "title": "Thyroid Peroxidase and Thyroglobulin Antibodies ",
+      "description": "Thyroid Peroxidase and Thyroglobulin Antibodies",
+      "questCode": 7260,
+      "instacareCost": 15.98,
+      "suggestedRetailPrice": 30,
+      "profitMargin": 14.02,
+      "notes": ""
+    },
+    {
+      "title": "Total/Free DHT\u00a0",
+      "description": "Dihydrotestosterone, Free, Serum",
+      "questCode": 36168,
+      "instacareCost": 151.52,
+      "suggestedRetailPrice": 160,
+      "profitMargin": 8.47999999999999,
+      "notes": ""
+    },
+    {
+      "title": "Total T3",
+      "description": "T3 Total",
+      "questCode": 859,
+      "instacareCost": 9,
+      "suggestedRetailPrice": 15,
+      "profitMargin": 6,
+      "notes": ""
+    },
+    {
+      "title": "Total T4",
+      "description": "T4 (Thyroxine), Total",
+      "questCode": 867,
+      "instacareCost": 8,
+      "suggestedRetailPrice": 15,
+      "profitMargin": 7,
+      "notes": ""
+    },
+    {
+      "title": "Total/Free Testosterone\u00a0",
+      "description": "Testosterone, Free (Dialysis) and Total, MS",
+      "questCode": 36170,
+      "instacareCost": 19,
+      "suggestedRetailPrice": 35,
+      "profitMargin": 16,
+      "notes": ""
+    },
+    {
+      "title": "Trichomonas\u00a0",
+      "description": "Trichomonas vaginalis RNA, Qualitative, TMA",
+      "questCode": 19550,
+      "instacareCost": 90.8,
+      "suggestedRetailPrice": 100,
+      "profitMargin": 9.200000000000003,
+      "notes": ""
+    },
+    {
+      "title": "TSH\u00a0- Thyroid Stimulating Hormone",
+      "description": "TSH",
+      "questCode": 899,
+      "instacareCost": 6,
+      "suggestedRetailPrice": 10,
+      "profitMargin": 4,
+      "notes": ""
+    },
+    {
+      "title": "Uric Acid\u00a0",
+      "description": "Uric Acid",
+      "questCode": 905,
+      "instacareCost": 3.1,
+      "suggestedRetailPrice": 10,
+      "profitMargin": 6.9,
+      "notes": ""
+    },
+    {
+      "title": "Urinalysis\u00a0",
+      "description": "Urinalysis, Complete",
+      "questCode": 5463,
+      "instacareCost": 4,
+      "suggestedRetailPrice": 10,
+      "profitMargin": 6,
+      "notes": ""
+    },
+    {
+      "title": "Vaginitis Test Panel - BV, Yeast, Trichomonas",
+      "description": "Bacterial Vaginosis/Vaginitis Panel",
+      "questCode": 14577,
+      "instacareCost": 155.56,
+      "suggestedRetailPrice": 200,
+      "profitMargin": 44.44,
+      "notes": ""
+    },
+    {
+      "title": "Varicella Zoster\u00a0",
+      "description": "Varicella-Zoster Virus Antibody (Immunity Screen), ACIF",
+      "questCode": 14505,
+      "instacareCost": 48.5,
+      "suggestedRetailPrice": 60,
+      "profitMargin": 11.5,
+      "notes": ""
+    },
+    {
+      "title": "Vitamin A\u00a0- Retinol",
+      "description": "Vitamin A (Retinol)",
+      "questCode": 921,
+      "instacareCost": 14,
+      "suggestedRetailPrice": 35,
+      "profitMargin": 21,
+      "notes": ""
+    },
+    {
+      "title": "Vitamin B1\u00a0- Thiamine",
+      "description": "Micronutrient, Vitamin B1 (Thiamine), Blood",
+      "questCode": 10189,
+      "instacareCost": 16.99,
+      "suggestedRetailPrice": 25,
+      "profitMargin": 8.010000000000002,
+      "notes": ""
+    },
+    {
+      "title": "Vitamin B12\u00a0- Cobalamin",
+      "description": "Vitamin B12 (Cobalamin)",
+      "questCode": 927,
+      "instacareCost": 6,
+      "suggestedRetailPrice": 15,
+      "profitMargin": 9,
+      "notes": ""
+    },
+    {
+      "title": "Vitamin B6\u00a0- Pyridoxine",
+      "description": "Vitamin B6, Plasma",
+      "questCode": 926,
+      "instacareCost": 14,
+      "suggestedRetailPrice": 35,
+      "profitMargin": 21,
+      "notes": ""
+    },
+    {
+      "title": "Vitamin C\u00a0- Ascorbic Acid",
+      "description": "Vitamin C",
+      "questCode": 929,
+      "instacareCost": 9,
+      "suggestedRetailPrice": 30,
+      "profitMargin": 21,
+      "notes": ""
+    },
+    {
+      "title": "Vitamin D\u00a0",
+      "description": "Vitamin D, 25-Hydroxy, Total, Immunoassay",
+      "questCode": 17306,
+      "instacareCost": 17,
+      "suggestedRetailPrice": 25,
+      "profitMargin": 8,
+      "notes": ""
+    },
+    {
+      "title": "VLDL - Very Low Density Lipoprotein",
+      "description": "VLDL Cholesterol",
+      "questCode": 319,
+      "instacareCost": 2.94,
+      "suggestedRetailPrice": 10,
+      "profitMargin": 7.0600000000000005,
+      "notes": ""
+    },
+    {
+      "title": "Zinc\u00a0",
+      "description": "Zinc",
+      "questCode": 945,
+      "instacareCost": 12,
+      "suggestedRetailPrice": 20,
+      "profitMargin": 8,
+      "notes": ""
+    }
+  ],
+  "General Health Panel\u00a0(standard)": [
+    {
+      "title": "Standard General Health Lab Panel:\u00a0\u00a0",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "Individual Tests:",
+      "description": "Quest Test Name",
+      "questCode": "Quest Code",
+      "instacareCost": "Instacare Cost",
+      "suggestedRetailPrice": "Suggest Retail Price"
+    },
+    {
+      "title": "Complete Blood Count (CBC) with Differential and Platelets",
+      "description": "CBC (includes Differential and Platelets)",
+      "questCode": 6399,
+      "instacareCost": 3.1,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "Comprehensive Metabolic Panel (CMP)",
+      "description": "Comprehensive Metabolic Panel",
+      "questCode": 10231,
+      "instacareCost": 5.04,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "TSH\u00a0- Thyroid Stimulating Hormone",
+      "description": "TSH",
+      "questCode": 899,
+      "instacareCost": 6,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "Free T4",
+      "description": "T4 Free (FT4) ",
+      "questCode": 866,
+      "instacareCost": 8,
+      "suggestedRetailPrice": 15
+    },
+    {
+      "title": "Lipid panel",
+      "description": "Lipid Panel, Standard",
+      "questCode": 7600,
+      "instacareCost": 8,
+      "suggestedRetailPrice": 15
+    },
+    {
+      "title": "HgbA1C\u00a0- Hemoglobin A1c",
+      "description": "Hemoglobin A1c",
+      "questCode": 496,
+      "instacareCost": 6,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "Total",
+      "instacareCost": 36.14,
+      "suggestedRetailPrice": 70
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "PRICE",
+      "suggestedRetailPrice": 60
+    }
+  ],
+  "General Health Panel (advanced)": [
+    {
+      "title": "Advanced General Health Lab Panel: ",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "Individual Tests:",
+      "description": "Quest Test Name",
+      "questCode": "Quest Code",
+      "instacareCost": "Instacare Cost",
+      "suggestedRetailPrice": "Suggest Retail Price"
+    },
+    {
+      "title": "Complete Blood Count (CBC) with Differential and Platelets",
+      "description": "CBC (includes Differential and Platelets)",
+      "questCode": 6399,
+      "instacareCost": 3.1,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "Comprehensive Metabolic Panel",
+      "description": "Comprehensive Metabolic Panel",
+      "questCode": 10231,
+      "instacareCost": 5.04,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "TSH\u00a0- Thyroid Stimulating Hormone",
+      "description": "TSH",
+      "questCode": 899,
+      "instacareCost": 6,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "Free T4",
+      "description": "T4 Free (FT4) ",
+      "questCode": 866,
+      "instacareCost": 8,
+      "suggestedRetailPrice": 15
+    },
+    {
+      "title": "Lipid panel",
+      "description": "Lipid Panel, Standard",
+      "questCode": 7600,
+      "instacareCost": 8,
+      "suggestedRetailPrice": 15
+    },
+    {
+      "title": "Hemoglobic A1c - HbA1c",
+      "description": "Hemoglobin A1c",
+      "questCode": 496,
+      "instacareCost": 6,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "Apolipoprotein B\u00a0(ApoB)",
+      "description": "Apolipoprotein B ",
+      "questCode": 5224,
+      "instacareCost": 5.24,
+      "suggestedRetailPrice": 20
+    },
+    {
+      "title": "Iron panel\u00a0",
+      "description": "Iron, TIBC and Ferritin Panel",
+      "questCode": 5616,
+      "instacareCost": 13.2,
+      "suggestedRetailPrice": 20
+    },
+    {
+      "title": "Vitamin D\u00a0",
+      "description": "Vitamin D, 25-Hydroxy, Total, Immunoassay",
+      "questCode": 17306,
+      "instacareCost": 17,
+      "suggestedRetailPrice": 25
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "Total",
+      "instacareCost": 71.58,
+      "suggestedRetailPrice": 135
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "PRICE",
+      "suggestedRetailPrice": 110
+    }
+  ],
+  "Womens Hormone Panel (Basic)": [
+    {
+      "title": "Womens Hormone (Basic):\u00a0",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "Individual Tests:",
+      "description": "Quest Test Name",
+      "questCode": "Quest Code",
+      "instacareCost": "Instacare Cost",
+      "suggestedRetailPrice": "Suggest Retail Price"
+    },
+    {
+      "title": "Complete Blood Count (CBC) with Differential and Platelets",
+      "description": "CBC (includes Differential and Platelets)",
+      "questCode": 6399,
+      "instacareCost": 3.1,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "Comprehensive Metabolic Panel ",
+      "description": "Comprehensive Metabolic Panel ",
+      "questCode": 10231,
+      "instacareCost": 5.04,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "Estradiol standard (ECLIA)\u00a0",
+      "description": "Estradiol",
+      "questCode": 4021,
+      "instacareCost": 16,
+      "suggestedRetailPrice": 20
+    },
+    {
+      "title": "Progesterone\u00a0(LC/MS)",
+      "description": "Progesterone, LC/MS",
+      "questCode": 17183,
+      "instacareCost": 10,
+      "suggestedRetailPrice": 30
+    },
+    {
+      "title": "TSH\u00a0- Thyroid Stimulating Hormone",
+      "description": "TSH",
+      "questCode": 899,
+      "instacareCost": 6,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "Total",
+      "instacareCost": 40.14,
+      "suggestedRetailPrice": 80
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "PRICE",
+      "suggestedRetailPrice": 65
+    }
+  ],
+  "Womens Hormone (standard)": [
+    {
+      "title": "Womens Hormone (standard):\u00a0",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "Individual Tests:",
+      "description": "Quest Test Name",
+      "questCode": "Quest Code",
+      "instacareCost": "Instacare Cost",
+      "suggestedRetailPrice": "Suggest Retail Price"
+    },
+    {
+      "title": "Complete Blood Count (CBC) with Differential and Platelets",
+      "description": "CBC (includes Differential and Platelets)",
+      "questCode": 6399,
+      "instacareCost": 3.1,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "Comprehensive Metabolic Panel ",
+      "description": "Comprehensive Metabolic Panel",
+      "questCode": 10231,
+      "instacareCost": 5.04,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "Estradiol standard (ECLIA)\u00a0",
+      "description": "Estradiol",
+      "questCode": 4021,
+      "instacareCost": 16,
+      "suggestedRetailPrice": 20
+    },
+    {
+      "title": "Progesterone\u00a0(LC/MS)",
+      "description": "Progesterone, LC/MS",
+      "questCode": 17183,
+      "instacareCost": 10,
+      "suggestedRetailPrice": 30
+    },
+    {
+      "title": "TSH\u00a0- Thyroid Stimulating Hormone",
+      "description": "TSH",
+      "questCode": 899,
+      "instacareCost": 6,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "Free T4",
+      "description": "T4 Free (FT4)",
+      "questCode": 866,
+      "instacareCost": 8,
+      "suggestedRetailPrice": 15
+    },
+    {
+      "title": "Total/Free Testosterone\u00a0",
+      "description": "Testosterone, Free (Dialysis) and Total, MS",
+      "questCode": 36170,
+      "instacareCost": 19,
+      "suggestedRetailPrice": 35
+    },
+    {
+      "title": "Prolactin\u00a0",
+      "description": "Prolactin",
+      "questCode": 746,
+      "instacareCost": 9,
+      "suggestedRetailPrice": 20
+    },
+    {
+      "title": "LH/FSH\u00a0",
+      "description": "FSH and LH",
+      "questCode": 7137,
+      "instacareCost": 14,
+      "suggestedRetailPrice": 25
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "Total",
+      "instacareCost": 90.14,
+      "suggestedRetailPrice": 175
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "Price",
+      "suggestedRetailPrice": 135
+    }
+  ],
+  "Womens Hormone (Comprehensive)": [
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "Womens Comprehensive Hormone Panel",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "Individual Tests:",
+      "description": "Quest Test Name",
+      "questCode": "Quest Code",
+      "instacareCost": "Instacare Cost",
+      "suggestedRetailPrice": "Suggest Retail Price"
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "Complete Blood Count (CBC) with Differential and Platelets",
+      "description": "CBC (includes Differential and Platelets)",
+      "questCode": 6399,
+      "instacareCost": 3.1,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "Comprehensive Metabolic Panel ",
+      "description": "Comprehensive Metabolic Panel ",
+      "questCode": 10231,
+      "instacareCost": 5.04,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "Estradiol standard (ECLIA)\u00a0",
+      "description": "Estradiol",
+      "questCode": 4021,
+      "instacareCost": 16,
+      "suggestedRetailPrice": 20
+    },
+    {
+      "title": "Hemoglobic A1c - HbA1c",
+      "description": "Hemoglobin A1c",
+      "questCode": 496,
+      "instacareCost": 6,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "Progesterone\u00a0(LC/MS)",
+      "description": "Progesterone, LC/MS",
+      "questCode": 17183,
+      "instacareCost": 10,
+      "suggestedRetailPrice": 30
+    },
+    {
+      "title": "TSH\u00a0- Thyroid Stimulating Hormone",
+      "description": "TSH",
+      "questCode": 899,
+      "instacareCost": 6,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "Free T4",
+      "description": "T4 Free (FT4)",
+      "questCode": 866,
+      "instacareCost": 8,
+      "suggestedRetailPrice": 15
+    },
+    {
+      "title": "Total/Free Testosterone\u00a0",
+      "description": "Testosterone, Free (Dialysis) and Total, MS",
+      "questCode": 36170,
+      "instacareCost": 19,
+      "suggestedRetailPrice": 35
+    },
+    {
+      "title": "Prolactin\u00a0",
+      "description": "Prolactin",
+      "questCode": 746,
+      "instacareCost": 9,
+      "suggestedRetailPrice": 20
+    },
+    {
+      "title": "LH/FSH\u00a0",
+      "description": "FSH and LH",
+      "questCode": 7137,
+      "instacareCost": 14,
+      "suggestedRetailPrice": 25
+    },
+    {
+      "title": "Lipid panel",
+      "description": "Lipid Panel, Standard",
+      "questCode": 7600,
+      "instacareCost": 8,
+      "suggestedRetailPrice": 15
+    },
+    {
+      "title": "DHEA - Dihydroepiandosterone\u00a0",
+      "description": "DHEA, (Dehydroepiandrosterone), Unconjugated",
+      "questCode": 19894,
+      "instacareCost": 18,
+      "suggestedRetailPrice": 40
+    },
+    {
+      "title": "Sex Hormone Binding Globulin (SHBG)",
+      "description": "Sex Hormone Binding Globulin (SHBG)",
+      "questCode": 30740,
+      "instacareCost": 17,
+      "suggestedRetailPrice": 30
+    },
+    {
+      "title": "Cortisol\u00a0",
+      "description": "Cortisol, Total",
+      "questCode": 367,
+      "instacareCost": 9,
+      "suggestedRetailPrice": 15
+    },
+    {
+      "title": "Insulin-like Growth Factor 1 (IGF-1)",
+      "description": "IGF-1, LC/MS",
+      "questCode": 16293,
+      "instacareCost": 18,
+      "suggestedRetailPrice": 45
+    },
+    {
+      "title": "Vitamin D\u00a0",
+      "description": "Vitamin D, 25-Hydroxy, Total, Immunoassay",
+      "questCode": 17306,
+      "instacareCost": 17,
+      "suggestedRetailPrice": 25
+    },
+    {
+      "title": "Zinc\u00a0",
+      "description": "Zinc",
+      "questCode": 945,
+      "instacareCost": 12,
+      "suggestedRetailPrice": 20
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "Total",
+      "instacareCost": 195.14,
+      "suggestedRetailPrice": 375
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "PRICE",
+      "suggestedRetailPrice": 275
+    }
+  ],
+  "Mens Hormone (Basic)": [
+    {
+      "title": "Mens Hormone Basic Panel",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "Individual Tests:",
+      "description": "Quest Test Name",
+      "questCode": "Quest Code",
+      "instacareCost": "Instacare Cost",
+      "suggestedRetailPrice": "Suggest Retail Price"
+    },
+    {
+      "title": "Complete Blood Count (CBC) with Differential and Platelets",
+      "description": "CBC (includes Differential and Platelets)",
+      "questCode": 6399,
+      "instacareCost": 3.1,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "Comprehensive Metabolic Panel ",
+      "description": "Comprehensive Metabolic Panel ",
+      "questCode": 10231,
+      "instacareCost": 5.04,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "Total/Free Testosterone\u00a0",
+      "description": "Testosterone, Free (Dialysis) and Total, MS",
+      "questCode": 36170,
+      "instacareCost": 19,
+      "suggestedRetailPrice": 35
+    },
+    {
+      "title": "PSA\u00a0- Prostate Specific Antigen",
+      "description": "PSA, Total",
+      "questCode": 5363,
+      "instacareCost": 8,
+      "suggestedRetailPrice": 15
+    },
+    {
+      "title": "Estradiol standard (ECLIA)\u00a0",
+      "description": "Estradiol",
+      "questCode": 4021,
+      "instacareCost": 16,
+      "suggestedRetailPrice": 20
+    },
+    {
+      "title": "TSH\u00a0- Thyroid Stimulating Hormone",
+      "description": "TSH",
+      "questCode": 899,
+      "instacareCost": 6,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "Total",
+      "instacareCost": 57.14,
+      "suggestedRetailPrice": 100
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "PRICE",
+      "suggestedRetailPrice": 85
+    }
+  ],
+  "Men's Hormone (standard)": [
+    {
+      "title": "Mens Hormone Standard Panel",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "Individual Tests:",
+      "description": "Quest Test Name",
+      "questCode": "Quest Code",
+      "instacareCost": "Instacare Cost",
+      "suggestedRetailPrice": "Suggest Retail Price"
+    },
+    {
+      "title": "Complete Blood Count (CBC) with Differential and Platelets",
+      "description": "CBC (includes Differential and Platelets)",
+      "questCode": 6399,
+      "instacareCost": 3.1,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "Comprehensive Metabolic Panel ",
+      "description": "Comprehensive Metabolic Panel",
+      "questCode": 10231,
+      "instacareCost": 5.04,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "Total/Free Testosterone\u00a0",
+      "description": "Testosterone, Free (Dialysis) and Total, MS",
+      "questCode": 36170,
+      "instacareCost": 19,
+      "suggestedRetailPrice": 35
+    },
+    {
+      "title": "PSA\u00a0- Prostate Specific Antigen",
+      "description": "PSA, Total",
+      "questCode": 5363,
+      "instacareCost": 8,
+      "suggestedRetailPrice": 15
+    },
+    {
+      "title": "Estradiol standard (ECLIA)\u00a0",
+      "description": "Estradiol",
+      "questCode": 4021,
+      "instacareCost": 16,
+      "suggestedRetailPrice": 20
+    },
+    {
+      "title": "Dihydrotestosterone (DHT) Total",
+      "description": "Dihydrotestosterone LC/MS",
+      "questCode": 90567,
+      "instacareCost": 32.5,
+      "suggestedRetailPrice": 40
+    },
+    {
+      "title": "TSH\u00a0- Thyroid Stimulating Hormone",
+      "description": "TSH",
+      "questCode": 899,
+      "instacareCost": 6,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "Free T4",
+      "description": "T4 Free (FT4) ",
+      "questCode": 866,
+      "instacareCost": 8,
+      "suggestedRetailPrice": 15
+    },
+    {
+      "title": "Progesterone\u00a0(LC/MS)",
+      "description": "Progesterone, LC/MS",
+      "questCode": 17183,
+      "instacareCost": 10,
+      "suggestedRetailPrice": 30
+    },
+    {
+      "title": "Prolactin\u00a0",
+      "description": "Prolactin",
+      "questCode": 746,
+      "instacareCost": 9,
+      "suggestedRetailPrice": 20
+    },
+    {
+      "title": "LH/FSH\u00a0",
+      "description": "FSH and LH",
+      "questCode": 7137,
+      "instacareCost": 14,
+      "suggestedRetailPrice": 25
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "Total",
+      "instacareCost": 130.64,
+      "suggestedRetailPrice": 230
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "PRICE",
+      "suggestedRetailPrice": 185
+    }
+  ],
+  "Mens Hormone (comprehensive)": [
+    {
+      "title": "Mens Hormone Comprehensvie Panel",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "Individual Tests:",
+      "description": "Quest Test Name",
+      "questCode": "Quest Code",
+      "instacareCost": "Instacare Cost",
+      "suggestedRetailPrice": "Suggest Retail Price"
+    },
+    {
+      "title": "Complete Blood Count (CBC) with Differential and Platelets",
+      "description": "CBC (includes Differential and Platelets)",
+      "questCode": 6399,
+      "instacareCost": 3.1,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "Comprehensive Metabolic Panel ",
+      "description": "Comprehensive Metabolic Panel ",
+      "questCode": 10231,
+      "instacareCost": 5.04,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "Total/Free Testosterone\u00a0",
+      "description": "Testosterone, Free (Dialysis) and Total, MS",
+      "questCode": 36170,
+      "instacareCost": 19,
+      "suggestedRetailPrice": 35
+    },
+    {
+      "title": "PSA\u00a0- Prostate Specific Antigen",
+      "description": "PSA, Total",
+      "questCode": 5363,
+      "instacareCost": 8,
+      "suggestedRetailPrice": 15
+    },
+    {
+      "title": "Estradiol standard (ECLIA)\u00a0",
+      "description": "Estradiol",
+      "questCode": 4021,
+      "instacareCost": 16,
+      "suggestedRetailPrice": 20
+    },
+    {
+      "title": "Dihydrotestosterone (DHT) Total",
+      "description": "Dihydrotestosterone",
+      "questCode": 90567,
+      "instacareCost": 32.5,
+      "suggestedRetailPrice": 40
+    },
+    {
+      "title": "TSH\u00a0- Thyroid Stimulating Hormone",
+      "description": "TSH",
+      "questCode": 899,
+      "instacareCost": 6,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "Free T4",
+      "description": "T4 Free (FT4)",
+      "questCode": 866,
+      "instacareCost": 8,
+      "suggestedRetailPrice": 15
+    },
+    {
+      "title": "Hemoglobic A1c - HbA1c",
+      "description": "Hemoglobin A1c",
+      "questCode": 496,
+      "instacareCost": 6,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "Progesterone\u00a0(LC/MS)",
+      "description": "Progesterone, LC/MS",
+      "questCode": 17183,
+      "instacareCost": 10,
+      "suggestedRetailPrice": 30
+    },
+    {
+      "title": "Prolactin\u00a0",
+      "description": "Prolactin",
+      "questCode": 746,
+      "instacareCost": 9,
+      "suggestedRetailPrice": 20
+    },
+    {
+      "title": "LH/FSH\u00a0",
+      "description": "FSH and LH",
+      "questCode": 7137,
+      "instacareCost": 14,
+      "suggestedRetailPrice": 25
+    },
+    {
+      "title": "Lipid panel",
+      "description": "Lipid Panel, Standard",
+      "questCode": 7600,
+      "instacareCost": 8,
+      "suggestedRetailPrice": 15
+    },
+    {
+      "title": "DHEA - Dihydroepiandosterone\u00a0",
+      "description": "DHEA, (Dehydroepiandrosterone), Unconjugated",
+      "questCode": 19894,
+      "instacareCost": 18,
+      "suggestedRetailPrice": 40
+    },
+    {
+      "title": "Sex Hormone Binding Globulin (SHBG)",
+      "description": "Sex Hormone Binding Globulin (SHBG)",
+      "questCode": 30740,
+      "instacareCost": 17,
+      "suggestedRetailPrice": 30
+    },
+    {
+      "title": "Cortisol\u00a0",
+      "description": "Cortisol, Total",
+      "questCode": 367,
+      "instacareCost": 9,
+      "suggestedRetailPrice": 15
+    },
+    {
+      "title": "Insulin-like Growth Factor 1 (IGF-1)",
+      "description": "IGF-1, LC/MS",
+      "questCode": 16293,
+      "instacareCost": 18,
+      "suggestedRetailPrice": 45
+    },
+    {
+      "title": "Vitamin D\u00a0",
+      "description": "Vitamin D, 25-Hydroxy, Total, Immunoassay",
+      "questCode": 17306,
+      "instacareCost": 17,
+      "suggestedRetailPrice": 25
+    },
+    {
+      "title": "Zinc\u00a0",
+      "description": "Zinc",
+      "questCode": 945,
+      "instacareCost": 12,
+      "suggestedRetailPrice": 20
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "Total",
+      "instacareCost": 235.64,
+      "suggestedRetailPrice": 430
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "PRICE",
+      "suggestedRetailPrice": 325
+    }
+  ],
+  "Advanced Lipid Panel ": [
+    {
+      "title": "Advanced Lipid Panel/Cardiovascular):\u00a0",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "Individual Tests:",
+      "description": "Quest Test Name",
+      "questCode": "Quest Code",
+      "instacareCost": "Instacare Cost",
+      "suggestedRetailPrice": "Suggest Retail Price"
+    },
+    {
+      "title": "Lipid panel",
+      "description": "Lipid Panel, Standard",
+      "questCode": 7600,
+      "instacareCost": 8,
+      "suggestedRetailPrice": 15
+    },
+    {
+      "title": "Apolipoprotein B\u00a0(ApoB)",
+      "description": "Apolipoprotein B ",
+      "questCode": 5224,
+      "instacareCost": 5.24,
+      "suggestedRetailPrice": 20
+    },
+    {
+      "title": "Lipoprotein a (LP-a)\u00a0",
+      "description": "Lipoprotein (a)",
+      "questCode": 34604,
+      "instacareCost": 23,
+      "suggestedRetailPrice": 30
+    },
+    {
+      "title": "Homocysteine\u00a0",
+      "description": "Homocysteine",
+      "questCode": 31789,
+      "instacareCost": 20,
+      "suggestedRetailPrice": 30
+    },
+    {
+      "title": "High Sensitivity C-Reactive Protien (hs-CRP)",
+      "description": "hs-CRP",
+      "questCode": 10124,
+      "instacareCost": 26.2,
+      "suggestedRetailPrice": 30
+    },
+    {
+      "title": "Apolipoprotein A-1 ",
+      "description": "Apolipoprotein A1 ",
+      "questCode": 5223,
+      "instacareCost": 5.25,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "VLDL - Very Low Density Lipoprotein",
+      "description": "VLDL Cholesterol",
+      "questCode": 319,
+      "instacareCost": 2.94,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "Total",
+      "instacareCost": 90.63,
+      "suggestedRetailPrice": 145
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "PRICE",
+      "suggestedRetailPrice": 125
+    }
+  ],
+  "Complete Thyroid Panel\u00a0": [
+    {
+      "title": "Complete Thyroid Panel:\u00a0",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "Individual Tests:",
+      "description": "Quest Test Name",
+      "questCode": "Quest Code",
+      "instacareCost": "Instacare Cost",
+      "suggestedRetailPrice": "Suggest Retail Price"
+    },
+    {
+      "title": "TSH\u00a0- Thyroid Stimulating Hormone",
+      "description": "TSH",
+      "questCode": 899,
+      "instacareCost": 6,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "Free T4",
+      "description": "T4 Free (FT4) ",
+      "questCode": 866,
+      "instacareCost": 8,
+      "suggestedRetailPrice": 15
+    },
+    {
+      "title": "Total T4",
+      "description": "T4 (Thyroxine), Total",
+      "questCode": 867,
+      "instacareCost": 8,
+      "suggestedRetailPrice": 15
+    },
+    {
+      "title": "Free T3",
+      "description": "T3, Free",
+      "questCode": 34429,
+      "instacareCost": 7,
+      "suggestedRetailPrice": 15
+    },
+    {
+      "title": "Total T3",
+      "description": "T3 Total",
+      "questCode": 859,
+      "instacareCost": 9,
+      "suggestedRetailPrice": 15
+    },
+    {
+      "title": "Thyroid Peroxidase and Thyroglobulin Antibodies ",
+      "description": "Thyroid Peroxidase and Thyroglobulin Antibodies",
+      "questCode": 7260,
+      "instacareCost": 15.98,
+      "suggestedRetailPrice": 30
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "Total",
+      "instacareCost": 53.980000000000004,
+      "suggestedRetailPrice": 100
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "PRICE",
+      "suggestedRetailPrice": 80
+    }
+  ],
+  "Vitamin Panel": [
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "Vitamin Panel:\u00a0",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "Individual Tests:",
+      "description": "Quest Test Name",
+      "questCode": "Quest Code",
+      "instacareCost": "Instacare Cost",
+      "suggestedRetailPrice": "Suggest Retail Price"
+    },
+    {
+      "title": "Comprehensive Metabolic Panel ",
+      "description": "Comprehensive Metabolic Panel ",
+      "questCode": 10231,
+      "instacareCost": 5.04,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "Calcium",
+      "description": "Calcium",
+      "questCode": 303,
+      "instacareCost": 2.94,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "Copper",
+      "description": "Copper",
+      "questCode": 363,
+      "instacareCost": 10,
+      "suggestedRetailPrice": 30
+    },
+    {
+      "title": "Folate - Folic Acid\u00a0",
+      "description": "Folate, Serum",
+      "questCode": 466,
+      "instacareCost": 6,
+      "suggestedRetailPrice": 15
+    },
+    {
+      "title": "Iron Panel",
+      "description": "Iron, TIBC and Ferritin Panel",
+      "questCode": 5616,
+      "instacareCost": 13.2,
+      "suggestedRetailPrice": 20
+    },
+    {
+      "title": "Magnesium",
+      "description": "Magnesium",
+      "questCode": 622,
+      "instacareCost": 8,
+      "suggestedRetailPrice": 12
+    },
+    {
+      "title": "Phosphorus",
+      "description": "Phosphate (as Phosphorus)",
+      "questCode": 718,
+      "instacareCost": 2.94,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "Vitamin A\u00a0- Retinol",
+      "description": "Vitamin A (Retinol)",
+      "questCode": 921,
+      "instacareCost": 14,
+      "suggestedRetailPrice": 35
+    },
+    {
+      "title": "Vitamin B1\u00a0- Thiamine",
+      "description": "Micronutrient, Vitamin B1 (Thiamine), Blood",
+      "questCode": 10189,
+      "instacareCost": 16.99,
+      "suggestedRetailPrice": 25
+    },
+    {
+      "title": "Vitamin B12\u00a0- Cobalamin",
+      "description": "Vitamin B12 (cobalamin)",
+      "questCode": 927,
+      "instacareCost": 6,
+      "suggestedRetailPrice": 15
+    },
+    {
+      "title": "Vitamin B6\u00a0- Pyridoxine",
+      "description": "Vitamin B6, Plasma",
+      "questCode": 926,
+      "instacareCost": 14,
+      "suggestedRetailPrice": 35
+    },
+    {
+      "title": "Vitamin C\u00a0- Ascorbic Acid",
+      "description": "Vitamin C",
+      "questCode": 929,
+      "instacareCost": 9,
+      "suggestedRetailPrice": 30
+    },
+    {
+      "title": "Vitamin D\u00a0",
+      "description": "Vitamin D, 25-Hydroxy, Total, Immunoassay",
+      "questCode": 17306,
+      "instacareCost": 17,
+      "suggestedRetailPrice": 25
+    },
+    {
+      "title": "Zinc\u00a0",
+      "description": "Zinc",
+      "questCode": 945,
+      "instacareCost": 12,
+      "suggestedRetailPrice": 20
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "Total",
+      "instacareCost": 137.11,
+      "suggestedRetailPrice": 292
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "PRICE",
+      "suggestedRetailPrice": 185
+    }
+  ],
+  "Anemia Panel\u00a0": [
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "Anemia Panel:\u00a0",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "Individual Tests:",
+      "description": "Quest Test Name",
+      "questCode": "Quest Code",
+      "instacareCost": "Instacare Cost",
+      "suggestedRetailPrice": "Suggest Retail Price"
+    },
+    {
+      "title": "Complete Blood Count (CBC) with Differential and Platelets",
+      "description": "CBC (includes Differential and Platelets)",
+      "questCode": 6399,
+      "instacareCost": 3.1,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "Iron panel\u00a0",
+      "description": "Iron, TIBC and Ferritin Panel",
+      "questCode": 5616,
+      "instacareCost": 13.2,
+      "suggestedRetailPrice": 20
+    },
+    {
+      "title": "Transferrin",
+      "description": "Transferrin",
+      "questCode": 891,
+      "instacareCost": 7,
+      "suggestedRetailPrice": 10
+    },
+    {
+      "title": "Vitamin B12\u00a0- Cobalamin",
+      "description": "Vitamin B12 (cobalamin)",
+      "questCode": 927,
+      "instacareCost": 6,
+      "suggestedRetailPrice": 15
+    },
+    {
+      "title": "Folate - Folic Acid\u00a0",
+      "description": "Folate, Serum",
+      "questCode": 466,
+      "instacareCost": 6,
+      "suggestedRetailPrice": 15
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "Total",
+      "instacareCost": 35.3,
+      "suggestedRetailPrice": 70
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "PRICE",
+      "suggestedRetailPrice": 60
+    }
+  ],
+  "STD Panel\u00a0": [
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": "",
+      "profitMargin": ""
+    },
+    {
+      "title": "STD Panel",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": "",
+      "profitMargin": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": "",
+      "profitMargin": ""
+    },
+    {
+      "title": "Individual Tests:",
+      "description": "Quest Test Name",
+      "questCode": "Quest Code",
+      "instacareCost": "Instacare Cost",
+      "suggestedRetailPrice": "Suggest Retail Price",
+      "profitMargin": ""
+    },
+    {
+      "title": "Chlamydia & Gonorrhea\u00a0Urine Test",
+      "description": "Chlamydia/Neisseria gonorrhoeae RNA, TMA, Urogenital",
+      "questCode": 11363,
+      "instacareCost": 40,
+      "suggestedRetailPrice": 50,
+      "profitMargin": ""
+    },
+    {
+      "title": "Acute Hepatitis Panel\u00a0",
+      "description": "Hepatitis Panel, Acute with Reflex to Confirmation",
+      "questCode": 10306,
+      "instacareCost": 31,
+      "suggestedRetailPrice": 69,
+      "profitMargin": "possible reflex $20 for Hep B surface antigen confirmation, $100 for Hep C Viral RNA RT-PCR"
+    },
+    {
+      "title": "RPR/Syphilis\u00a0",
+      "description": "RPR (Monitor) with Reflex to Titer",
+      "questCode": 799,
+      "instacareCost": 3.1,
+      "suggestedRetailPrice": 30,
+      "profitMargin": ""
+    },
+    {
+      "title": "HIV 1 & 2\u00a0",
+      "description": "HIV-1/2 Antigen and Antibodies, Fourth Generation, with Reflexes",
+      "questCode": 91431,
+      "instacareCost": 54.55,
+      "suggestedRetailPrice": 85,
+      "profitMargin": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": "",
+      "profitMargin": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "Total",
+      "instacareCost": 128.64999999999998,
+      "suggestedRetailPrice": 234,
+      "profitMargin": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "",
+      "suggestedRetailPrice": "",
+      "profitMargin": ""
+    },
+    {
+      "title": "",
+      "description": "",
+      "questCode": "",
+      "instacareCost": "PRICE",
+      "suggestedRetailPrice": 185,
+      "profitMargin": ""
+    }
+  ]
+}

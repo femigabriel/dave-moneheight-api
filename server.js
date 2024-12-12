@@ -37,30 +37,43 @@ app.get("/api/listings", async (req, res) => {
       .limit(limit)
       .lean();
 
-      const transformedListings = listings.map((listing) => {
-        const { __v, _id, ListingDetails, BasicDetails, ...rest } = listing;
-      
-        // Destructure BasicDetails to exclude PropertyType
-        const { PropertyType, ...filteredBasicDetails } = BasicDetails || {};
-      
-        return {
-          ListingKey: ListingDetails?.ProviderListingId || _id, // Changed to ListingKey
-          Location: listing.Location,
-          RentalDetails: listing.RentalDetails,
-          BasicDetails: {
-            ...filteredBasicDetails,
-            propertyType: "Residential Lease", // Updated field name and value
-            PropertySubType: BasicDetails?.PropertyType || "Apartment", // Moved PropertyType value to PropertySubType
-          },
-          Agent: listing.Agent,
-          Office: listing.Office,
-          Neighborhood: listing.Neighborhood,
-          RichDetails: listing.RichDetails,
-        };
-      });
-      
+    const transformedListings = listings.map((listing) => {
+      const { __v, _id, ListingDetails, BasicDetails, Agent, Office, ...rest } = listing;
 
-    // Return only the data field
+      // Destructure BasicDetails to exclude PropertyType
+      const { PropertyType, ...filteredBasicDetails } = BasicDetails || {};
+
+      // Transforming Agent and Office data
+      const ListOfficeEmail = [Agent?.EmailAddress, Office?.BrokerEmail].filter(Boolean); // Combine emails into a list
+      const ListOfficePhone = [
+        Agent?.OfficeLineNumber,
+        Office?.BrokerPhone,
+      ].filter(Boolean); // Combine phone numbers into a list
+
+      // Exclude MobilePhoneLineNumber from Agent
+      const { MobilePhoneLineNumber, ...filteredAgent } = Agent || {};
+
+      return {
+        ListingKey: ListingDetails?.ProviderListingId || _id, // Changed to ListingKey
+        Location: listing.Location,
+        RentalDetails: listing.RentalDetails,
+        BasicDetails: {
+          ...filteredBasicDetails,
+          propertyType: "Residential Lease", // Updated field name and value
+          PropertySubType: BasicDetails?.PropertyType || "Apartment", // Moved PropertyType value to PropertySubType
+        },
+        Agent: {
+          ...filteredAgent,
+          ListOfficeEmail, // Include list of emails
+          ListOfficePhone, // Include list of phone numbers
+        },
+        Office: listing.Office,
+        Neighborhood: listing.Neighborhood,
+        RichDetails: listing.RichDetails,
+      };
+    });
+
+    // Return transformed listings
     res.json(transformedListings);
   } catch (error) {
     console.error("Error fetching listings:", error);
@@ -72,6 +85,7 @@ app.get("/api/listings", async (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
 
 
 
