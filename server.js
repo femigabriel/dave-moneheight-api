@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 const { Schema, model, models } = mongoose;
 
 // MongoDB URI
-const MONGODB_URI = "mongodb+srv://Eatsumn:Eatsumn@cluster0.glsj1ah.mongodb.net/dave-moneheight";
+const MONGODB_URI =
+  "mongodb+srv://Eatsumn:Eatsumn@cluster0.glsj1ah.mongodb.net/dave-moneheight";
 
 // Create Express app
 const app = express();
@@ -38,13 +39,16 @@ app.get("/api/listings", async (req, res) => {
       .lean();
 
     const transformedListings = listings.map((listing) => {
-      const { __v, _id, ListingDetails, BasicDetails, Agent, Office, ...rest } = listing;
+      const { __v, _id, ListingDetails, BasicDetails, Agent, Office, ...rest } =
+        listing;
 
       // Destructure BasicDetails to exclude PropertyType
       const { PropertyType, ...filteredBasicDetails } = BasicDetails || {};
 
       // Transforming Agent and Office data
-      const ListOfficeEmail = [Agent?.EmailAddress, Office?.BrokerEmail].filter(Boolean); // Combine emails into a list
+      const ListOfficeEmail = [Agent?.EmailAddress, Office?.BrokerEmail].filter(
+        Boolean
+      ); // Combine emails into a list
       const ListOfficePhone = [
         Agent?.OfficeLineNumber,
         Office?.BrokerPhone,
@@ -59,14 +63,17 @@ app.get("/api/listings", async (req, res) => {
         RentalDetails: listing.RentalDetails,
         BasicDetails: {
           ...filteredBasicDetails,
-          propertyType: "Residential Lease", // Updated field name and value
-          PropertySubType: BasicDetails?.PropertyType || "Apartment", // Moved PropertyType value to PropertySubType
+          propertyType: "Residential Lease", 
+          PropertySubType: "Residential Lease,Apartment", 
         },
         Agent: {
-          ...filteredAgent,
-          ListOfficeEmail, // Include list of emails
-          ListOfficePhone, // Include list of phone numbers
+          FirstName: Agent?.FirstName,
+          LastName: Agent?.LastName,
+          PictureUrl: Agent?.PictureUrl,
+          memberEmail: Agent?.EmailAddress || "", 
+          memberOfficePhone: Agent?.OfficeLineNumber || "", 
         },
+        
         Office: listing.Office,
         Neighborhood: listing.Neighborhood,
         RichDetails: listing.RichDetails,
@@ -85,9 +92,6 @@ app.get("/api/listings", async (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
-
-
-
 
 // const express = require("express");
 // const mongoose = require("mongoose");
@@ -139,7 +143,6 @@ app.listen(port, () => {
 //     res.status(500).json({ error: "Failed to fetch listings" });
 //   }
 // });
-
 
 // // Start the Express server
 // app.listen(port, () => {
