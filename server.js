@@ -38,47 +38,47 @@ app.get("/api/listings", async (req, res) => {
       .limit(limit)
       .lean();
 
-    const transformedListings = listings.map((listing) => {
-      const { __v, _id, ListingDetails, BasicDetails, Agent, Office, ...rest } =
-        listing;
-
-      // Destructure BasicDetails to exclude PropertyType
-      const { PropertyType, ...filteredBasicDetails } = BasicDetails || {};
-
-      // Transforming Agent and Office data
-      const ListOfficeEmail = [Agent?.EmailAddress, Office?.BrokerEmail].filter(
-        Boolean
-      ); // Combine emails into a list
-      const ListOfficePhone = [
-        Agent?.OfficeLineNumber,
-        Office?.BrokerPhone,
-      ].filter(Boolean); // Combine phone numbers into a list
-
-      // Exclude MobilePhoneLineNumber from Agent
-      const { MobilePhoneLineNumber, ...filteredAgent } = Agent || {};
-
-      return {
-        ListingKey: ListingDetails?.ProviderListingId || _id, // Changed to ListingKey
-        Location: listing.Location,
-        RentalDetails: listing.RentalDetails,
-        BasicDetails: {
-          ...filteredBasicDetails,
-          propertyType: "Residential Lease", 
-          PropertySubType: "Residential Lease,Apartment", 
-        },
-        Agent: {
-          FirstName: Agent?.FirstName,
-          LastName: Agent?.LastName,
-          PictureUrl: Agent?.PictureUrl,
-          memberEmail: Agent?.EmailAddress || "", 
-          memberOfficePhone: Agent?.OfficeLineNumber || "", 
-        },
-        
-        Office: listing.Office,
-        Neighborhood: listing.Neighborhood,
-        RichDetails: listing.RichDetails,
-      };
-    });
+      const transformedListings = listings.map((listing) => {
+        const { __v, _id, ListingDetails, BasicDetails, Agent, Office, ...rest } =
+          listing;
+      
+        // Destructure BasicDetails to exclude PropertyType
+        const { PropertyType, ...filteredBasicDetails } = BasicDetails || {};
+      
+        // Transforming Agent and Office data
+        const memberPhone = Agent?.OfficeLineNumber || Office?.BrokerPhone || "";
+        const memberEmail = Agent?.EmailAddress || Office?.BrokerEmail || "";
+      
+        return {
+          ListingKey: ListingDetails?.ProviderListingId || _id, // Changed to ListingKey
+          Location: listing.Location,
+          RentalDetails: listing.RentalDetails,
+          BasicDetails: {
+            ...filteredBasicDetails,
+            propertyType: "Residential Lease",
+            PropertySubType: "Residential Lease,Apartment",
+          },
+          Agent: {
+            memberFirstName: Agent?.FirstName || "",
+            memberLastName: Agent?.LastName || "",
+            memberEmail: Agent?.EmailAddress || "", // Aligning with their request
+            memberPhone: Agent?.OfficeLineNumber || "", // Aligning with their request
+            memberMobilePhone: Agent?.MobilePhoneLineNumber || "",
+          },
+          Office: {
+            BrokerageName: Office?.BrokerageName || "",
+            memberPhone, // Updated from BrokerPhone
+            memberEmail, // Updated from BrokerEmail
+            StreetAddress: Office?.StreetAddress || "",
+            City: Office?.City || "",
+            State: Office?.State || "",
+            Zip: Office?.Zip || "",
+          },
+          Neighborhood: listing.Neighborhood,
+          RichDetails: listing.RichDetails,
+        };
+      });
+      
 
     // Return transformed listings
     res.json(transformedListings);
