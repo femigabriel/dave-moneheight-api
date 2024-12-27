@@ -67,13 +67,15 @@ app.get("/api/listings", async (req, res) => {
           },
           Office: {
             BrokerageName: Office?.BrokerageName || "",
-            memberPhone, // Updated from BrokerPhone
-            memberEmail, // Updated from BrokerEmail
+            memberPhone: Office?.BrokerPhone || "", // Updated field
+            memberEmail: Office?.BrokerEmail || "", // Updated field
+            BrokerWebsite: Office?.BrokerWebsite || "", // Retained field
             StreetAddress: Office?.StreetAddress || "",
             City: Office?.City || "",
             State: Office?.State || "",
             Zip: Office?.Zip || "",
-          },
+        },
+        
           Neighborhood: listing.Neighborhood,
           RichDetails: listing.RichDetails,
         };
