@@ -13,15 +13,14 @@ exports.text = function(value) {
 };
 
 
-var emptyElement = exports.emptyElement = {
+var emptyElement = {
     first: function() {
         return null;
     },
     firstOrEmpty: function() {
         return emptyElement;
     },
-    attributes: {},
-    children: []
+    attributes: {}
 };
 
 function Element(name, attributes, children) {
