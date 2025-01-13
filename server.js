@@ -1,11 +1,11 @@
+// MongoDB Connection and Dependencies
 const express = require("express");
 const mongoose = require("mongoose");
-const fetch = (...args) => import("node-fetch").then(({ default: fetch }) => fetch(...args));
-const { parseStringPromise } = require("xml2js");
 const { Schema, model, models } = mongoose;
 
 // MongoDB URI
-const MONGODB_URI = "mongodb+srv://Eatsumn:Eatsumn@cluster0.glsj1ah.mongodb.net/dave-moneheight";
+const MONGODB_URI =
+  "mongodb+srv://Eatsumn:Eatsumn@cluster0.glsj1ah.mongodb.net/dave-moneheight";
 
 // Create Express app
 const app = express();
@@ -14,9 +14,6 @@ const port = process.env.PORT || 5000;
 // Define schema and model
 const ListingSchema = new Schema({}, { strict: false }); // Open schema for dynamic data
 const Listing = models.Listing || model("Listing", ListingSchema);
-
-// Middleware to parse JSON
-app.use(express.json());
 
 // Middleware to connect to MongoDB
 const connectDB = async () => {
@@ -30,62 +27,119 @@ const connectDB = async () => {
   }
 };
 
-// Fetch listings from YouGotListings API
-app.post("/api/external-listings", async (req, res) => {
-  const { location, price_min, price_max, beds } = req.body;
+// Helper function to map data to RESO-compliant fields
+const mapToRESOFields = (listing) => {
+  const {
+    __v,
+    _id,
+    ListingDetails,
+    BasicDetails,
+    Agent,
+    Office,
+    Location,
+    RentalDetails,
+    Neighborhood,
+    RichDetails,
+    MediaAssets,
+    ...rest
+  } = listing;
 
-  try {
-    const apiUrl = "https://www.yougotlistings.com/api/rentals/search.php";
-    const body = new URLSearchParams({
-      key: "C0lOBfoG7SWzPbjsQuTLntFKpvrAmY1ewNXhRMig",
-      ...(location && { location }),
-      ...(price_min && { price_min }),
-      ...(price_max && { price_max }),
-      ...(beds && { beds }),
-    }).toString();
+  // Helper function to format phone numbers
+  const formatPhoneNumber = (phone) => {
+    if (!phone) return "";
+    const cleaned = phone.replace(/\D/g, ""); // Remove non-digit characters
+    return `+1-${cleaned}`; // Assume US country code for now
+  };
 
-    const response = await fetch(apiUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body,
-    });
-
-    const responseText = await response.text();
-    if (!response.ok) {
-      console.error("Error fetching from YouGotListings:", response.status, response.statusText);
-      return res.status(500).json({ error: "Failed to fetch data from YouGotListings" });
-    }
-
-    const parsedData = await parseStringPromise(responseText);
-
-    const responseCode = parsedData.YGLResponse?.$?.responseCode;
-    if (responseCode && parseInt(responseCode) >= 300) {
-      const errorMessage = parsedData.YGLResponse?.Message?.[0] || "Unknown error";
-      console.error("Error from YouGotListings API:", errorMessage);
-      return res.status(500).json({ error: errorMessage });
-    }
-
-    const listings = parsedData.YGLResponse?.Listings?.[0]?.Listing?.map((listing) => ({
-      id: listing.ID?.[0] || "",
-      price: listing.Price?.[0] || "",
-      location: `${listing.StreetNumber?.[0]} ${listing.StreetName?.[0]}, ${listing.City?.[0]}, ${listing.State?.[0]} ${listing.Zip?.[0]}`,
-      beds: listing.Beds?.[0] || "",
-      baths: listing.Baths?.[0] || "",
-      photos: listing.Photos?.[0]?.Photo || [],
-      status: listing.Status?.[0] || "Unknown",
-      availableDate: listing.AvailableDate?.[0] || "N/A",
+  // Helper function to parse media assets
+  const mapMediaAssets = (media) => {
+    if (!Array.isArray(media)) return [];
+    return media.map((asset) => ({
+      MediaURL: asset.url || "",
+      MediaType: asset.type || "Image", // Default to "Image" if not specified
+      MediaDescription: asset.description || "",
     }));
+  };
 
-    res.json({ listings });
-  } catch (error) {
-    console.error("Error fetching data from YouGotListings API:", error);
-    res.status(500).json({ error: "An error occurred while fetching data" });
-  }
-});
+  // Default LivingAreaUnits to square feet
+  const livingAreaUnits = "Square Feet";
 
-// Fetch listings from MongoDB
+  return {
+    ListingKey: (ListingDetails?.ProviderListingId || _id)?.toString(), // Ensure string format
+    ListingID: ListingDetails?.MLSNumber || null, // Use null for missing values
+    StandardFields: {
+      Property: {
+        Address: {
+          StreetAddress: Location?.StreetAddress || "",
+          UnitNumber: Location?.UnitNumber?.toString() || "", // Convert to string
+          City: Location?.City || "",
+          StateOrProvince: Location?.State || "",
+          PostalCode: Location?.Zip?.toString().padStart(5, "0") || "", // Ensure 5-digit format
+          Country: Location?.Country || "US", // Default to "US"
+        },
+        Geo: {
+          Latitude: Location?.Lat || 0,
+          Longitude: Location?.Long || 0,
+          GeoAccuracy: "High", // Optional accuracy field
+        },
+      },
+      LeaseDetails: {
+        AvailabilityDate: RentalDetails?.Availability || "",
+        LeaseTerm: RentalDetails?.LeaseTerm || "", // Ensure compliance with RESO values
+        UtilitiesIncluded: {
+          Water: RentalDetails?.UtilitiesIncluded?.Water || "No",
+          Electricity: RentalDetails?.UtilitiesIncluded?.Electricity || "No",
+          Gas: RentalDetails?.UtilitiesIncluded?.Gas || "No",
+        },
+        PetsAllowed: {
+          SmallDogs: RentalDetails?.PetsAllowed?.SmallDogs || "No",
+          LargeDogs: RentalDetails?.PetsAllowed?.LargeDogs || "No",
+          Cats: RentalDetails?.PetsAllowed?.Cats || "No",
+        },
+      },
+      BasicDetails: {
+        Title: BasicDetails?.Title || "",
+        Description: BasicDetails?.Description || "",
+        Bedrooms: BasicDetails?.Bedrooms || 0,
+        Bathrooms: BasicDetails?.Bathrooms || 0,
+        LivingArea: BasicDetails?.LivingArea || 0,
+        LivingAreaUnits: livingAreaUnits,
+        PropertyType: "Residential Lease", // RESO standard field
+        PropertySubType: "Apartment", // RESO standard field
+      },
+      Agent: {
+        ListAgent: {
+          FirstName: Agent?.FirstName || "",
+          LastName: Agent?.LastName || "",
+          FullName: `${Agent?.FirstName || ""} ${Agent?.LastName || ""}`.trim(),
+          Email: Agent?.EmailAddress || "",
+          Phone: formatPhoneNumber(Agent?.MobilePhoneLineNumber),
+        },
+      },
+      Office: {
+        Name: Office?.BrokerageName || "",
+        Phone: formatPhoneNumber(Office?.BrokerPhone),
+        Email: Office?.BrokerEmail || "",
+        Website: Office?.BrokerWebsite || "",
+        Address: {
+          Street: Office?.StreetAddress || "",
+          City: Office?.City || "",
+          StateOrProvince: Office?.State || "",
+          PostalCode: Office?.Zip?.toString().padStart(5, "0") || "", // Ensure 5-digit format
+          Country: Office?.Country || "US",
+        },
+      },
+      Features: RichDetails?.AdditionalFeatures
+        ? RichDetails.AdditionalFeatures.split(",")
+        : [], // Convert to array
+      Neighborhood: Neighborhood?.Name || "",
+      Media: mapMediaAssets(MediaAssets),
+    },
+  };
+};
+
+
+// Fetch listings endpoint
 app.get("/api/listings", async (req, res) => {
   const { page = 1, limit = 10 } = req.query;
 
@@ -97,47 +151,10 @@ app.get("/api/listings", async (req, res) => {
       .limit(limit)
       .lean();
 
-    const transformedListings = listings.map((listing) => {
-      const { __v, _id, ListingDetails, BasicDetails, Agent, Office, ...rest } = listing;
+    // Transform listings to RESO format
+    const transformedListings = listings.map(mapToRESOFields);
 
-      const { PropertyType, ...filteredBasicDetails } = BasicDetails || {};
-
-      return {
-        ListingKey: ListingDetails?.ProviderListingId || _id,
-        Location: listing.Location,
-        RentalDetails: listing.RentalDetails,
-        BasicDetails: {
-          ...filteredBasicDetails,
-          propertyType: "Residential Lease",
-          PropertySubType: "Residential Lease,Apartment",
-        },
-        Agent: {
-          associatedAgentType: "LIST_AGENT",
-          memberFirstName: Agent?.FirstName || "",
-          memberLastName: Agent?.LastName || "",
-          memberFullName: `${Agent?.FirstName || ""} ${Agent?.LastName || ""}`.trim(),
-          memberEmail: Agent?.EmailAddress || "",
-          memberPhone: Agent?.OfficeLineNumber || Agent?.MobilePhoneLineNumber || "",
-          memberMobilePhone: Agent?.MobilePhoneLineNumber || "",
-          memberOfficePhone: Office?.BrokerPhone || "",
-          memberPreferredPhone: Agent?.PreferredPhone || "",
-        },
-        Office: {
-          BrokerageName: Office?.BrokerageName || "",
-          memberPhone: Office?.BrokerPhone || "",
-          memberEmail: Office?.BrokerEmail || "",
-          BrokerWebsite: Office?.BrokerWebsite || "",
-          memberAddress1: Office?.StreetAddress || "",
-          memberCity: Office?.City || "",
-          memberStateOrProvince: Office?.State || "",
-          memberPostalCode: Office?.Zip || "",
-          memberCountry: Office?.Country || "US",
-        },
-        Neighborhood: listing.Neighborhood,
-        RichDetails: listing.RichDetails,
-      };
-    });
-
+    // Return transformed listings
     res.json(transformedListings);
   } catch (error) {
     console.error("Error fetching listings:", error);
@@ -149,108 +166,6 @@ app.get("/api/listings", async (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
-
-
-
-
-// const express = require("express");
-// const mongoose = require("mongoose");
-// const { Schema, model, models } = mongoose;
-
-// // MongoDB URI
-// const MONGODB_URI =
-//   "mongodb+srv://Eatsumn:Eatsumn@cluster0.glsj1ah.mongodb.net/dave-moneheight";
-
-// // Create Express app
-// const app = express();
-// const port = process.env.PORT || 5000;
-
-// // Define schema and model
-// const ListingSchema = new Schema({}, { strict: false }); // Open schema for dynamic data
-// const Listing = models.Listing || model("Listing", ListingSchema);
-
-// // Middleware to connect to MongoDB
-// const connectDB = async () => {
-//   try {
-//     if (!mongoose.connection.readyState) {
-//       await mongoose.connect(MONGODB_URI);
-//       console.log("MongoDB connected");
-//     }
-//   } catch (error) {
-//     console.error("Error connecting to MongoDB:", error);
-//   }
-// };
-
-// // Fetch listings endpoint
-// app.get("/api/listings", async (req, res) => {
-//   const { page = 1, limit = 10 } = req.query;
-
-//   try {
-//     await connectDB();
-
-//     const listings = await Listing.find()
-//       .skip((page - 1) * limit)
-//       .limit(limit)
-//       .lean();
-
-//     const transformedListings = listings.map((listing) => {
-//       const { __v, _id, ListingDetails, BasicDetails, Agent, Office, ...rest } =
-//         listing;
-
-//       // Destructure BasicDetails to exclude PropertyType
-//       const { PropertyType, ...filteredBasicDetails } = BasicDetails || {};
-
-//       // Transforming Agent and Office data
-//       return {
-//         ListingKey: ListingDetails?.ProviderListingId || _id, // Changed to ListingKey
-//         Location: listing.Location,
-//         RentalDetails: listing.RentalDetails,
-//         BasicDetails: {
-//           ...filteredBasicDetails,
-//           propertyType: "Residential Lease",
-//           PropertySubType: "Residential Lease,Apartment",
-//         },
-//         Agent: {
-//           associatedAgentType: "LIST_AGENT",
-//           memberFirstName: Agent?.FirstName || "",
-//           memberLastName: Agent?.LastName || "",
-//           memberFullName: `${Agent?.FirstName || ""} ${Agent?.LastName || ""}`.trim(),
-//           memberEmail: Agent?.EmailAddress || "",
-//           memberPhone: Agent?.OfficeLineNumber || Agent?.MobilePhoneLineNumber || "",
-//           memberMobilePhone: Agent?.MobilePhoneLineNumber || "",
-//           memberOfficePhone: Office?.BrokerPhone || "",
-//           memberPreferredPhone: Agent?.PreferredPhone || "",
-//         },
-//         Office: {
-//           BrokerageName: Office?.BrokerageName || "",
-//           memberPhone: Office?.BrokerPhone || "",
-//           memberEmail: Office?.BrokerEmail || "",
-//           BrokerWebsite: Office?.BrokerWebsite || "",
-//           memberAddress1: Office?.StreetAddress || "",
-//           memberCity: Office?.City || "",
-//           memberStateOrProvince: Office?.State || "",
-//           memberPostalCode: Office?.Zip || "",
-//           memberCountry: Office?.Country || "US", // Default to US if undefined
-//         },
-//         Neighborhood: listing.Neighborhood,
-//         RichDetails: listing.RichDetails,
-//       };
-//     });
-
-//     // Return transformed listings
-//     res.json(transformedListings);
-//   } catch (error) {
-//     console.error("Error fetching listings:", error);
-//     res.status(500).json({ error: "Failed to fetch listings" });
-//   }
-// });
-
-// // Start the Express server
-// app.listen(port, () => {
-//   console.log(`Server is running on port ${port}`);
-// });
-
-
 
 
 
