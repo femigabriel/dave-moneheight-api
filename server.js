@@ -28,6 +28,11 @@ const connectDB = async () => {
 };
 
 // Helper function to map data to RESO-compliant fields
+const formatPhoneNumber = (phone) => {
+  return phone ? `+1-${String(phone).replace(/[^0-9]/g, "")}` : "";
+};
+;
+
 const mapToRESOFields = (listing) => {
   const {
     __v,
@@ -44,35 +49,31 @@ const mapToRESOFields = (listing) => {
     ...rest
   } = listing;
 
-  // Destructure BasicDetails to exclude PropertyType
-  const { PropertyType, ...filteredBasicDetails } = BasicDetails || {};
-
-  // Zero-pad postal codes for consistency
   const formatPostalCode = (postalCode) =>
     postalCode ? postalCode.toString().padStart(5, "0") : "";
 
   return {
-    ListingKey: (ListingDetails?.ProviderListingId || _id)?.toString(), // Ensure string format
-    ListingID: ListingDetails?.MLSNumber || null, // Use null for missing values
+    ListingKey: (ListingDetails?.ProviderListingId || _id)?.toString(),
+    ListingID: ListingDetails?.MLSNumber || null,
     StandardFields: {
       Property: {
         Address: {
           StreetAddress: Location?.StreetAddress || "",
-          UnitNumber: Location?.UnitNumber?.toString() || "", // Convert to string
+          UnitNumber: Location?.UnitNumber?.toString() || "",
           City: Location?.City || "",
           StateOrProvince: Location?.State || "",
           PostalCode: formatPostalCode(Location?.Zip),
-          Country: Location?.Country || "US", // Default to "US"
+          Country: Location?.Country || "US",
         },
         Geo: {
           Latitude: Location?.Lat || 0,
           Longitude: Location?.Long || 0,
-          GeoAccuracy: "High", // Optional accuracy field
+          GeoAccuracy: "High",
         },
       },
       LeaseDetails: {
         AvailabilityDate: RentalDetails?.Availability || "",
-        LeaseTerm: RentalDetails?.LeaseTerm || "", // Ensure compliance with RESO values
+        LeaseTerm: RentalDetails?.LeaseTerm || "",
         UtilitiesIncluded: {
           Water: RentalDetails?.UtilitiesIncluded?.Water || "No",
           Electricity: RentalDetails?.UtilitiesIncluded?.Electricity || "No",
@@ -85,13 +86,14 @@ const mapToRESOFields = (listing) => {
         },
       },
       BasicDetails: {
-        Title: filteredBasicDetails?.Title || "",
-        Description: filteredBasicDetails?.Description || "",
-        Bedrooms: filteredBasicDetails?.Bedrooms || 0,
-        Bathrooms: filteredBasicDetails?.Bathrooms || 0,
-        LivingArea: filteredBasicDetails?.LivingArea || 0,
-        PropertyType: "Residential Lease", // RESO standard field
-        PropertySubType: "Apartment", // RESO standard field
+        Title: BasicDetails?.Title || "",
+        Description: BasicDetails?.Description || "",
+        Bedrooms: BasicDetails?.Bedrooms || 0,
+        Bathrooms: BasicDetails?.Bathrooms || 0,
+        LivingArea: BasicDetails?.LivingArea || 0,
+        LivingAreaUnits: "SquareFeet",
+        PropertyType: "Residential Lease",
+        PropertySubType: "Apartment",
       },
       Agent: {
         ListAgent: {
@@ -99,14 +101,12 @@ const mapToRESOFields = (listing) => {
           LastName: Agent?.LastName || "",
           FullName: `${Agent?.FirstName || ""} ${Agent?.LastName || ""}`.trim(),
           Email: Agent?.EmailAddress || "",
-          Phone: Agent?.MobilePhoneLineNumber
-            ? `+1-${Agent.MobilePhoneLineNumber}`
-            : "", // Standardize phone format
+          Phone: formatPhoneNumber(Agent?.MobilePhoneLineNumber),
         },
       },
       Office: {
         Name: Office?.BrokerageName || "",
-        Phone: Office?.BrokerPhone || "",
+        Phone: formatPhoneNumber(Office?.BrokerPhone),
         Email: Office?.BrokerEmail || "",
         Website: Office?.BrokerWebsite || "",
         Address: {
@@ -119,16 +119,17 @@ const mapToRESOFields = (listing) => {
       },
       Features: RichDetails?.AdditionalFeatures
         ? RichDetails.AdditionalFeatures.split(",")
-        : [], // Convert to array
+        : [],
       Neighborhood: Neighborhood?.Name || "",
       Media: Media?.map((media, index) => ({
         MediaURL: media?.MediaURL || "",
-        MediaType: media?.MediaType || "Photo",
+        MediaType: media?.MediaType || "Unknown",
         Order: index + 1,
       })) || [],
     },
   };
 };
+
 
 // Fetch listings endpoint
 app.get("/api/listings", async (req, res) => {
