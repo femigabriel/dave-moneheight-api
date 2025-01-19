@@ -55,80 +55,79 @@ const mapToRESOFields = (listing) => {
   return {
     ListingKey: (ListingDetails?.ProviderListingId || _id)?.toString(),
     ListingID: ListingDetails?.MLSNumber || null,
-    StandardFields: {
-      Property: {
-        Address: {
-          StreetAddress: Location?.StreetAddress || "",
-          UnitNumber: Location?.UnitNumber?.toString() || "",
-          City: Location?.City || "",
-          StateOrProvince: Location?.State || "",
-          PostalCode: formatPostalCode(Location?.Zip),
-          Country: Location?.Country || "US",
-        },
-        Geo: {
-          Latitude: Location?.Lat || 0,
-          Longitude: Location?.Long || 0,
-          GeoAccuracy: "High",
-        },
+    Property: {
+      Address: {
+        StreetAddress: Location?.StreetAddress || "",
+        UnitNumber: Location?.UnitNumber?.toString() || "",
+        City: Location?.City || "",
+        StateOrProvince: Location?.State || "",
+        PostalCode: formatPostalCode(Location?.Zip),
+        Country: Location?.Country || "US",
       },
-      LeaseDetails: {
-        AvailabilityDate: RentalDetails?.Availability || "",
-        LeaseTerm: RentalDetails?.LeaseTerm || "",
-        UtilitiesIncluded: {
-          Water: RentalDetails?.UtilitiesIncluded?.Water || "No",
-          Electricity: RentalDetails?.UtilitiesIncluded?.Electricity || "No",
-          Gas: RentalDetails?.UtilitiesIncluded?.Gas || "No",
-        },
-        PetsAllowed: {
-          SmallDogs: RentalDetails?.PetsAllowed?.SmallDogs || "No",
-          LargeDogs: RentalDetails?.PetsAllowed?.LargeDogs || "No",
-          Cats: RentalDetails?.PetsAllowed?.Cats || "No",
-        },
+      Geo: {
+        Latitude: Location?.Lat || 0,
+        Longitude: Location?.Long || 0,
+        GeoAccuracy: "High",
       },
-      BasicDetails: {
-        Title: BasicDetails?.Title || "",
-        Description: BasicDetails?.Description || "",
-        Bedrooms: BasicDetails?.Bedrooms || 0,
-        Bathrooms: BasicDetails?.Bathrooms || 0,
-        LivingArea: BasicDetails?.LivingArea || 0,
-        LivingAreaUnits: "SquareFeet",
-        PropertyType: "Residential Lease",
-        PropertySubType: "Apartment",
-      },
-      Agent: {
-        ListAgent: {
-          FirstName: Agent?.FirstName || "",
-          LastName: Agent?.LastName || "",
-          FullName: `${Agent?.FirstName || ""} ${Agent?.LastName || ""}`.trim(),
-          Email: Agent?.EmailAddress || "",
-          Phone: formatPhoneNumber(Agent?.MobilePhoneLineNumber),
-        },
-      },
-      Office: {
-        Name: Office?.BrokerageName || "",
-        Phone: formatPhoneNumber(Office?.BrokerPhone),
-        Email: Office?.BrokerEmail || "",
-        Website: Office?.BrokerWebsite || "",
-        Address: {
-          Street: Office?.StreetAddress || "",
-          City: Office?.City || "",
-          StateOrProvince: Office?.State || "",
-          PostalCode: formatPostalCode(Office?.Zip),
-          Country: Office?.Country || "US",
-        },
-      },
-      Features: RichDetails?.AdditionalFeatures
-        ? RichDetails.AdditionalFeatures.split(",")
-        : [],
-      Neighborhood: Neighborhood?.Name || "",
-      Media: Media?.map((media, index) => ({
-        MediaURL: media?.MediaURL || "",
-        MediaType: media?.MediaType || "Unknown",
-        Order: index + 1,
-      })) || [],
     },
+    LeaseDetails: {
+      AvailabilityDate: RentalDetails?.Availability || "",
+      LeaseTerm: RentalDetails?.LeaseTerm || "",
+      UtilitiesIncluded: {
+        Water: RentalDetails?.UtilitiesIncluded?.Water || "No",
+        Electricity: RentalDetails?.UtilitiesIncluded?.Electricity || "No",
+        Gas: RentalDetails?.UtilitiesIncluded?.Gas || "No",
+      },
+      PetsAllowed: {
+        SmallDogs: RentalDetails?.PetsAllowed?.SmallDogs || "No",
+        LargeDogs: RentalDetails?.PetsAllowed?.LargeDogs || "No",
+        Cats: RentalDetails?.PetsAllowed?.Cats || "No",
+      },
+    },
+    BasicDetails: {
+      Title: BasicDetails?.Title || "",
+      Description: BasicDetails?.Description || "",
+      Bedrooms: BasicDetails?.Bedrooms || 0,
+      Bathrooms: BasicDetails?.Bathrooms || 0,
+      LivingArea: BasicDetails?.LivingArea || 0,
+      LivingAreaUnits: "SquareFeet",
+      PropertyType: "Residential Lease",
+      PropertySubType: "Apartment",
+    },
+    Agent: {
+      ListAgent: {
+        FirstName: Agent?.FirstName || "",
+        LastName: Agent?.LastName || "",
+        FullName: `${Agent?.FirstName || ""} ${Agent?.LastName || ""}`.trim(),
+        Email: Agent?.EmailAddress || "",
+        Phone: formatPhoneNumber(Agent?.MobilePhoneLineNumber),
+      },
+    },
+    Office: {
+      Name: Office?.BrokerageName || "",
+      Phone: formatPhoneNumber(Office?.BrokerPhone),
+      Email: Office?.BrokerEmail || "",
+      Website: Office?.BrokerWebsite || "",
+      Address: {
+        Street: Office?.StreetAddress || "",
+        City: Office?.City || "",
+        StateOrProvince: Office?.State || "",
+        PostalCode: formatPostalCode(Office?.Zip),
+        Country: Office?.Country || "US",
+      },
+    },
+    Features: RichDetails?.AdditionalFeatures
+      ? RichDetails.AdditionalFeatures.split(",")
+      : [],
+    Neighborhood: Neighborhood?.Name || "",
+    Media: Media?.map((media, index) => ({
+      MediaURL: media?.MediaURL || "",
+      MediaType: media?.MediaType || "Unknown",
+      Order: index + 1,
+    })) || [],
   };
 };
+
 
 
 // Fetch listings endpoint
