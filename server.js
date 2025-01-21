@@ -128,7 +128,101 @@ const mapToRESOFields = (listing) => {
   };
 };
 
+const mapToMLSFields = (listing) => {
+  const {
+    __v,
+    _id,
+    ListingDetails,
+    BasicDetails,
+    Agent,
+    Office,
+    Location,
+    RentalDetails,
+    Neighborhood,
+    RichDetails,
+    Media,
+    ...rest
+  } = listing;
 
+  const formatPostalCode = (postalCode) =>
+    postalCode ? postalCode.toString().padStart(5, "0") : "";
+
+  return {
+    ListingKey: (ListingDetails?.ProviderListingId || _id)?.toString(),
+    ListingID: ListingDetails?.MLSNumber || null,
+    Property: {
+      Address: {
+        StreetAddress: Location?.StreetAddress || "",
+        UnitNumber: Location?.UnitNumber?.toString() || "",
+        City: Location?.City || "",
+        StateOrProvince: Location?.State || "",
+        PostalCode: formatPostalCode(Location?.Zip),
+        Country: Location?.Country || "US",
+      },
+      Geo: {
+        Latitude: Location?.Lat || 0,
+        Longitude: Location?.Long || 0,
+        GeoAccuracy: "High",
+      },
+    },
+    LeaseDetails: {
+      AvailabilityDate: RentalDetails?.Availability || "",
+      LeaseTerm: RentalDetails?.LeaseTerm || "",
+      UtilitiesIncluded: {
+        Water: RentalDetails?.UtilitiesIncluded?.Water || "No",
+        Electricity: RentalDetails?.UtilitiesIncluded?.Electricity || "No",
+        Gas: RentalDetails?.UtilitiesIncluded?.Gas || "No",
+      },
+      PetsAllowed: {
+        SmallDogs: RentalDetails?.PetsAllowed?.SmallDogs || "No",
+        LargeDogs: RentalDetails?.PetsAllowed?.LargeDogs || "No",
+        Cats: RentalDetails?.PetsAllowed?.Cats || "No",
+      },
+    },
+    BasicDetails: {
+      Title: BasicDetails?.Title || "",
+      Description: BasicDetails?.Description || "",
+      Bedrooms: BasicDetails?.Bedrooms || 0,
+      Bathrooms: BasicDetails?.Bathrooms || 0,
+      LivingArea: BasicDetails?.LivingArea || 0,
+      LivingAreaUnits: "SquareFeet",
+      PropertyType: "Residential Lease",
+      PropertySubType: "Apartment",
+    },
+    Agent: {
+      ListAgent: {
+        FirstName: Agent?.FirstName || "",
+        LastName: Agent?.LastName || "",
+        FullName: `${Agent?.FirstName || ""} ${Agent?.LastName || ""}`.trim(),
+        Email: Agent?.EmailAddress || "",
+        Phone: formatPhoneNumber(Agent?.MobilePhoneLineNumber),
+      },
+    },
+    Office: {
+      Name: Office?.BrokerageName || "",
+      Phone: formatPhoneNumber(Office?.BrokerPhone),
+      Email: Office?.BrokerEmail || "",
+      Website: Office?.BrokerWebsite || "",
+      Address: {
+        Street: Office?.StreetAddress || "",
+        City: Office?.City || "",
+        StateOrProvince: Office?.State || "",
+        PostalCode: formatPostalCode(Office?.Zip),
+        Country: Office?.Country || "US",
+      },
+    },
+    Features: RichDetails?.AdditionalFeatures
+      ? RichDetails.AdditionalFeatures.split(",")
+      : [],
+    Neighborhood: Neighborhood?.Name || "",
+    Media: Media?.map((media, index) => ({
+      MediaURL: media?.MediaURL || "",
+      MediaType: media?.MediaType || "Unknown",
+      Order: index + 1,
+    })) || [],
+    ListPrice: ListingDetails?.Price || 0, // Fix applied here
+  };
+};
 
 
 // Fetch listings endpoint
@@ -153,6 +247,31 @@ app.get("/api/listings", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch listings" });
   }
 });
+
+// Fetch listings endpoint
+app.get("/api/mls-listings", async (req, res) => {
+  const { page = 1, limit = 10 } = req.query;
+
+  try {
+    await connectDB();
+
+    const listings = await Listing.find()
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .lean();
+
+    // Transform listings to MLS format
+    const transformedListings = listings.map(mapToMLSFields);
+
+    // Return transformed listings
+    res.json(transformedListings);
+  } catch (error) {
+    console.error("Error fetching listings:", error);
+    res.status(500).json({ error: "Failed to fetch listings" });
+  }
+});
+
+
 
 // Start the Express server
 app.listen(port, () => {
