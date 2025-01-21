@@ -55,6 +55,8 @@ const mapToRESOFields = (listing) => {
   return {
     ListingKey: (ListingDetails?.ProviderListingId || _id)?.toString(),
     ListingID: ListingDetails?.MLSNumber || null,
+    PropertyType: "Residential Lease", // Move this to top level
+    PropertySubType: "Apartment",     // Move this to top level
     Property: {
       Address: {
         StreetAddress: Location?.StreetAddress || "",
@@ -91,8 +93,6 @@ const mapToRESOFields = (listing) => {
       Bathrooms: BasicDetails?.Bathrooms || 0,
       LivingArea: BasicDetails?.LivingArea || 0,
       LivingAreaUnits: "SquareFeet",
-      PropertyType: "Residential Lease",
-      PropertySubType: "Apartment",
     },
     Agent: {
       ListAgent: {
@@ -127,6 +127,7 @@ const mapToRESOFields = (listing) => {
     })) || [],
   };
 };
+
 
 
 
