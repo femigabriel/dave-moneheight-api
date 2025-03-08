@@ -28,9 +28,9 @@ const connectDB = async () => {
 };
 
 // Helper function to map data to RESO-compliant fields
-const formatPhoneNumber = (phone) => {
-  return phone ? `+1-${String(phone).replace(/[^0-9]/g, "")}` : "";
-};
+// const formatPhoneNumber = (phone) => {
+//   return phone ? `+1-${String(phone).replace(/[^0-9]/g, "")}` : "";
+// };
 ;
 
 const mapToRESOFields = (listing) => {
@@ -223,6 +223,126 @@ const mapToMLSFields = (listing) => {
     ListPrice: ListingDetails?.Price || 0, // Fix applied here
   };
 };
+
+// Helper function to format phone numbers (reused from your existing code)
+const formatPhoneNumber = (phone) => {
+  return phone ? `+1-${String(phone).replace(/[^0-9]/g, "")}` : "";
+};
+
+// Helper function to format postal codes (reused from your existing code)
+const formatPostalCode = (postalCode) =>
+  postalCode ? postalCode.toString().padStart(5, "0") : "";
+
+// Mapping function for Hotpads format
+const mapToHotpadsFields = (listing) => {
+  const {
+    ListingDetails,
+    BasicDetails,
+    Agent,
+    Office,
+    Location,
+    RentalDetails,
+    Neighborhood,
+    RichDetails,
+    Media,
+  } = listing;
+
+  // Helper function to format dates as YYYY-MM-DD
+  const formatDate = (dateString) => {
+    if (!dateString) return "";
+    const date = new Date(dateString);
+    return date.toISOString().split("T")[0];
+  };
+
+  // Helper function to format postal codes
+  const formatPostalCode = (postalCode) => {
+    if (!postalCode) return "";
+    const zip = postalCode.toString().replace(/[^0-9]/g, ""); // Remove non-numeric characters
+    return zip.padStart(5, "0").slice(0, 5); // Ensure 5 digits
+  };
+
+  // Helper function to validate US state codes
+  const validateState = (state) => {
+    const validStates = ["AL", "AK", "AZ", "AR", /* ... */ "WY"]; // List of valid US state codes
+    return validStates.includes(state?.toUpperCase()) ? state.toUpperCase() : "";
+  };
+
+  // Helper function to validate URLs
+  const isValidUrl = (url) => {
+    try {
+      new URL(url);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  };
+
+  return {
+    property_id: (ListingDetails?.ProviderListingId || listing._id)?.toString(),
+    address: Location?.StreetAddress || "",
+    unit: Location?.UnitNumber?.toString() || "",
+    city: Location?.City || "",
+    state: validateState(Location?.State) || "", // Validated state
+    zip: formatPostalCode(Location?.Zip),
+    latitude: Location?.Lat || 0,
+    longitude: Location?.Long || 0,
+    price: Math.max(0, Number(ListingDetails?.Price)) || 0, // Ensure non-negative price
+    bedrooms: Number(BasicDetails?.Bedrooms) || 0,
+    bathrooms: Number(BasicDetails?.Bathrooms) || 0,
+    square_feet: Number(BasicDetails?.LivingArea) || 0,
+    description: BasicDetails?.Description || "",
+    availability: formatDate(RentalDetails?.Availability) || "", // Formatted date
+    lease_term: ["MonthToMonth", "OneYear", "TwoYear"].includes(RentalDetails?.LeaseTerm)
+      ? RentalDetails.LeaseTerm
+      : "",
+    pets_allowed: RentalDetails?.PetsAllowed
+      ? Object.values(RentalDetails.PetsAllowed).some((val) => val === "Yes")
+      : false,
+    utilities_included: RentalDetails?.UtilitiesIncluded
+      ? Object.values(RentalDetails.UtilitiesIncluded).some(
+          (val) => val === "Yes"
+        )
+      : false,
+    features: RichDetails?.AdditionalFeatures
+      ? RichDetails.AdditionalFeatures.split(",").filter((feature) => feature.trim())
+      : [],
+    neighborhood: Neighborhood?.Name || "",
+    photos: Media?.map((media) => {
+      const url = media?.MediaURL || "";
+      return isValidUrl(url) ? url : ""; // Validate URLs
+    }).filter((url) => url) || [],
+    contact_name: Agent ? `${Agent?.FirstName || ""} ${Agent?.LastName || ""}`.trim() : "",
+    contact_email: Agent?.EmailAddress || "",
+    contact_phone: Agent ? formatPhoneNumber(Agent?.MobilePhoneLineNumber) : "",
+    office_name: Office?.BrokerageName || "",
+    office_phone: Office ? formatPhoneNumber(Office?.BrokerPhone) : "",
+    office_email: Office?.BrokerEmail || "",
+    office_website: Office?.BrokerWebsite || "",
+  };
+};
+
+// New endpoint for Hotpads-formatted listings
+app.get("/api/hotpads-listings", async (req, res) => {
+  const { page = 1, limit = 10 } = req.query;
+
+  try {
+    await connectDB();
+
+    const listings = await Listing.find()
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .lean();
+
+    // Transform listings to Hotpads format
+    const transformedListings = listings.map(mapToHotpadsFields);
+
+    // Return transformed listings
+    res.json(transformedListings);
+  } catch (error) {
+    console.error("Error fetching Hotpads listings:", error);
+    res.status(500).json({ error: "Failed to fetch Hotpads listings" });
+  }
+});
 
 
 // Fetch listings endpoint
