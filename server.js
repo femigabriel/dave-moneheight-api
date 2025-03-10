@@ -412,24 +412,53 @@ const mapToHotpadsFields = (listing) => {
   const isFurnished = RentalDetails?.Furnished || "No";
   const smokingAllowed = RentalDetails?.SmokingAllowed || "No";
 
-  // Add parking details
-  const parkingType = RichDetails?.ParkingType || "None";
+  // Validate parking type
+  const validateParkingType = (type) => {
+    const validTypes = ["Garage", "Street", "Lot", "None"];
+    return validTypes.includes(type) ? type : "None";
+  };
+
+  const parkingType = validateParkingType(RichDetails?.ParkingType || "None");
   const parkingXML = `
     <parking>
       <parkingType>${parkingType}</parkingType>
     </parking>`;
 
-  // Add laundry details
-  const laundryType = RichDetails?.LaundryType || "None";
+  // Validate laundry type
+  const validateLaundryType = (type) => {
+    const validTypes = ["In_unit", "On_site", "None"];
+    return validTypes.includes(type) ? type : "None";
+  };
+
+  const laundryType = validateLaundryType(RichDetails?.LaundryType || "None");
   const laundryXML = `
     <ListingTag type="LAUNDRY">
       <tag>${laundryType}</tag>
     </ListingTag>`;
 
-  // Add heating and cooling details
-  const heatingFuel = RichDetails?.HeatingFuel || "None";
-  const heatingSystem = RichDetails?.HeatingSystem || "None";
-  const coolingSystem = RichDetails?.CoolingSystem || "None";
+  // Validate heating fuel
+  const validateHeatingFuel = (fuel) => {
+    const validFuels = ["None", "Coal", "Electric", "Gas", "Oil", "PropaneButane", "Solar", "WoodPellet", "Other"];
+    return validFuels.includes(fuel) ? fuel : "None";
+  };
+
+  const heatingFuel = validateHeatingFuel(RichDetails?.HeatingFuel || "None");
+
+  // Validate heating system
+  const validateHeatingSystem = (system) => {
+    const validSystems = ["Baseboard", "ForcedAir", "HeatPump", "Radiant", "Stove", "Wall", "Other"];
+    return validSystems.includes(system) ? system : "None";
+  };
+
+  const heatingSystem = validateHeatingSystem(RichDetails?.HeatingSystem || "None");
+
+  // Validate cooling system
+  const validateCoolingSystem = (system) => {
+    const validSystems = ["None", "Central", "Evaporative", "Geothermal", "Wall", "Solar", "Other"];
+    return validSystems.includes(system) ? system : "None";
+  };
+
+  const coolingSystem = validateCoolingSystem(RichDetails?.CoolingSystem || "None");
 
   const heatingCoolingXML = `
     <ListingTag type="HEATING_FUEL">
