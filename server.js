@@ -371,12 +371,23 @@ const mapToHotpadsFields = (listing) => {
     Cats: "cats"
   };
 
-  const petsXML = RentalDetails?.PetsAllowed ? Object.entries(RentalDetails.PetsAllowed)
-    .map(([type, allowed]) => `
+  // Consolidate duplicate pet entries
+  const petsAllowed = {};
+  if (RentalDetails?.PetsAllowed) {
+    Object.entries(RentalDetails.PetsAllowed).forEach(([type, allowed]) => {
+      const petType = petTypeMapping[type] || type.toLowerCase();
+      if (!petsAllowed[petType]) {
+        petsAllowed[petType] = allowed;
+      }
+    });
+  }
+
+  const petsXML = Object.entries(petsAllowed)
+    .map(([petType, allowed]) => `
       <pet>
-        <petType>${petTypeMapping[type] || type.toLowerCase()}</petType>
+        <petType>${petType}</petType>
         <allowed>${allowed ? "Yes" : "No"}</allowed>
-      </pet>`).join("") : "";
+      </pet>`).join("");
 
   // Ensure media URLs are present with a real placeholder image
   const mediaXML = Media.map((media) => `
@@ -389,11 +400,11 @@ const mapToHotpadsFields = (listing) => {
   const xml = `
   <Listing id="${ListingDetails?.ProviderListingId || listing._id}" type="RENTAL" companyId="${companyId}" propertyType="Apartment">
     <restrictions>
-      ${RentalDetails?.SeniorHousing ? `<seniorHousing>${RentalDetails.SeniorHousing}</seniorHousing>` : ""}
-      ${RentalDetails?.StudentHousing ? `<studentHousing>${RentalDetails.StudentHousing}</studentHousing>` : ""}
-      ${RentalDetails?.MilitaryHousing ? `<militaryHousing>${RentalDetails.MilitaryHousing}</militaryHousing>` : ""}
-      ${RentalDetails?.DisabledHousing ? `<disabledHousing>${RentalDetails.DisabledHousing}</disabledHousing>` : ""}
-      ${RentalDetails?.IncomeRestrictedHousing ? `<incomeRestrictedHousing>${RentalDetails.IncomeRestrictedHousing}</incomeRestrictedHousing>` : ""}
+      <seniorHousing/>
+      <studentHousing/>
+      <militaryHousing/>
+      <disabledHousing/>
+      <incomeRestrictedHousing/>
     </restrictions>
     ${BasicDetails?.Title ? `<name>${BasicDetails.Title}</name>` : ""}
     ${Location?.UnitNumber ? `<unit>${Location.UnitNumber}</unit>` : ""}
