@@ -331,15 +331,15 @@ const formatPhoneNumber = (phone) => {
 
 const mapToHotpadsFields = (listing) => {
   const {
-    ListingDetails,
-    BasicDetails,
-    Agent,
-    Office,
-    Location,
-    RentalDetails,
-    Neighborhood,
-    RichDetails,
-    Media,
+    ListingDetails = {},
+    BasicDetails = {},
+    Agent = {},
+    Office = {},
+    Location = {},
+    RentalDetails = {},
+    Neighborhood = {},
+    RichDetails = {},
+    Media = [],
   } = listing;
 
   // Helper function to format dates as YYYY-MM-DD (ISO 8601)
@@ -379,130 +379,76 @@ const mapToHotpadsFields = (listing) => {
       </pet>`).join("") : "";
 
   // Ensure media URLs are present with a real placeholder image
-  const mediaXML = (Media && Media.length > 0) ? Media.map((media) => `
+  const mediaXML = Media.map((media) => `
       <ListingPhoto source="${media?.MediaURL || ""}">
         <label>${media?.Label || ""}</label>
         <caption>${media?.Caption || ""}</caption>
-      </ListingPhoto>`).join("") : "";
+      </ListingPhoto>`).join("");
 
-  // Ensure fees structure is correct with default fallback
-  const feesXML = RentalDetails?.Fees?.length ? RentalDetails.Fees.map((fee) => `
-      <fee>
-        <feeCalculationType value="${fee?.Value || ""}" valueMax="${fee?.ValueMax || ""}" valueType="${fee?.ValueType || ""}" operandType="${fee?.OperandType || ""}" perItem="${fee?.PerItem || ""}">
-          <detailedCalculation>${fee?.DetailedCalculation || ""}</detailedCalculation>
-        </feeCalculationType>
-        <feeType>${fee?.FeeType || ""}</feeType>
-        <feeName>${fee?.FeeName || ""}</feeName>
-        <feeTimingType>${fee?.FeeTimingType || ""}</feeTimingType>
-        <feeRequirementType>${fee?.FeeRequirementType || ""}</feeRequirementType>
-        <feeRefundableType>${fee?.FeeRefundableType || ""}</feeRefundableType>
-      </fee>`).join("") : "";
-
-  // Generate restrictions XML structure
-  const restrictionsXML = RentalDetails?.SeniorHousing || RentalDetails?.StudentHousing || RentalDetails?.MilitaryHousing || RentalDetails?.DisabledHousing || RentalDetails?.IncomeRestrictedHousing ? `
+  // Generate the XML as a clean string without escape characters
+  const xml = `
+  <Listing id="${ListingDetails?.ProviderListingId || listing._id}" type="RENTAL" companyId="${companyId}" propertyType="Apartment">
     <restrictions>
       ${RentalDetails?.SeniorHousing ? `<seniorHousing>${RentalDetails.SeniorHousing}</seniorHousing>` : ""}
       ${RentalDetails?.StudentHousing ? `<studentHousing>${RentalDetails.StudentHousing}</studentHousing>` : ""}
       ${RentalDetails?.MilitaryHousing ? `<militaryHousing>${RentalDetails.MilitaryHousing}</militaryHousing>` : ""}
       ${RentalDetails?.DisabledHousing ? `<disabledHousing>${RentalDetails.DisabledHousing}</disabledHousing>` : ""}
       ${RentalDetails?.IncomeRestrictedHousing ? `<incomeRestrictedHousing>${RentalDetails.IncomeRestrictedHousing}</incomeRestrictedHousing>` : ""}
-    </restrictions>` : "";
+    </restrictions>
+    ${BasicDetails?.Title ? `<name>${BasicDetails.Title}</name>` : ""}
+    ${Location?.UnitNumber ? `<unit>${Location.UnitNumber}</unit>` : ""}
+    ${Location?.StreetAddress ? `<street hide="false">${Location.StreetAddress}</street>` : ""}
+    ${Location?.City ? `<city>${Location.City}</city>` : ""}
+    ${Location?.State ? `<state>${validateState(Location.State)}</state>` : ""}
+    ${Location?.Zip ? `<zip>${formatZip(Location.Zip)}</zip>` : ""}
+    ${Location?.Lat ? `<latitude>${Location.Lat}</latitude>` : ""}
+    ${Location?.Long ? `<longitude>${Location.Long}</longitude>` : ""}
+    <lastUpdated>${new Date().toISOString()}</lastUpdated>
+    ${Agent ? `<contactName>${Agent?.FirstName || ""} ${Agent?.LastName || ""}</contactName>` : ""}
+    ${Agent?.EmailAddress ? `<contactEmail>${Agent.EmailAddress}</contactEmail>` : ""}
+    ${Agent?.MobilePhoneLineNumber ? `<contactPhone>${String(Agent.MobilePhoneLineNumber).replace(/\D/g, '').replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3")}</contactPhone>` : ""}
+    ${petsXML ? `<pets>${petsXML}</pets>` : ""}
+    ${mediaXML}
+    ${ListingDetails?.Price ? `<price>${Math.max(0, Number(ListingDetails.Price))}</price>` : ""}
+    ${BasicDetails?.Bedrooms ? `<numBedrooms>${Number(BasicDetails.Bedrooms)}</numBedrooms>` : ""}
+    ${BasicDetails?.FullBaths ? `<numFullBaths>${Number(BasicDetails.FullBaths)}</numFullBaths>` : ""}
+    ${BasicDetails?.HalfBaths ? `<numHalfBaths>${Number(BasicDetails.HalfBaths)}</numHalfBaths>` : ""}
+    ${BasicDetails?.LivingArea ? `<squareFeet>${Number(BasicDetails.LivingArea)}</squareFeet>` : ""}
+    ${RentalDetails?.Availability ? `<dateAvailable>${formatDate(RentalDetails.Availability)}</dateAvailable>` : ""}
+  </Listing>`;
 
-  return `
-    <hotPadsItems version="2.1">
-      <Company id="${companyId}">
-        ${Office?.BrokerageName ? `<name>${Office.BrokerageName}</name>` : ""}
-        ${Office?.BrokerWebsite ? `<website>${Office.BrokerWebsite}</website>` : ""}
-        ${Office?.City ? `<city>${Office.City}</city>` : ""}
-        ${Office?.State ? `<state>${validateState(Office.State)}</state>` : ""}
-        ${Office?.LogoURL ? `<CompanyLogo source="${Office.LogoURL}" />` : ""}
-      </Company>
-      <Listing id="${ListingDetails?.ProviderListingId || listing._id}" type="RENTAL" companyId="${companyId}" propertyType="Apartment">
-        ${restrictionsXML}
-        ${BasicDetails?.Title ? `<name>${BasicDetails.Title}</name>` : ""}
-        ${Location?.UnitNumber ? `<unit>${Location.UnitNumber}</unit>` : ""}
-        ${Location?.StreetAddress ? `<street hide="false">${Location.StreetAddress}</street>` : ""}
-        ${Location?.City ? `<city>${Location.City}</city>` : ""}
-        ${Location?.State ? `<state>${validateState(Location.State)}</state>` : ""}
-        ${Location?.Zip ? `<zip>${formatZip(Location.Zip)}</zip>` : ""}
-        ${Location?.Lat ? `<latitude>${Location.Lat}</latitude>` : ""}
-        ${Location?.Long ? `<longitude>${Location.Long}</longitude>` : ""}
-        <lastUpdated>${new Date().toISOString()}</lastUpdated>
-        ${Agent ? `<contactName>${Agent?.FirstName || ""} ${Agent?.LastName || ""}</contactName>` : ""}
-        ${Agent?.EmailAddress ? `<contactEmail>${Agent.EmailAddress}</contactEmail>` : ""}
-        ${Agent?.MobilePhoneLineNumber ? `<contactPhone>${String(Agent.MobilePhoneLineNumber).replace(/\D/g, '').replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3")}</contactPhone>` : ""}
-        ${Agent?.Fax ? `<contactFax>${Agent.Fax}</contactFax>` : ""}
-        ${Agent?.ContactTimes ? `<contactTimes>${Agent.ContactTimes}</contactTimes>` : ""}
-        ${Agent?.ContactMethodPreference ? `<contactMethodPreference>${Agent.ContactMethodPreference}</contactMethodPreference>` : ""}
-        ${RentalDetails?.OpenHouseDate ? `
-        <openHouses>
-          <openHouse>
-            <date>${formatDate(RentalDetails.OpenHouseDate)}</date>
-            ${RentalDetails?.OpenHouseStartTime ? `<startTime>${RentalDetails.OpenHouseStartTime}</startTime>` : ""}
-            ${RentalDetails?.OpenHouseEndTime ? `<endTime>${RentalDetails.OpenHouseEndTime}</endTime>` : ""}
-            ${RentalDetails?.AppointmentRequired ? `<appointmentRequired>${RentalDetails.AppointmentRequired}</appointmentRequired>` : ""}
-          </openHouse>
-        </openHouses>` : ""}
-        ${BasicDetails?.PreviewMessage ? `<previewMessage>${BasicDetails.PreviewMessage}</previewMessage>` : ""}
-        ${BasicDetails?.Description ? `<description>${BasicDetails.Description}</description>` : ""}
-        ${RentalDetails?.Terms ? `<terms>${RentalDetails.Terms}</terms>` : ""}
-        ${RentalDetails?.LeaseTerm ? `<leaseTerm>${RentalDetails.LeaseTerm}</leaseTerm>` : ""}
-        ${Office?.BrokerWebsite ? `<website>${Office.BrokerWebsite}</website>` : ""}
-        ${RichDetails?.VirtualTourUrl ? `<virtualTourUrl>${RichDetails.VirtualTourUrl}</virtualTourUrl>` : ""}
-        ${RentalDetails?.IsFurnished ? `<isFurnished>${RentalDetails.IsFurnished}</isFurnished>` : ""}
-        ${RentalDetails?.SmokingAllowed ? `<smokingAllowed>${RentalDetails.SmokingAllowed}</smokingAllowed>` : ""}
-        ${RentalDetails?.ParkingType ? `
-        <parking>
-          <parkingType>${RentalDetails.ParkingType}</parkingType>
-        </parking>` : ""}
-        ${petsXML ? `<pets>${petsXML}</pets>` : ""}
-        ${feesXML ? `<fees>${feesXML}</fees>` : ""}
-        ${RentalDetails?.CostAndFeeDescription ? `<costAndFeeDescription>${RentalDetails.CostAndFeeDescription}</costAndFeeDescription>` : ""}
-        ${BasicDetails?.NumUnits ? `<numUnits>${BasicDetails.NumUnits}</numUnits>` : ""}
-        ${RichDetails?.ListingTag ? `
-        <ListingTag type="PROPERTY_AMENITY">
-          <tag>${RichDetails.ListingTag}</tag>
-        </ListingTag>` : ""}
-        <ListingPermission/>
-        ${mediaXML ? mediaXML : ""}
-        ${RentalDetails?.SpecialOfferDescription ? `
-        <ListingSpecialOffer>
-          <description>${RentalDetails.SpecialOfferDescription}</description>
-          ${RentalDetails?.SpecialOfferStartDate ? `<startDate>${formatDate(RentalDetails.SpecialOfferStartDate)}</startDate>` : ""}
-          ${RentalDetails?.SpecialOfferEndDate ? `<endDate>${formatDate(RentalDetails.SpecialOfferEndDate)}</endDate>` : ""}
-        </ListingSpecialOffer>` : ""}
-        ${ListingDetails?.Price ? `<price>${Math.max(0, Number(ListingDetails.Price))}</price>` : ""}
-        ${RentalDetails?.PricingFrequency ? `<pricingFrequency>${RentalDetails.PricingFrequency}</pricingFrequency>` : ""}
-        ${BasicDetails?.Bedrooms ? `<numBedrooms>${Number(BasicDetails.Bedrooms)}</numBedrooms>` : ""}
-        ${BasicDetails?.FullBaths ? `<numFullBaths>${Number(BasicDetails.FullBaths)}</numFullBaths>` : ""}
-        ${BasicDetails?.HalfBaths ? `<numHalfBaths>${Number(BasicDetails.HalfBaths)}</numHalfBaths>` : ""}
-        ${BasicDetails?.LivingArea ? `<squareFeet>${Number(BasicDetails.LivingArea)}</squareFeet>` : ""}
-        ${RentalDetails?.Availability ? `<dateAvailable>${formatDate(RentalDetails.Availability)}</dateAvailable>` : ""}
-        ${ListingDetails?.ProviderType ? `<providerType>${ListingDetails.ProviderType}</providerType>` : ""}
-      </Listing>
-    </hotPadsItems>`;
+  return xml;
 };
 
 
 
-
-// New endpoint for Hotpads-formatted listings
+// New endpoint for Hotpads-formatted listings (XML)
 app.get("/api/hotpads-listings", async (req, res) => {
   const { page = 1, limit = 10 } = req.query;
 
   try {
     await connectDB();
 
+    // Fetch listings from MongoDB
     const listings = await Listing.find()
       .skip((page - 1) * limit)
       .limit(limit)
       .lean();
 
-    // Transform listings to Hotpads format
+    // Transform listings to Hotpads XML format
     const transformedListings = listings.map(mapToHotpadsFields);
 
-    // Return transformed listings
-    res.json(transformedListings);
+    // Combine all listings into a single XML string
+    const xmlFeed = `<?xml version="1.0" encoding="UTF-8"?>
+<hotPadsItems version="2.1">
+  ${transformedListings.join("\n")}
+</hotPadsItems>`;
+
+    // Set the response header to indicate XML content
+    res.set("Content-Type", "application/xml");
+
+    // Send the XML feed as the response
+    res.send(xmlFeed);
   } catch (error) {
     console.error("Error fetching Hotpads listings:", error);
     res.status(500).json({ error: "Failed to fetch Hotpads listings" });
