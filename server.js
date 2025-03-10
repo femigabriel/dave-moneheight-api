@@ -412,6 +412,9 @@ const mapToHotpadsFields = (listing) => {
   const isFurnished = RentalDetails?.Furnished || "No";
   const smokingAllowed = RentalDetails?.SmokingAllowed || "No";
 
+  // Add status (e.g., Active, Pending, Leased)
+  const status = ListingDetails?.Status || "Active"; // Default to "Active"
+
   // Validate parking type
   const validateParkingType = (type) => {
     const validTypes = ["Garage", "Street", "Lot", "None"];
@@ -506,6 +509,7 @@ const mapToHotpadsFields = (listing) => {
     ${virtualTourUrl ? `<virtualTourUrl>${virtualTourUrl}</virtualTourUrl>` : ""} <!-- Added -->
     <isFurnished>${isFurnished}</isFurnished>
     <smokingAllowed>${smokingAllowed}</smokingAllowed>
+    <status>${status}</status> <!-- Added -->
     ${parkingXML}
     ${laundryXML}
     ${heatingCoolingXML}
