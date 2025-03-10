@@ -234,94 +234,94 @@ const formatPostalCode = (postalCode) =>
   postalCode ? postalCode.toString().padStart(5, "0") : "";
 
 // Mapping function for Hotpads format
-// const mapToHotpadsFields = (listing) => {
-//   const {
-//     ListingDetails,
-//     BasicDetails,
-//     Agent,
-//     Office,
-//     Location,
-//     RentalDetails,
-//     Neighborhood,
-//     RichDetails,
-//     Media,
-//   } = listing;
+const mapToHotpadsFieldsJson = (listing) => {
+  const {
+    ListingDetails,
+    BasicDetails,
+    Agent,
+    Office,
+    Location,
+    RentalDetails,
+    Neighborhood,
+    RichDetails,
+    Media,
+  } = listing;
 
-//   // Helper function to format dates as YYYY-MM-DD (ISO 8601)
-//   const formatDate = (dateString) => {
-//     if (!dateString) return "";
-//     const date = new Date(dateString);
-//     return date.toISOString().split("T")[0];
-//   };
+  // Helper function to format dates as YYYY-MM-DD (ISO 8601)
+  const formatDate = (dateString) => {
+    if (!dateString) return "";
+    const date = new Date(dateString);
+    return date.toISOString().split("T")[0];
+  };
 
-//   // Ensure state is a valid two-letter state code
-//   const validateState = (state) => {
-//     const validStates = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"];
-//     return validStates.includes(state?.toUpperCase()) ? state.toUpperCase() : "";
-//   };
+  // Ensure state is a valid two-letter state code
+  const validateState = (state) => {
+    const validStates = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"];
+    return validStates.includes(state?.toUpperCase()) ? state.toUpperCase() : "";
+  };
 
-//   // Ensure `lease_term` is one of Zillow’s accepted values
-//   const validateLeaseTerm = (term) => {
-//     const allowedTerms = ["MonthToMonth", "SixMonths", "OneYear", "TwoYear"];
-//     return allowedTerms.includes(term) ? term : "OneYear"; // Default to OneYear
-//   };
+  // Ensure `lease_term` is one of Zillow’s accepted values
+  const validateLeaseTerm = (term) => {
+    const allowedTerms = ["MonthToMonth", "SixMonths", "OneYear", "TwoYear"];
+    return allowedTerms.includes(term) ? term : "OneYear"; // Default to OneYear
+  };
 
-//   // Ensure ZIP is a 5-digit string
-//   const formatZip = (zip) => {
-//     if (!zip) return "";
-//     return zip.toString().padStart(5, "0");
-//   };
+  // Ensure ZIP is a 5-digit string
+  const formatZip = (zip) => {
+    if (!zip) return "";
+    return zip.toString().padStart(5, "0");
+  };
 
-//   // Ensure boolean values for pets_allowed and utilities_included
-//   const parseBoolean = (value) => value === "Yes";
+  // Ensure boolean values for pets_allowed and utilities_included
+  const parseBoolean = (value) => value === "Yes";
 
-//   return {
-//     property_id: (ListingDetails?.ProviderListingId || listing._id)?.toString(),
-//     address: Location?.StreetAddress || "",
-//     unit: Location?.UnitNumber?.toString() || "",
-//     city: Location?.City || "",
-//     state: validateState(Location?.State) || "", // Ensure valid state code
-//     zip: formatZip(Location?.Zip),
-//     latitude: Location?.Lat || 0,
-//     longitude: Location?.Long || 0,
-//     price: Math.max(0, Number(ListingDetails?.Price)) || 0,
-//     bedrooms: Number(BasicDetails?.Bedrooms) || 0,
-//     bathrooms: Number(BasicDetails?.Bathrooms) || 0,
-//     square_feet: Number(BasicDetails?.LivingArea) || 0,
-//     description: BasicDetails?.Description || "",
-//     availability: formatDate(RentalDetails?.Availability) || "",
-//     lease_term: validateLeaseTerm(RentalDetails?.LeaseTerm),
-//     lastUpdated: new Date().toISOString(), // Adds ISO 8601 timestamp
+  return {
+    property_id: (ListingDetails?.ProviderListingId || listing._id)?.toString(),
+    address: Location?.StreetAddress || "",
+    unit: Location?.UnitNumber?.toString() || "",
+    city: Location?.City || "",
+    state: validateState(Location?.State) || "", // Ensure valid state code
+    zip: formatZip(Location?.Zip),
+    latitude: Location?.Lat || 0,
+    longitude: Location?.Long || 0,
+    price: Math.max(0, Number(ListingDetails?.Price)) || 0,
+    bedrooms: Number(BasicDetails?.Bedrooms) || 0,
+    bathrooms: Number(BasicDetails?.Bathrooms) || 0,
+    square_feet: Number(BasicDetails?.LivingArea) || 0,
+    description: BasicDetails?.Description || "",
+    availability: formatDate(RentalDetails?.Availability) || "",
+    lease_term: validateLeaseTerm(RentalDetails?.LeaseTerm),
+    lastUpdated: new Date().toISOString(), // Adds ISO 8601 timestamp
     
-//     pets_allowed: RentalDetails?.PetsAllowed ? {
-//       small_dogs: parseBoolean(RentalDetails.PetsAllowed.SmallDogs),
-//       large_dogs: parseBoolean(RentalDetails.PetsAllowed.LargeDogs),
-//       cats: parseBoolean(RentalDetails.PetsAllowed.Cats),
-//     } : {},
+    pets_allowed: RentalDetails?.PetsAllowed ? {
+      small_dogs: parseBoolean(RentalDetails.PetsAllowed.SmallDogs),
+      large_dogs: parseBoolean(RentalDetails.PetsAllowed.LargeDogs),
+      cats: parseBoolean(RentalDetails.PetsAllowed.Cats),
+    } : {},
     
-//     utilities_included: RentalDetails?.UtilitiesIncluded ? {
-//       water: parseBoolean(RentalDetails.UtilitiesIncluded.Water),
-//       electricity: parseBoolean(RentalDetails.UtilitiesIncluded.Electricity),
-//       gas: parseBoolean(RentalDetails.UtilitiesIncluded.Gas),
-//     } : {},
+    utilities_included: RentalDetails?.UtilitiesIncluded ? {
+      water: parseBoolean(RentalDetails.UtilitiesIncluded.Water),
+      electricity: parseBoolean(RentalDetails.UtilitiesIncluded.Electricity),
+      gas: parseBoolean(RentalDetails.UtilitiesIncluded.Gas),
+    } : {},
     
-//     features: RichDetails?.AdditionalFeatures
-//       ? RichDetails.AdditionalFeatures.split(",").filter((feature) => feature.trim())
-//       : [],
-//     neighborhood: Neighborhood?.Name || "",
+    features: RichDetails?.AdditionalFeatures
+      ? RichDetails.AdditionalFeatures.split(",").filter((feature) => feature.trim())
+      : [],
+    neighborhood: Neighborhood?.Name || "",
     
-//     photos: Media?.map((media) => media?.MediaURL || "").filter((url) => url) || ["https://example.com/default-image.jpg"],
+    photos: Media?.map((media) => media?.MediaURL || "").filter((url) => url) || ["https://example.com/default-image.jpg"],
     
-//     contact_name: Agent ? `${Agent?.FirstName || ""} ${Agent?.LastName || ""}`.trim() : "",
-//     contact_email: Agent?.EmailAddress || "",
-//     contact_phone: Agent?.MobilePhoneLineNumber ? Agent.MobilePhoneLineNumber.toString() : "",
+    contact_name: Agent ? `${Agent?.FirstName || ""} ${Agent?.LastName || ""}`.trim() : "",
+    contact_email: Agent?.EmailAddress || "",
+    contact_phone: Agent?.MobilePhoneLineNumber ? Agent.MobilePhoneLineNumber.toString() : "",
     
-//     office_name: Office?.BrokerageName || "",
-//     office_phone: Office?.BrokerPhone ? Office.BrokerPhone.toString() : "",
-//     office_email: Office?.BrokerEmail || "",
-//     office_website: Office?.BrokerWebsite || "",
-//   };
-// };
+    office_name: Office?.BrokerageName || "",
+    office_phone: Office?.BrokerPhone ? Office.BrokerPhone.toString() : "",
+    office_email: Office?.BrokerEmail || "",
+    office_website: Office?.BrokerWebsite || "",
+  };
+};
 
 const formatPhoneNumber = (phone) => {
   if (!phone) return "";
@@ -396,6 +396,52 @@ const mapToHotpadsFields = (listing) => {
         <caption>${media?.Caption || ""}</caption>
       </ListingPhoto>`).join("");
 
+  // Add bedroom and bathroom counts
+  const numBedrooms = BasicDetails?.Bedrooms || 0;
+  const numFullBaths = BasicDetails?.FullBaths || 0;
+  const numHalfBaths = BasicDetails?.HalfBaths || 0;
+
+  // Add description, terms, lease term, website, and virtual tour URL
+  const description = BasicDetails?.Description || "";
+  const terms = RentalDetails?.LeaseTerms || ""; // Added
+  const leaseTerm = RentalDetails?.LeaseTerm || "";
+  const website = Office?.BrokerWebsite || "";
+  const virtualTourUrl = RichDetails?.VirtualTourURL || ""; // Added
+
+  // Add smoking and furnished details
+  const isFurnished = RentalDetails?.Furnished || "No";
+  const smokingAllowed = RentalDetails?.SmokingAllowed || "No";
+
+  // Add parking details
+  const parkingType = RichDetails?.ParkingType || "None";
+  const parkingXML = `
+    <parking>
+      <parkingType>${parkingType}</parkingType>
+    </parking>`;
+
+  // Add laundry details
+  const laundryType = RichDetails?.LaundryType || "None";
+  const laundryXML = `
+    <ListingTag type="LAUNDRY">
+      <tag>${laundryType}</tag>
+    </ListingTag>`;
+
+  // Add heating and cooling details
+  const heatingFuel = RichDetails?.HeatingFuel || "None";
+  const heatingSystem = RichDetails?.HeatingSystem || "None";
+  const coolingSystem = RichDetails?.CoolingSystem || "None";
+
+  const heatingCoolingXML = `
+    <ListingTag type="HEATING_FUEL">
+      <tag>${heatingFuel}</tag>
+    </ListingTag>
+    <ListingTag type="HEATING_SYSTEM">
+      <tag>${heatingSystem}</tag>
+    </ListingTag>
+    <ListingTag type="COOLING_SYSTEM">
+      <tag>${coolingSystem}</tag>
+    </ListingTag>`;
+
   // Generate the XML as a clean string without escape characters
   const xml = `
   <Listing id="${ListingDetails?.ProviderListingId || listing._id}" type="RENTAL" companyId="${companyId}" propertyType="Apartment">
@@ -421,11 +467,19 @@ const mapToHotpadsFields = (listing) => {
     ${petsXML ? `<pets>${petsXML}</pets>` : ""}
     ${mediaXML}
     ${ListingDetails?.Price ? `<price>${Math.max(0, Number(ListingDetails.Price))}</price>` : ""}
-    ${BasicDetails?.Bedrooms ? `<numBedrooms>${Number(BasicDetails.Bedrooms)}</numBedrooms>` : ""}
-    ${BasicDetails?.FullBaths ? `<numFullBaths>${Number(BasicDetails.FullBaths)}</numFullBaths>` : ""}
-    ${BasicDetails?.HalfBaths ? `<numHalfBaths>${Number(BasicDetails.HalfBaths)}</numHalfBaths>` : ""}
-    ${BasicDetails?.LivingArea ? `<squareFeet>${Number(BasicDetails.LivingArea)}</squareFeet>` : ""}
-    ${RentalDetails?.Availability ? `<dateAvailable>${formatDate(RentalDetails.Availability)}</dateAvailable>` : ""}
+    <numBedrooms>${numBedrooms}</numBedrooms>
+    <numFullBaths>${numFullBaths}</numFullBaths>
+    <numHalfBaths>${numHalfBaths}</numHalfBaths>
+    ${description ? `<description>${description}</description>` : ""}
+    ${terms ? `<terms>${terms}</terms>` : ""} <!-- Added -->
+    ${leaseTerm ? `<leaseTerm>${leaseTerm}</leaseTerm>` : ""}
+    ${website ? `<website>${website}</website>` : ""}
+    ${virtualTourUrl ? `<virtualTourUrl>${virtualTourUrl}</virtualTourUrl>` : ""} <!-- Added -->
+    <isFurnished>${isFurnished}</isFurnished>
+    <smokingAllowed>${smokingAllowed}</smokingAllowed>
+    ${parkingXML}
+    ${laundryXML}
+    ${heatingCoolingXML}
   </Listing>`;
 
   return xml;
@@ -460,6 +514,31 @@ app.get("/api/hotpads-listings", async (req, res) => {
 
     // Send the XML feed as the response
     res.send(xmlFeed);
+  } catch (error) {
+    console.error("Error fetching Hotpads listings:", error);
+    res.status(500).json({ error: "Failed to fetch Hotpads listings" });
+  }
+});
+
+
+
+// New endpoint for Hotpads-formatted listings
+app.get("/api/hotpadsjson-listings", async (req, res) => {
+  const { page = 1, limit = 10 } = req.query;
+
+  try {
+    await connectDB();
+
+    const listings = await Listing.find()
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .lean();
+
+    // Transform listings to Hotpads format
+    const transformedListings = listings.map(mapToHotpadsFieldsJson);
+
+    // Return transformed listings
+    res.json(transformedListings);
   } catch (error) {
     console.error("Error fetching Hotpads listings:", error);
     res.status(500).json({ error: "Failed to fetch Hotpads listings" });
