@@ -325,7 +325,7 @@ const mapToHotpadsFieldsJson = (listing) => {
 
 const formatPhoneNumber = (phone) => {
   if (!phone) return "";
-  return phone.replace(/[^\d]/g, ""); // Remove non-numeric characters
+  return phone.replace(/[^\d]/g, ""); 
 };
 
 
@@ -361,106 +361,90 @@ const mapToHotpadsFields = (listing) => {
     return zip.toString().padStart(5, "0");
   };
 
-  // Generate companyId from brokerage name (unique identifier required)
-  const companyId = Office?.BrokerageName?.replace(/\s+/g, '') || 'company123';
+  // Generate companyId from brokerage name
+  const companyId = Office?.BrokerageName?.replace(/\s+/g, "") || "company123";
 
-  // Generate pets XML structure with proper mapping
-  const petTypeMapping = {
-    SmallDogs: "dogs",
-    LargeDogs: "dogs",
-    Cats: "cats"
-  };
-
-  // Consolidate duplicate pet entries
+  // Pets XML structure
+  const petTypeMapping = { SmallDogs: "dogs", LargeDogs: "dogs", Cats: "cats" };
   const petsAllowed = {};
   if (RentalDetails?.PetsAllowed) {
     Object.entries(RentalDetails.PetsAllowed).forEach(([type, allowed]) => {
       const petType = petTypeMapping[type] || type.toLowerCase();
-      if (!petsAllowed[petType]) {
-        petsAllowed[petType] = allowed;
-      }
+      // Convert "Yes"/"No" strings to boolean for consistency
+      petsAllowed[petType] = allowed === "Yes" || allowed === true;
     });
   }
-
   const petsXML = Object.entries(petsAllowed)
     .map(([petType, allowed]) => `
       <pet>
         <petType>${petType}</petType>
         <allowed>${allowed ? "Yes" : "No"}</allowed>
-      </pet>`).join("");
+      </pet>`)
+    .join("");
 
-  // Ensure media URLs are present with a real placeholder image
+  // Media XML
   const mediaXML = Media.map((media) => `
       <ListingPhoto source="${media?.MediaURL || ""}">
         <label>${media?.Label || ""}</label>
         <caption>${media?.Caption || ""}</caption>
       </ListingPhoto>`).join("");
 
-  // Add bedroom and bathroom counts
+  // Fix 1: Map bathroom counts correctly from BasicDetails.Bathrooms
   const numBedrooms = BasicDetails?.Bedrooms || 0;
-  const numFullBaths = BasicDetails?.FullBaths || 0;
-  const numHalfBaths = BasicDetails?.HalfBaths || 0;
+  const totalBathrooms = BasicDetails?.Bathrooms || 0;
+  const numFullBaths = BasicDetails?.FullBaths || (totalBathrooms > 0 ? Math.floor(totalBathrooms) : 1); // Use Bathrooms if FullBaths missing
+  const numHalfBaths = BasicDetails?.HalfBaths || (totalBathrooms % 1 > 0 ? 1 : 0); // Assume half bath if fractional
 
-  // Add description, terms, lease term, website, and virtual tour URL
+  // Additional fields
   const description = BasicDetails?.Description || "";
-  const terms = RentalDetails?.LeaseTerms || ""; // Added
+  const terms = RentalDetails?.LeaseTerms || "";
   const leaseTerm = RentalDetails?.LeaseTerm || "";
   const website = Office?.BrokerWebsite || "";
-  const virtualTourUrl = RichDetails?.VirtualTourURL || ""; // Added
-
-  // Add smoking and furnished details
+  const virtualTourUrl = RichDetails?.VirtualTourURL || "";
   const isFurnished = RentalDetails?.Furnished || "No";
   const smokingAllowed = RentalDetails?.SmokingAllowed || "No";
+  const status = ListingDetails?.Status || "Active";
 
-  // Add status (e.g., Active, Pending, Leased)
-  const status = ListingDetails?.Status || "Active"; // Default to "Active"
+  // Fix 2: Map amenities from data
+ // Fix 2: Map amenities from data
+const validateParkingType = (type) => {
+  const validTypes = ["Garage", "Street", "Lot", "None"];
+  // Normalize "OnStreet" to "Street" for Hotpads compatibility
+  const normalizedType = type === "OnStreet" ? "Street" : type;
+  return validTypes.includes(normalizedType) ? normalizedType : "None";
+};
+const parkingType = validateParkingType(RichDetails?.ParkingTypes?.ParkingType || "None");
+const parkingXML = `
+  <parking>
+    <parkingType>${parkingType}</parkingType>
+  </parking>`;
 
-  // Validate parking type
-  const validateParkingType = (type) => {
-    const validTypes = ["Garage", "Street", "Lot", "None"];
-    return validTypes.includes(type) ? type : "None";
-  };
-
-  const parkingType = validateParkingType(RichDetails?.ParkingType || "None");
-  const parkingXML = `
-    <parking>
-      <parkingType>${parkingType}</parkingType>
-    </parking>`;
-
-  // Validate laundry type
-  const validateLaundryType = (type) => {
-    const validTypes = ["In_unit", "On_site", "None"];
-    return validTypes.includes(type) ? type : "None";
-  };
-
-  const laundryType = validateLaundryType(RichDetails?.LaundryType || "None");
-  const laundryXML = `
-    <ListingTag type="LAUNDRY">
-      <tag>${laundryType}</tag>
-    </ListingTag>`;
-
-  // Validate heating fuel
+const validateLaundryType = (type) => {
+  const validTypes = ["In_unit", "On_site", "None"];
+  return validTypes.includes(type) ? type : (RichDetails?.OnsiteLaundry === "Yes" ? "On_site" : "None");
+};
+const laundryType = validateLaundryType(RichDetails?.LaundryType || (RichDetails?.OnsiteLaundry === "Yes" ? "On_site" : "None"));
+const laundryXML = `
+  <ListingTag type="LAUNDRY">
+    <tag>${laundryType}</tag>
+  </ListingTag>`;
+  // Default to "None" for heating/cooling if no data exists
   const validateHeatingFuel = (fuel) => {
     const validFuels = ["None", "Coal", "Electric", "Gas", "Oil", "PropaneButane", "Solar", "WoodPellet", "Other"];
     return validFuels.includes(fuel) ? fuel : "None";
   };
-
   const heatingFuel = validateHeatingFuel(RichDetails?.HeatingFuel || "None");
 
-  // Validate heating system
   const validateHeatingSystem = (system) => {
     const validSystems = ["Baseboard", "ForcedAir", "HeatPump", "Radiant", "Stove", "Wall", "Other"];
     return validSystems.includes(system) ? system : "None";
   };
-
   const heatingSystem = validateHeatingSystem(RichDetails?.HeatingSystem || "None");
 
-  // Validate cooling system
   const validateCoolingSystem = (system) => {
     const validSystems = ["None", "Central", "Evaporative", "Geothermal", "Wall", "Solar", "Other"];
     return validSystems.includes(system) ? system : "None";
   };
-
   const coolingSystem = validateCoolingSystem(RichDetails?.CoolingSystem || "None");
 
   const heatingCoolingXML = `
@@ -474,7 +458,27 @@ const mapToHotpadsFields = (listing) => {
       <tag>${coolingSystem}</tag>
     </ListingTag>`;
 
-  // Generate the XML as a clean string without escape characters
+  // Fix 3: Map additional amenities from RichDetails.AdditionalFeatures
+  const additionalFeatures = RichDetails?.AdditionalFeatures?.split(",") || [];
+  const additionalAmenitiesXML = additionalFeatures
+    .map((feature) => {
+      const trimmedFeature = feature.trim();
+      // Map to Hotpads amenity types (customize as needed)
+      const amenityTypeMap = {
+        "Hardwood Floors": "MODEL_AMENITY",
+        "High-Speed Internet": "PROPERTY_AMENITY",
+        "Cable Ready": "MODEL_AMENITY",
+        "Near Public Transportation": "PROPERTY_AMENITY",
+      };
+      const amenityType = amenityTypeMap[trimmedFeature] || "PROPERTY_AMENITY";
+      return `
+        <ListingTag type="${amenityType}">
+          <tag>${trimmedFeature}</tag>
+        </ListingTag>`;
+    })
+    .join("");
+
+  // Generate the XML
   const xml = `
   <Listing id="${ListingDetails?.ProviderListingId || listing._id}" type="RENTAL" companyId="${companyId}" propertyType="Apartment">
     <restrictions>
@@ -495,7 +499,7 @@ const mapToHotpadsFields = (listing) => {
     <lastUpdated>${new Date().toISOString()}</lastUpdated>
     ${Agent ? `<contactName>${Agent?.FirstName || ""} ${Agent?.LastName || ""}</contactName>` : ""}
     ${Agent?.EmailAddress ? `<contactEmail>${Agent.EmailAddress}</contactEmail>` : ""}
-    ${Agent?.MobilePhoneLineNumber ? `<contactPhone>${String(Agent.MobilePhoneLineNumber).replace(/\D/g, '').replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3")}</contactPhone>` : ""}
+    ${Agent?.MobilePhoneLineNumber ? `<contactPhone>${String(Agent.MobilePhoneLineNumber).replace(/\D/g, "").replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3")}</contactPhone>` : ""}
     ${petsXML ? `<pets>${petsXML}</pets>` : ""}
     ${mediaXML}
     ${ListingDetails?.Price ? `<price>${Math.max(0, Number(ListingDetails.Price))}</price>` : ""}
@@ -503,16 +507,17 @@ const mapToHotpadsFields = (listing) => {
     <numFullBaths>${numFullBaths}</numFullBaths>
     <numHalfBaths>${numHalfBaths}</numHalfBaths>
     ${description ? `<description>${description}</description>` : ""}
-    ${terms ? `<terms>${terms}</terms>` : ""} <!-- Added -->
+    ${terms ? `<terms>${terms}</terms>` : ""}
     ${leaseTerm ? `<leaseTerm>${leaseTerm}</leaseTerm>` : ""}
     ${website ? `<website>${website}</website>` : ""}
-    ${virtualTourUrl ? `<virtualTourUrl>${virtualTourUrl}</virtualTourUrl>` : ""} <!-- Added -->
+    ${virtualTourUrl ? `<virtualTourUrl>${virtualTourUrl}</virtualTourUrl>` : ""}
     <isFurnished>${isFurnished}</isFurnished>
     <smokingAllowed>${smokingAllowed}</smokingAllowed>
-    <status>${status}</status> <!-- Added -->
+    <status>${status}</status>
     ${parkingXML}
     ${laundryXML}
     ${heatingCoolingXML}
+    ${additionalAmenitiesXML}
   </Listing>`;
 
   return xml;
