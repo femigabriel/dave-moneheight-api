@@ -426,26 +426,27 @@ const validateLaundryType = (type) => {
 const laundryType = validateLaundryType(RichDetails?.LaundryType || (RichDetails?.OnsiteLaundry === "Yes" ? "On_site" : "None"));
 const laundryXML = `
   <ListingTag type="LAUNDRY">
-    <tag>${laundryType}</tag>
+    <tag></tag>
   </ListingTag>`;
   // Default to "None" for heating/cooling if no data exists
   const validateHeatingFuel = (fuel) => {
-    const validFuels = ["None", "Coal", "Electric", "Gas", "Oil", "PropaneButane", "Solar", "WoodPellet", "Other"];
-    return validFuels.includes(fuel) ? fuel : "None";
+    const validFuels = ["Coal", "Electric", "Gas", "Oil", "PropaneButane", "Solar", "WoodPellet", "Other"];
+    return validFuels.includes(fuel) ? fuel : "";
   };
-  const heatingFuel = validateHeatingFuel(RichDetails?.HeatingFuel || "None");
-
+  const heatingFuel = validateHeatingFuel(RichDetails?.HeatingFuel || "");
+  
   const validateHeatingSystem = (system) => {
     const validSystems = ["Baseboard", "ForcedAir", "HeatPump", "Radiant", "Stove", "Wall", "Other"];
-    return validSystems.includes(system) ? system : "None";
+    return validSystems.includes(system) ? system : "";
   };
-  const heatingSystem = validateHeatingSystem(RichDetails?.HeatingSystem || "None");
-
+  const heatingSystem = validateHeatingSystem(RichDetails?.HeatingSystem || "");
+  
   const validateCoolingSystem = (system) => {
-    const validSystems = ["None", "Central", "Evaporative", "Geothermal", "Wall", "Solar", "Other"];
-    return validSystems.includes(system) ? system : "None";
+    const validSystems = ["Central", "Evaporative", "Geothermal", "Wall", "Solar", "Other"];
+    return validSystems.includes(system) ? system : "";
   };
-  const coolingSystem = validateCoolingSystem(RichDetails?.CoolingSystem || "None");
+  const coolingSystem = validateCoolingSystem(RichDetails?.CoolingSystem || "");
+  
 
   const heatingCoolingXML = `
     <ListingTag type="HEATING_FUEL">
