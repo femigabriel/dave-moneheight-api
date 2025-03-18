@@ -337,7 +337,6 @@ const mapToHotpadsFields = (listing) => {
     Office = {},
     Location = {},
     RentalDetails = {},
-    Neighborhood = {},
     RichDetails = {},
     Media = [],
   } = listing;
@@ -370,7 +369,6 @@ const mapToHotpadsFields = (listing) => {
   if (RentalDetails?.PetsAllowed) {
     Object.entries(RentalDetails.PetsAllowed).forEach(([type, allowed]) => {
       const petType = petTypeMapping[type] || type.toLowerCase();
-      // Convert "Yes"/"No" strings to boolean for consistency
       petsAllowed[petType] = allowed === "Yes" || allowed === true;
     });
   }
@@ -389,11 +387,11 @@ const mapToHotpadsFields = (listing) => {
         <caption>${media?.Caption || ""}</caption>
       </ListingPhoto>`).join("");
 
-  // Fix 1: Map bathroom counts correctly from BasicDetails.Bathrooms
+  // Map bathroom counts correctly
   const numBedrooms = BasicDetails?.Bedrooms || 0;
   const totalBathrooms = BasicDetails?.Bathrooms || 0;
-  const numFullBaths = BasicDetails?.FullBaths || (totalBathrooms > 0 ? Math.floor(totalBathrooms) : 1); // Use Bathrooms if FullBaths missing
-  const numHalfBaths = BasicDetails?.HalfBaths || (totalBathrooms % 1 > 0 ? 1 : 0); // Assume half bath if fractional
+  const numFullBaths = BasicDetails?.FullBaths || (totalBathrooms > 0 ? Math.floor(totalBathrooms) : 1);
+  const numHalfBaths = BasicDetails?.HalfBaths || (totalBathrooms % 1 > 0 ? 1 : 0);
 
   // Additional fields
   const description = BasicDetails?.Description || "";
@@ -405,66 +403,46 @@ const mapToHotpadsFields = (listing) => {
   const smokingAllowed = RentalDetails?.SmokingAllowed || "No";
   const status = ListingDetails?.Status || "Active";
 
-  // Fix 2: Map amenities from data
- // Fix 2: Map amenities from data
-const validateParkingType = (type) => {
-  const validTypes = ["Garage", "Street", "Lot", "None"];
-  // Normalize "OnStreet" to "Street" for Hotpads compatibility
-  const normalizedType = type === "OnStreet" ? "Street" : type;
-  return validTypes.includes(normalizedType) ? normalizedType : "None";
-};
-const parkingType = validateParkingType(RichDetails?.ParkingTypes?.ParkingType || "None");
-const parkingXML = `
-  <parking>
-    <parkingType>${parkingType}</parkingType>
-  </parking>`;
+  // Parking XML
+  const validateParkingType = (type) => {
+    const validTypes = ["Garage", "Street", "Lot", "None"];
+    const normalizedType = type === "OnStreet" ? "Street" : type;
+    return validTypes.includes(normalizedType) ? normalizedType : "None";
+  };
+  const parkingType = validateParkingType(RichDetails?.ParkingTypes?.ParkingType || "None");
+  const parkingXML = `
+    <parking>
+      <parkingType>${parkingType}</parkingType>
+    </parking>`;
 
-const validateLaundryType = (type) => {
-  const validTypes = ["In_unit", "On_site", "None"];
-  return validTypes.includes(type) ? type : (RichDetails?.OnsiteLaundry === "Yes" ? "On_site" : "None");
-};
-const laundryType = validateLaundryType(RichDetails?.LaundryType || (RichDetails?.OnsiteLaundry === "Yes" ? "On_site" : "None"));
-const laundryXML = `
-  <ListingTag type="LAUNDRY">
-    <tag></tag>
-  </ListingTag>`;
-  // Default to "None" for heating/cooling if no data exists
-  const validateHeatingFuel = (fuel) => {
-    const validFuels = ["Coal", "Electric", "Gas", "Oil", "PropaneButane", "Solar", "WoodPellet", "Other"];
-    return validFuels.includes(fuel) ? fuel : "";
+  // Laundry XML
+  const validateLaundryType = (type) => {
+    const validTypes = ["In_unit", "On_site", "None"];
+    return validTypes.includes(type) ? type : (RichDetails?.OnsiteLaundry === "Yes" ? "On_site" : "None");
   };
-  const heatingFuel = validateHeatingFuel(RichDetails?.HeatingFuel || "");
-  
-  const validateHeatingSystem = (system) => {
-    const validSystems = ["Baseboard", "ForcedAir", "HeatPump", "Radiant", "Stove", "Wall", "Other"];
-    return validSystems.includes(system) ? system : "";
-  };
-  const heatingSystem = validateHeatingSystem(RichDetails?.HeatingSystem || "");
-  
-  const validateCoolingSystem = (system) => {
-    const validSystems = ["Central", "Evaporative", "Geothermal", "Wall", "Solar", "Other"];
-    return validSystems.includes(system) ? system : "";
-  };
-  const coolingSystem = validateCoolingSystem(RichDetails?.CoolingSystem || "");
-  
-
-  const heatingCoolingXML = `
-    <ListingTag type="HEATING_FUEL">
-      <tag>${heatingFuel}</tag>
-    </ListingTag>
-    <ListingTag type="HEATING_SYSTEM">
-      <tag>${heatingSystem}</tag>
-    </ListingTag>
-    <ListingTag type="COOLING_SYSTEM">
-      <tag>${coolingSystem}</tag>
+  const laundryType = validateLaundryType(RichDetails?.LaundryType || (RichDetails?.OnsiteLaundry === "Yes" ? "On_site" : "None"));
+  const laundryXML = `
+    <ListingTag type="LAUNDRY">
+      <tag></tag>
     </ListingTag>`;
 
-  // Fix 3: Map additional amenities from RichDetails.AdditionalFeatures
+  // Heating/Cooling XML (left empty unless explicitly provided)
+  const heatingCoolingXML = `
+    <ListingTag type="HEATING_FUEL">
+      <tag>${RichDetails?.HeatingFuel || ""}</tag>
+    </ListingTag>
+    <ListingTag type="HEATING_SYSTEM">
+      <tag>${RichDetails?.HeatingSystem || ""}</tag>
+    </ListingTag>
+    <ListingTag type="COOLING_SYSTEM">
+      <tag>${RichDetails?.CoolingSystem || ""}</tag>
+    </ListingTag>`;
+
+  // Additional amenities XML
   const additionalFeatures = RichDetails?.AdditionalFeatures?.split(",") || [];
   const additionalAmenitiesXML = additionalFeatures
     .map((feature) => {
       const trimmedFeature = feature.trim();
-      // Map to Hotpads amenity types (customize as needed)
       const amenityTypeMap = {
         "Hardwood Floors": "MODEL_AMENITY",
         "High-Speed Internet": "PROPERTY_AMENITY",
@@ -478,6 +456,29 @@ const laundryXML = `
         </ListingTag>`;
     })
     .join("");
+
+  // Utilities included in rent (left empty unless explicitly provided)
+  const utilitiesIncluded = RentalDetails?.UtilitiesIncluded || [];
+  const utilitiesXML = utilitiesIncluded
+    .map((utility) => `
+      <ListingTag type="UTILITY">
+        <tag>${utility}</tag>
+      </ListingTag>`)
+    .join("");
+
+    // Default Appliances (if data is missing)
+const defaultAppliances = ["Refrigerator", "Stove"];
+const appliancesFromData = RichDetails?.Appliances?.split(",") || [];
+const appliances = appliancesFromData.length ? appliancesFromData.map(a => a.trim()) : defaultAppliances;
+
+// Generate Appliances XML
+const appliancesXML = appliances
+  .map((appliance) => `
+    <ListingTag type="APPLIANCE">
+      <tag>${appliance}</tag>
+    </ListingTag>`)
+  .join("");
+
 
   // Generate the XML
   const xml = `
@@ -519,6 +520,7 @@ const laundryXML = `
     ${laundryXML}
     ${heatingCoolingXML}
     ${additionalAmenitiesXML}
+    ${utilitiesXML}
   </Listing>`;
 
   return xml;
