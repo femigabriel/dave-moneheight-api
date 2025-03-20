@@ -458,7 +458,9 @@ const mapToHotpadsFields = (listing) => {
     .join("");
 
   // Utilities included in rent (left empty unless explicitly provided)
-  const utilitiesIncluded = RentalDetails?.UtilitiesIncluded || [];
+  const utilitiesIncluded = Array.isArray(RentalDetails?.UtilitiesIncluded)
+    ? RentalDetails.UtilitiesIncluded
+    : [];
   const utilitiesXML = utilitiesIncluded
     .map((utility) => `
       <ListingTag type="UTILITY">
@@ -466,19 +468,18 @@ const mapToHotpadsFields = (listing) => {
       </ListingTag>`)
     .join("");
 
-    // Default Appliances (if data is missing)
-const defaultAppliances = ["Refrigerator", "Stove"];
-const appliancesFromData = RichDetails?.Appliances?.split(",") || [];
-const appliances = appliancesFromData.length ? appliancesFromData.map(a => a.trim()) : defaultAppliances;
+  // Default Appliances (if data is missing)
+  const defaultAppliances = ["Refrigerator", "Stove"];
+  const appliancesFromData = RichDetails?.Appliances?.split(",") || [];
+  const appliances = appliancesFromData.length ? appliancesFromData.map(a => a.trim()) : defaultAppliances;
 
-// Generate Appliances XML
-const appliancesXML = appliances
-  .map((appliance) => `
-    <ListingTag type="APPLIANCE">
-      <tag>${appliance}</tag>
-    </ListingTag>`)
-  .join("");
-
+  // Generate Appliances XML
+  const appliancesXML = appliances
+    .map((appliance) => `
+      <ListingTag type="APPLIANCE">
+        <tag>${appliance}</tag>
+      </ListingTag>`)
+    .join("");
 
   // Generate the XML
   const xml = `
