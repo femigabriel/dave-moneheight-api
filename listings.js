@@ -5,20 +5,15 @@ const { Builder } = require("xml2js");
 const mongoose = require("mongoose");
 const { Schema, model, models } = mongoose;
 
-
-
 const app = express();
 const PORT = 5000;
-
 
 // MongoDB URI
 const MONGODB_URI =
   "mongodb+srv://Eatsumn:Eatsumn@cluster0.glsj1ah.mongodb.net/dave-moneheight";
 
-
-
 // Define schema and model
-const ListingSchema = new Schema({}, { strict: false }); 
+const ListingSchema = new Schema({}, { strict: false });
 const Listing = models.Listing || model("Listing", ListingSchema);
 
 // Middleware to connect to MongoDB
@@ -32,7 +27,6 @@ const connectDB = async () => {
     console.error("Error connecting to MongoDB:", error);
   }
 };
-
 
 const mapToHotpadsFields = (listing) => {
   const {
