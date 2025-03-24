@@ -393,87 +393,145 @@ app.get("/listings", async (req, res) => {
     // Extract Listings
     const listings = result?.YGLResponse?.Listings?.Listing || [];
 
-    // Transform listings into Hotpads XML format
-    const hotpadsListings = listings.map((listing) => ({
-      Listing: {
-        ListingID: listing.ID,
-        ExternalID: listing.ExternalID || "",
-        Address: `${listing.StreetNumber || ""} ${
-          listing.StreetName || ""
-        }`.trim(),
-        Unit: listing.Unit || "",
-        City: listing.City,
-        Neighborhood: listing.Neighborhood || "",
-        State: listing.State,
-        Zip: listing.Zip,
-        Latitude: parseFloat(listing.Latitude) || 0,
-        Longitude: parseFloat(listing.Longitude) || 0,
-        CreateDate: listing.CreateDate,
-        UpdateDate: listing.UpdateDate,
-        StatusDate: listing.StatusDate,
-        Beds: parseFloat(listing.Beds) || 0,
-        BedInfo: listing.BedInfo || "",
-        Room: listing.Room || "0",
-        Baths: parseFloat(listing.Baths) || 0,
-        AvailableDate: listing.AvailableDate || "",
-        Rent: parseFloat(listing.Price) || 0,
-        Status: listing.Status,
-        Pet: listing.Pet || "",
-        Fee: listing.Fee || "",
-        FeeAdditionalInfo: listing.FeeAdditionalInfo || "",
-        Parking:
-          listing.Parking && typeof listing.Parking === "object"
+    // Function to fetch agent details if ListingAgentID exists
+    const getAgentDetails = async (listingAgentID) => {
+      if (!listingAgentID) {
+        return {
+          Name: "Encore Realty",
+          Email: "info@allaccessboston.com",
+          Phone: "617-981-6900"
+        };
+      }
+      
+      try {
+        const agentResponse = await axios.get(
+          `https://www.yougotlistings.com/api/users/search.php?key=YOUR_API_KEY&id=${listingAgentID}`
+        );
+        const agentResult = await parser.parseStringPromise(agentResponse.data);
+        return {
+          Name: agentResult?.YGLResponse?.Users?.User?.Name || "Encore Realty",
+          Email: agentResult?.YGLResponse?.Users?.User?.Email || "info@allaccessboston.com",
+          Phone: agentResult?.YGLResponse?.Users?.User?.Phone || "617-981-6900"
+        };
+      } catch (error) {
+        console.error("Error fetching agent details:", error.message);
+        return {
+          Name: "Encore Realty",
+          Email: "info@allaccessboston.com",
+          Phone: "617-981-6900"
+        };
+      }
+    };
+
+    // Transform listings into Zillow XML format with required adjustments
+    const zillowListings = await Promise.all(listings.map(async (listing) => {
+      const agentDetails = await getAgentDetails(listing.ListingAgentID);
+      
+      // Default values for missing fields
+      const propertyType = listing.BuildingType || "Apartment";
+      const petPolicy = listing.Pet || "No Pets";
+      const rentIncludes = listing.RentIncludes 
+      ? (Array.isArray(listing.RentIncludes.RentInclude)
+        ? listing.RentIncludes.RentInclude
+        : [listing.RentIncludes.RentInclude])
+      : ["None"];
+      
+      // Generate descriptions if empty
+      const buildingDescription = listing.BuildingDescription || 
+        `Well-maintained ${propertyType} building in ${listing.Neighborhood || 'Boston'}`;
+      const unitDescription = listing.UnitDescription || 
+        `${listing.Beds || '0'} bed, ${listing.Baths || '0'} bath unit`;
+
+      return {
+        Listing: {
+          ListingID: listing.ID,
+          ExternalID: listing.ExternalID || "",
+          Address: `${listing.StreetNumber || ""} ${listing.StreetName || ""}`.trim(),
+          Unit: listing.Unit || "",
+          City: listing.City,
+          Neighborhood: listing.Neighborhood || "",
+          State: listing.State,
+          Zip: listing.Zip,
+          Latitude: parseFloat(listing.Latitude) || 0,
+          Longitude: parseFloat(listing.Longitude) || 0,
+          CreateDate: listing.CreateDate,
+          UpdateDate: listing.UpdateDate,
+          StatusDate: listing.StatusDate,
+          Beds: parseFloat(listing.Beds) || 0,
+          BedInfo: listing.BedInfo || "",
+          Room: listing.Room || "0",
+          Baths: parseFloat(listing.Baths) || 0,
+          AvailableDate: listing.AvailableDate || "",
+          Rent: parseFloat(listing.Price) || 0,
+          Status: listing.Status,
+          Pet: petPolicy,
+          Fee: listing.Fee || "",
+          FeeAdditionalInfo: listing.FeeAdditionalInfo || "",
+          Parking: {
+            ParkingType: (listing.Parking && listing.Parking.ParkingType) || "None",
+            ParkingAvailability: (listing.Parking && listing.Parking.ParkingAvailability) || "",
+            ParkingNumber: (listing.Parking && listing.Parking.ParkingNumber) || "",
+            ParkingPrice: (listing.Parking && parseFloat(listing.Parking.ParkingPrice)) || 0
+          },
+          SquareFootage: parseFloat(listing.SquareFootage) || 0,
+          UnitLevel: listing.UnitLevel || "",
+          HeatSource: listing.HeatSource || "",
+          Laundry: listing.Laundry || "",
+          IncludeElectricity: listing.IncludeElectricity === "1",
+          IncludeGas: listing.IncludeGas === "1",
+          IncludeHeat: listing.IncludeHeat === "1",
+          IncludeHotWater: listing.IncludeHotWater === "1",
+          ListingAgentID: listing.ListingAgentID || "",
+          BuildingDescription: buildingDescription,
+          UnitDescription: unitDescription,
+          ContactInformation: {
+            Name: agentDetails.Name,
+            Email: agentDetails.Email,
+            Phone: agentDetails.Phone
+          },
+          leaseTerm: "OneYear",
+          PropertyType: propertyType,
+          isFurnished: "No",
+          smokingAllowed: "No",
+          RentIncludes: { RentInclude: rentIncludes },
+          restrictions: {
+            seniorHousing: "",
+            studentHousing: "",
+            militaryHousing: "",
+            disabledHousing: "",
+            incomeRestrictedHousing: ""
+          },
+          description: `${unitDescription}. ${buildingDescription}`,
+          website: "http://www.allaccessboston.com",
+          Videos: listing.Videos
             ? {
-                ParkingAvailability: listing.Parking.ParkingAvailability || "",
-                ParkingNumber: listing.Parking.ParkingNumber || "",
-                ParkingPrice: parseFloat(listing.Parking.ParkingPrice) || 0,
-                ParkingType: listing.Parking.ParkingType || "",
+                Video: Array.isArray(listing.Videos.Video)
+                  ? listing.Videos.Video
+                  : [listing.Videos.Video],
               }
-            : {},
-        SquareFootage: parseFloat(listing.SquareFootage) || 0,
-        UnitLevel: listing.UnitLevel || "",
-        HeatSource: listing.HeatSource || "",
-        Laundry: listing.Laundry || "",
-        IncludeElectricity: listing.IncludeElectricity === "1",
-        IncludeGas: listing.IncludeGas === "1",
-        IncludeHeat: listing.IncludeHeat === "1",
-        IncludeHotWater: listing.IncludeHotWater === "1",
-        ListingAgentID: listing.ListingAgentID || "",
-        RentIncludes: listing.RentIncludes
-          ? {
-              RentInclude: Array.isArray(listing.RentIncludes.RentInclude)
-                ? listing.RentIncludes.RentInclude
-                : [listing.RentIncludes.RentInclude],
-            }
-          : { RentInclude: [] },
-        Videos: listing.Videos
-          ? {
-              Video: Array.isArray(listing.Videos.Video)
-                ? listing.Videos.Video
-                : [listing.Videos.Video],
-            }
-          : { Video: [] },
-        VirtualTours: listing.VirtualTours
-          ? {
-              VirtualTour: Array.isArray(listing.VirtualTours.VirtualTour)
-                ? listing.VirtualTours.VirtualTour
-                : [listing.VirtualTours.VirtualTour],
-            }
-          : { VirtualTour: [] },
-        Photos: listing.Photos
-          ? {
-              Photo: Array.isArray(listing.Photos.Photo)
-                ? listing.Photos.Photo
-                : [listing.Photos.Photo],
-            }
-          : { Photo: [] },
-        AllowedToPost: true,
-      },
+            : { Video: [] },
+          VirtualTours: listing.VirtualTours
+            ? {
+                VirtualTour: Array.isArray(listing.VirtualTours.VirtualTour)
+                  ? listing.VirtualTours.VirtualTour
+                  : [listing.VirtualTours.VirtualTour],
+              }
+            : { VirtualTour: [] },
+          Photos: listing.Photos
+            ? {
+                Photo: Array.isArray(listing.Photos.Photo)
+                  ? listing.Photos.Photo
+                  : [listing.Photos.Photo],
+              }
+            : { Photo: [] },
+          AllowedToPost: true,
+        },
+      };
     }));
 
     // Build the final XML response
     const builder = new Builder({ rootName: "Listings", headless: true });
-    const xml = builder.buildObject({ Listings: hotpadsListings });
+    const xml = builder.buildObject({ Listings: zillowListings });
 
     // Set the response header to XML
     res.set("Content-Type", "application/xml");
