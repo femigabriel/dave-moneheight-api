@@ -21,7 +21,7 @@ const MONGODB_URI =
 const ListingSchema = new Schema({}, { strict: false }); 
 const Listing = models.Listing || model("Listing", ListingSchema);
 
-Middleware to connect to MongoDB
+// Middleware to connect to MongoDB
 const connectDB = async () => {
   try {
     if (!mongoose.connection.readyState) {
