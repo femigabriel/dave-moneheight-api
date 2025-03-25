@@ -551,6 +551,18 @@ app.get("/listings", async (req, res) => {
   }
 });
 
+// Function to escape XML special characters
+function escapeXml(unsafe) {
+  if (!unsafe) return "";
+  return unsafe
+    .toString()
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+}
+
 app.get("/hotpads-listings", async (req, res) => {
   try {
     // Fetch live data from YGL API
@@ -576,23 +588,24 @@ app.get("/hotpads-listings", async (req, res) => {
 
     // Transform YGL listings to Hotpads XML format
     const transformedListings = listings.map((listing) => {
-      // Calculate bathroom counts
       const baths = parseFloat(listing.Baths) || 0;
       const numFullBaths = Math.floor(baths);
       const hasHalfBath = baths % 1 >= 0.5;
 
-      // Determine parking type from YGL data
-      const parkingType = listing.MlsParking?.GarageSpaces > 0 ? "garage" : 
-                         listing.MlsParking?.CoveredSpaces > 0 ? "coveredlot" : 
-                         listing.MlsParking?.Total > 0 ? "surfacelot" : "none";
+      const parkingType =
+        listing.MlsParking?.GarageSpaces > 0
+          ? "garage"
+          : listing.MlsParking?.CoveredSpaces > 0
+          ? "coveredlot"
+          : listing.MlsParking?.Total > 0
+          ? "surfacelot"
+          : "none";
 
-      // Map rent includes to Zillow's standard values
       const rentIncludes = [];
       if (listing.RentIncludes?.RentInclude) {
         const includes = Array.isArray(listing.RentIncludes.RentInclude)
           ? listing.RentIncludes.RentInclude
           : [listing.RentIncludes.RentInclude];
-
         includes.forEach((include) => {
           if (include.match(/heat/i)) rentIncludes.push("Heat");
           if (include.match(/water/i)) rentIncludes.push("Water");
@@ -602,9 +615,9 @@ app.get("/hotpads-listings", async (req, res) => {
         });
       }
 
-      // Generate XML
+      // Build XML with escaped values
       let listingXml = `
-  <Listing id="${listing.ID}" type="RENTAL" companyId="EncoreRealty" propertyType="Apartment">
+  <Listing id="${escapeXml(listing.ID)}" type="RENTAL" companyId="EncoreRealty" propertyType="Apartment">
     <restrictions>
       <seniorHousing/>
       <studentHousing/>
@@ -622,44 +635,31 @@ app.get("/hotpads-listings", async (req, res) => {
         <eightPersonHouseholdIncomePerMonth/>
       </incomeRestrictions>
     </restrictions>
-    <name>${listing.Beds}BR at ${listing.StreetName}</name>
-    <unit>${listing.Unit || ""}</unit>
-    <street hide="false">${listing.StreetNumber} ${listing.StreetName}</street>
-    <city>${listing.City}</city>
-    <state>${listing.State}</state>
-    <zip>${listing.Zip}</zip>
-    <latitude>${listing.Latitude}</latitude>
-    <longitude>${listing.Longitude}</longitude>
+    <name>${escapeXml(listing.Beds)}BR at ${escapeXml(listing.StreetName)}</name>
+    <unit>${escapeXml(listing.Unit || "")}</unit>
+    <street hide="false">${escapeXml(listing.StreetNumber)} ${escapeXml(listing.StreetName)}</street>
+    <city>${escapeXml(listing.City)}</city>
+    <state>${escapeXml(listing.State)}</state>
+    <zip>${escapeXml(listing.Zip)}</zip>
+    <latitude>${escapeXml(listing.Latitude)}</latitude>
+    <longitude>${escapeXml(listing.Longitude)}</longitude>
     <lastUpdated>${new Date(listing.UpdateDate || listing.CreateDate).toISOString()}</lastUpdated>
-    <contactName>${listing.MlsAgentName || "Encore Realty"}</contactName>
+    <contactName>${escapeXml(listing.MlsAgentName || "Encore Realty")}</contactName>
     <contactEmail>info@allaccessboston.com</contactEmail>
-    <contactPhone>${listing.MlsAgentPhone || "617-981-6900"}</contactPhone>
-    <price>${listing.Price}</price>
-    <numBedrooms>${listing.Beds}</numBedrooms>
-    <numFullBaths>${numFullBaths}</numFullBaths>`;
-
-      // Only include half bath if exists
-      if (hasHalfBath) {
-        listingXml += `
-    <numHalfBaths>1</numHalfBaths>`;
-      } else {
-        listingXml += `
-    <numHalfBaths>0</numHalfBaths>`;
-      }
-
-      listingXml += `
-    <description>${listing.Beds} bed, ${listing.Baths} bath in ${listing.City}</description>
+    <contactPhone>${escapeXml(listing.MlsAgentPhone || "617-981-6900")}</contactPhone>
+    <price>${escapeXml(listing.Price)}</price>
+    <numBedrooms>${escapeXml(listing.Beds)}</numBedrooms>
+    <numFullBaths>${numFullBaths}</numFullBaths>
+    <numHalfBaths>${hasHalfBath ? 1 : 0}</numHalfBaths>
+    <description>${escapeXml(listing.Beds)} bed, ${escapeXml(listing.Baths)} bath in ${escapeXml(listing.City)}</description>
     <leaseTerm>OneYear</leaseTerm>
     <website>http://www.allaccessboston.com</website>
     <isFurnished>No</isFurnished>
     <smokingAllowed>No</smokingAllowed>
     <status>For Rent</status>
     <parking>
-      <parkingType>${parkingType}</parkingType>
-    </parking>`;
-
-      // Add mandatory fees section
-      listingXml += `
+      <parkingType>${escapeXml(parkingType)}</parkingType>
+    </parking>
     <fees>
       <fee>
         <feeCalculationType value="0" valueType="flatFee"/>
@@ -668,7 +668,6 @@ app.get("/hotpads-listings", async (req, res) => {
       </fee>
     </fees>`;
 
-      // Add pet policy if exists
       if (listing.Pet) {
         const allowsPets = listing.Pet.toLowerCase().includes("yes");
         listingXml += `
@@ -684,15 +683,13 @@ app.get("/hotpads-listings", async (req, res) => {
     </pets>`;
       }
 
-      // Add rent includes
       rentIncludes.forEach((include) => {
         listingXml += `
     <ListingTag type="RENT_INCLUDES">
-      <tag>${include}</tag>
+      <tag>${escapeXml(include)}</tag>
     </ListingTag>`;
       });
 
-      // Add laundry if exists
       if (listing.Laundry) {
         listingXml += `
     <ListingTag type="LAUNDRY">
@@ -700,26 +697,24 @@ app.get("/hotpads-listings", async (req, res) => {
     </ListingTag>`;
       }
 
-      // Add photos
       if (listing.Photos?.Photo) {
         const photos = Array.isArray(listing.Photos.Photo)
           ? listing.Photos.Photo
           : [listing.Photos.Photo];
         photos.forEach((photo) => {
           listingXml += `
-    <ListingPhoto source="${photo}">
+    <ListingPhoto source="${escapeXml(photo)}">
       <label>Property Photo</label>
     </ListingPhoto>`;
         });
       }
 
-      // Add virtual tour if available
       if (listing.VirtualTours?.VirtualTour) {
         const tour = Array.isArray(listing.VirtualTours.VirtualTour)
           ? listing.VirtualTours.VirtualTour[0]
           : listing.VirtualTours.VirtualTour;
         listingXml += `
-    <virtualTourUrl>${tour}</virtualTourUrl>`;
+    <virtualTourUrl>${escapeXml(tour)}</virtualTourUrl>`;
       }
 
       listingXml += `
@@ -728,12 +723,12 @@ app.get("/hotpads-listings", async (req, res) => {
       return listingXml;
     });
 
-    // Final XML feed with proper Hotpads wrapper
     const xmlFeed = `<?xml version="1.0" encoding="UTF-8"?>
 <hotPadsItems version="2.1">
   ${transformedListings.join("\n")}
 </hotPadsItems>`;
 
+    // Set the content type and send the response
     res.set("Content-Type", "application/xml");
     res.send(xmlFeed);
   } catch (error) {
